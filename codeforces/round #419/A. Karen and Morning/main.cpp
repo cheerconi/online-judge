@@ -5,22 +5,32 @@
 #include <algorithm>
 using namespace std;
 
+bool check(int i, int j) {
+    string h = to_string(i);
+    if (h.size() == 1) h = "0" + h;
+    string m = to_string(j);
+    if (m.size() == 1) m = "0" + m;
+    if (h[0] != m[1]) return false;
+    if (h[1] != m[0]) return false;
+    return true;
+
+}
+
 int compute(string h, string m) {
-    string h_inv = h;
-    reverse(h_inv.begin(), h_inv.end());
-    if (h_inv == m) {
-        return 0;
-    }
-    if (h_inv > m) {
-        return stoi(h_inv) - stoi(m);
-    }
+    int hh = stoi(h);
+    int mm = stoi(m);
     int cnt = 0;
-    cnt = 60 - stoi(m);
-    if (h == "23") return cnt;
-    h = to_string(stoi(h)+1);
-    reverse(h.begin(), h.end());
-    cnt += stoi(h);
-    return cnt;
+    while (true) {
+        if (check(hh, mm)) return cnt;
+        mm += 1;
+        if (mm == 60) {
+            mm = 0;
+            hh += 1;
+        }
+        if (hh == 24) hh = 0;
+        cnt++;
+    }
+
 
 }
 
@@ -35,6 +45,18 @@ int main() {
 
     int cnt = compute(h, m);
     cout << cnt << endl;
+
+//    for (int i = 0; i < 24; i++) {
+//        for (int j = 0; j < 60; j++) {
+//            string tmp1 = to_string(i);
+//            if (tmp1.size() == 1) tmp1 = "0"+tmp1;
+//            string tmp2 = to_string(j);
+//            if (tmp2.size() == 1) tmp2 = "0"+tmp2;
+//            int cnt = compute(tmp1, tmp2);
+//            cout << tmp1 << ":" << tmp2 << "\t" << cnt << endl;
+//
+//        }
+//    }
 
 
 

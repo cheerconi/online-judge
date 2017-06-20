@@ -47,7 +47,7 @@ void minus_col() {
 }
 
 int main() {
-    freopen("test.txt", "r", stdin);
+    //freopen("test.txt", "r", stdin);
     int n, m;
     cin >> n >> m;
     board = vector<vector<int> >(n, vector<int>(m, 0));
@@ -68,6 +68,9 @@ int main() {
     }
     if (cnt != 0) cout << "-1" <<endl;
     else {
+        int cnt = 0;
+        for (int tmp : steps) cnt += abs(tmp);
+        cout << cnt << endl;
         for (int i = 0; i < steps.size(); i++) {
             string tmp = steps[i] > 0 ? "row " : "col ";
             for (int j = 0; j < abs(steps[i]); j++) {

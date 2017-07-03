@@ -1,109 +1,65 @@
 #include <iostream>
-#include <unordered_map>
-#include <queue>
 #include <vector>
+#include <memory.h>
 #include <algorithm>
 using namespace std;
-struct Voucher{
+typedef long long LL;
+
+
+static const int MAXD = 200000 + 10;
+
+LL minicost[MAXD];
+
+struct Vouch{
     int start;
     int end;
-    int cost;
-    int pre;
-    int rear = -1;
-    Voucher(int s, int e,int c){
-        start = s;
-        end = e;
-        cost = c;
+    int dur;
+    LL cost;
+    Vouch(int _start, int _end, int _cost) {
+        start = _start;
+        end = _end;
+        dur = end - start + 1;
+        cost = _cost;
     }
 };
-static bool cmp(Voucher const & v1, Voucher const & v2) {
+
+static bool cmp1(Vouch const & v1, Vouch const & v2) {
     return v1.start < v2.start;
 }
 
-int findnext(vector<Voucher> const & v, int start) {
-//    cout << "find next " << start << endl;
-    int left =0;
-    int right = v.size()-1;
-    while (left < right) {
-        int mid = (left+right) >> 1;
-        if (v[mid].start == start) return mid;
-        if (v[mid].start > start) {
-            right = mid;
-        }
-        else {
-            left = mid + 1;
-        }
-    }
-    if (v[left].start >= start) return left;
-    return -1;
+static bool cmp2(Vouch const & v1, Vouch const & v2) {
+    return v1.end < v2.end;
 }
 
-int findpre(vector<Voucher> const & v, int start) {
-//    cout << "find pre " << start << endl;
-    int left =0;
-    int right = v.size()-1;
-    while (left < right) {
-        int mid = (left+right) >> 1;
-        if (v[mid].start == start) return mid;
-        if (v[mid].start > start) {
-            right = mid;
-        }
-        else {
-            left = mid + 1;
-        }
-    }
-    if (v[left].start <= start) return left;
-    return left-1;
-}
-
-
-int main() {
+int main(){
 //    freopen("test.txt", "r", stdin);
-    int n, x, start, end, cost, time;
+    int n, x, start, end, cost;
     scanf("%d%d", &n, &x);
-    unordered_map<int, vector<Voucher> > table;
+    for (int i = 0; i < MAXD; i++) {
+        minicost[i]= INT_MAX;
+    }
+    vector<Vouch> vs1, vs2;
     for (int i = 0; i < n; i++) {
         scanf("%d%d%d", &start, &end, &cost);
-        time = end - start + 1;
-        auto it = table.find(time);
-        if (it == table.end()){
-            table[time] = vector<Voucher>(1, Voucher(start, end, cost));
-        }
-        else { // it != table.find(time)
-            table[time].push_back(Voucher(start, end, cost));
-        }
+        Vouch tmp = Vouch(start, end, cost);
+        vs1.push_back(tmp);
+        vs2.push_back(tmp);
     }
-    int cnt = INT_MAX;
-    for (auto it = table.begin(); it != table.end(); it++) {
-        time = it->first;
-        auto v1 = it->second;
-        auto tmp_it = table.find(x - time);
-        if (tmp_it == table.end()) continue;
-        auto v2 = tmp_it->second;
-        if (v2[0].rear == -1) {
-            sort(v2.begin(), v2.end(), cmp);
-            cost = INT_MAX;
-            for (int i = 0; i < v2.size(); i++) {
-                cost = min(cost, v2[i].cost);
-                v2[i].pre = cost;
-            }
-            cost = INT_MAX;
-            for (int i = v2.size()-1; i >= 0; i--) {
-                cost = min(cost, v2[i].cost);
-                v2[i].rear = cost;
-            }
-        }
+    sort(vs1.begin(), vs1.end(), cmp1); // sort by start
+    sort(vs2.begin(), vs2.end(), cmp2); // sort by end
 
-        for (int i = 0; i < v1.size(); i++) {
-            if (cnt <= v1[i].cost) continue;
-            int pos = findnext(v2, v1[i].end+1);
-            if (pos != -1) cnt = min(cnt, v1[i].cost + v2[pos].rear);
-            pos = findpre(v2, v1[i].start-x+time);
-            if (pos != -1) cnt = min(cnt, v1[i].cost + v2[pos].pre);
+    int j = n-1;
+    LL cnt = INT_MAX;
+    for (int i = n-1; i >= 0; i--) {
+        Vouch tmp = vs2[i];
+        while (j >= 0 && vs1[j].start > tmp.end) {
+            minicost[vs1[j].dur] = min (minicost[vs1[j].dur], vs1[j].cost);
+            j--;
         }
+        if(x-tmp.dur > 0) cnt = min (tmp.cost+minicost[x - tmp.dur], cnt);
     }
-    if (cnt != INT_MAX) cout << cnt << endl;
-    else cout << -1 << endl;
+    if (cnt == INT_MAX) cout << -1 << endl;
+    else cout << cnt << endl;
 
-    return 0;
+
 }

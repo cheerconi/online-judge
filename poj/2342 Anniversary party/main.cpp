@@ -1,87 +1,66 @@
 #include <iostream>
-#include <memory.h>
-#include <stdio.h>
-#include <unordered_set>
-#include <queue>
+#include <vector>
+#include <set>
 #include <algorithm>
+#include <memory.h>
 using namespace std;
 
 static const int MAXN = 6000 + 10;
 
-
-struct TreeNode {
-    int dad = 0;
-    int sum1;
-    int sum0 = 0;
+struct Emp{
     int val;
-    TreeNode(int val_) {
-        val = val_;
-        sum1 = val_;
+    vector<int> slave;
+    int dp0;
+    int dp1;
+    Emp() {
+        dp0 = 0;
+        dp1 = 0;
+        return;
     }
-};
-
-TreeNode *nodes[MAXN];
-
-int ret = 0;
-
-void recur(queue<int> &q) {
-    if (q.size() == 0) return;
-    int son, dad;
-    unordered_set<int> tmp;
-    while (q.size() > 0) {
-        son = q.front();
-        dad = nodes[son]->dad;
-        if (dad == 0) {
-            ret += max(nodes[son]->sum0, nodes[son]->sum1);
-        }
-        else {
-            int tmp_sum0 = max(nodes[son]->sum1, nodes[son]->sum0);
-            int tmp_sum1 = nodes[son]->sum0 + (nodes[dad]->val>0 ? nodes[dad]->val : 0);
-            nodes[dad]->sum0 = max(nodes[dad]->sum0, tmp_sum0);
-            nodes[dad]->sum1 = max(nodes[dad]->sum1, tmp_sum1);
-            tmp.insert(dad);
-        }
-        q.pop();
-    }
-    for (int item : tmp) {
-        q.push(item);
+    void add (int id) {
+        slave.push_back(id);
     }
 
-    recur(q);
+} emps[MAXN];
+bool root[MAXN];
+
+void dfs(int root) {
+    for (int i = 0; i < emps[root].slave.size(); i++) {
+        int id = emps[root].slave[i];
+        dfs(id);
+        emps[root].dp0 += max(emps[id].dp0, emps[id].dp1);
+        emps[root].dp1 += emps[id].dp0;
+    }
+    return;
+
 }
 
-
-
 int main() {
-    freopen("test.txt", "r", stdin);
-    int N, val;
-    scanf("%d", &N);
-    for (int n = 1; n <= N; n++) {
-        scanf("%d", &val);
-        nodes[n] = new TreeNode(val);
+//    freopen("test.txt", "r", stdin);
+    int n, tmp;
+    while (scanf("%d", &n) != EOF) {
+        for (int i = 1; i <= n; i++) {
+            scanf("%d", &tmp);
+            emps[i] = Emp();
+            emps[i].dp1 = tmp;
+        }
+        int L, K;
+        memset(root, -1, sizeof(root));
+        scanf("%d%d", &L, &K);
+        while (L != 0) {
+            emps[K].add(L);
+            root[L] = false;
+            scanf("%d%d", &L, &K);
+        }
+        for (int i = 1; i <= n; i++) {
+            if (root[i]) {
+                dfs(i);
+                cout << max(emps[i].dp0, emps[i].dp1) << endl;
+                break;
+            }
+        }
     }
-    unordered_set<int> leaves;
-    for (int n = 1; n <= N; n++) leaves.insert(n);
-    int son, dad;
-    scanf("%d%d", &son, &dad);
-
-    while (son != 0) {
-        nodes[son]->dad = dad;
-        auto it = leaves.find(dad);
-        if (it != leaves.end()) leaves.erase(it);
-        scanf("%d%d", &son, &dad);
-    }
-    queue<int> q;
-    for (int leaf : leaves) q.push(leaf);
-
-    recur(q);
-
-    cout << ret << endl;
-
-
-
-
-
-
     return 0;
+
+
 }

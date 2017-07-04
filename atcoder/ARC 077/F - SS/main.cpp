@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <memory.h>
+#include <vector>
 
 using namespace std;
 typedef long long LL;
@@ -29,26 +30,23 @@ LL fib(int id, LL order ,int n, int k) {
 
 
 int main() {
-    freopen("test.txt", "r", stdin);
+//    freopen("test.txt", "r", stdin);
     string s;
     cin >> s;
-    int n = s.size();
+    int n = s.size() >> 1;
     LL left, right;
     cin >> left >> right;
     memset(w, 0, sizeof(w));
-    int k = 1;
-    while (true) {
-        bool fail = false;
-        for (int i = 0; i < n-k; i++) {
-            if (s[i] != s[i+k]) {
-                fail = true;
-                break;
-            }
+    vector<int> next(n, 0);
+    for (int i = 1; i < n; i++) {
+        int len = next[i-1];
+        while (len >= 1 && s[len] != s[i]) {
+            len = next[len-1];
         }
-        if (fail) k++;
-        else break;
+        if (s[len] == s[i]) next[i] = len + 1;
+        else next[i] = 0;
     }
-    k = n - k;
+    int k = n - next.back();
     for (int i = 1; i <= n; i++) {
         w[i][s[i-1]-'a']++;
         for (int j = 0; j < 26; j++) {

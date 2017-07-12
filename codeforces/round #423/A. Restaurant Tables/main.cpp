@@ -9,11 +9,11 @@ int main() {
         scanf("%d", &tmp);
         if (tmp == 1) {
             if (a > 0) a--;
-            else if (c > 0) c--;
             else if (b > 0) {
                 b--;
                 c++;
             }
+            else if (c > 0) c--;
             else cnt++;
         }
         else {

@@ -15,7 +15,7 @@ bool update(int val, int pos) {
 }
 
 int main() {
-//    freopen("test.txt", "r", stdin);
+    freopen("test.txt", "r", stdin);
     memset(dis, -1, sizeof(dis));
     int n, k;
     scanf("%d%d", &n, &k);

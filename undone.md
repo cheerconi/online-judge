@@ -7,3 +7,4 @@
 * ARC 078 F - Mole and Abandoned Mine
 * hiho #1536 : Selling Antique Coins
 * hiho #1537 : Unimodal Permutation
+* ACG 018 D - Tree and Hamilton Path

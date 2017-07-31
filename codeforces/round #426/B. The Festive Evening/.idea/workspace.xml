@@ -2,7 +2,7 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
     <generated>
-      <config projectName="1322_" targetName="1322_" />
+      <config projectName="B__The_Festive_Evening" targetName="B__The_Festive_Evening" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -11,7 +11,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dd0175a6-151f-4761-b826-ec81608b5720" name="Default" comment="" />
+    <list default="true" id="b0e0ac00-7030-4c93-ab28-0fce0f5bd8aa" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -35,8 +35,8 @@
       <file leaf-file-name="main.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="27" column="37" lean-forward="true" selection-start-line="27" selection-start-column="37" selection-end-line="27" selection-end-column="37" />
+            <state relative-caret-position="135">
+              <caret line="9" column="35" lean-forward="true" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -47,8 +47,8 @@
       <file leaf-file-name="test.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="3" lean-forward="false" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
+            <state relative-caret-position="15">
+              <caret line="1" column="5" lean-forward="false" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -95,8 +95,8 @@
         <subPane>
           <expand>
             <path>
-              <item name="1322_" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
-              <item name="1322 树结构判定" type="462c0819:PsiDirectoryNode" />
+              <item name="B__The_Festive_Evening" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="B. The Festive Evening" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -120,8 +120,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.1322_">
-    <configuration name="1322_" type="CMakeRunConfiguration" factoryName="Application" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="1322_" TARGET_NAME="1322_" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="1322_" RUN_TARGET_NAME="1322_">
+  <component name="RunManager" selected="Application.B__The_Festive_Evening">
+    <configuration name="B__The_Festive_Evening" type="CMakeRunConfiguration" factoryName="Application" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="B__The_Festive_Evening" TARGET_NAME="B__The_Festive_Evening" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="B__The_Festive_Evening" RUN_TARGET_NAME="B__The_Festive_Evening">
       <envs />
     </configuration>
     <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" EXPLICIT_BUILD_TARGET_NAME="all">
@@ -129,7 +129,7 @@
     </configuration>
     <list size="2">
       <item index="0" class="java.lang.String" itemvalue="Application.Build All" />
-      <item index="1" class="java.lang.String" itemvalue="Application.1322_" />
+      <item index="1" class="java.lang.String" itemvalue="Application.B__The_Festive_Evening" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
@@ -137,17 +137,17 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="dd0175a6-151f-4761-b826-ec81608b5720" name="Default" comment="" />
-      <created>1501415614996</created>
+      <changelist id="b0e0ac00-7030-4c93-ab28-0fce0f5bd8aa" name="Default" comment="" />
+      <created>1501426239915</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1501415614996</updated>
-      <workItem from="1501415617706" duration="1311000" />
+      <updated>1501426239915</updated>
+      <workItem from="1501426241254" duration="981000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1311000" />
+    <option name="totallyTimeSpent" value="981000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="4" y="23" width="1276" height="777" extended-state="0" />
@@ -181,7 +181,9 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
@@ -195,16 +197,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="3" lean-forward="false" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
+        <state relative-caret-position="15">
+          <caret line="1" column="5" lean-forward="false" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="27" column="37" lean-forward="true" selection-start-line="27" selection-start-column="37" selection-end-line="27" selection-end-column="37" />
+        <state relative-caret-position="135">
+          <caret line="9" column="35" lean-forward="true" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>

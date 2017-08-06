@@ -8,3 +8,5 @@
 * AGC 018 D - Tree and Hamilton Path
 * AGC 018 E - Sightseeing Plan
 * AGC 018 F - Two Trees
+* ARC 079 F - Namori Grundy
+* ARC 080 F - Prime Flip

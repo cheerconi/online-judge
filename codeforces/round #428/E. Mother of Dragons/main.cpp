@@ -1,20 +1,40 @@
 #include <iostream>
-#include <unordered_set>
 #include <algorithm>
+#include <vector>
+typedef long long LL;
 using namespace std;
 const int MAXN = 45;
-unordered_set<int> group[MAXN];
 int graph[MAXN][MAXN];
+vector<int> group[MAXN];
 
 double mymax(double a, double b) {
     if (a > b) return a;
     return b;
 }
 
+int solve(int n) {
+    for (int i = 0; i < n; i++) {
+        group[i].push_back(i);
+        for (int j = 0; j < i; j++) {
+            if (graph[i][j] == 0) continue;
+            if (group[i].size())
+            bool flag = true;
+            for (int k : group[j]) {
+                if (graph[i][k] == 0) {
+                    flag = false;
+                    break;
+                }
+            }
+
+
+        }
+    }
+}
+
 
 int main() {
     freopen("test.txt", "r", stdin);
-    int n, k;
+    int n, k, tmp;
     scanf("%d%d", &n, &k);
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
@@ -22,20 +42,6 @@ int main() {
         }
     }
     int card = 0;
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            if (j == i || graph[i][j]==0 || group[i].find(j) != group[i].end()) continue;
-            bool flag = true;
-            for (int item : group[i]) {
-                if (graph[j][item] == 0) {
-                    flag = false;
-                    break;
-                }
-            }
-            if (flag) group[i].insert(j);
-            card = max(card, (int)group[i].size() + 1);
-        }
-    }
 
     double ret = 0;
     if (card > 1) {

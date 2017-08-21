@@ -1,4 +1,5 @@
 import os
+import time
 
 empty_file = set()
 cpp_file = set()
@@ -32,3 +33,15 @@ if __name__ == "__main__":
     print("There are %d empty files." %len(empty_file))
     for path in empty_file:
         print(path)
+    t = time.time()
+    t = time.localtime(t)
+    t = time.asctime(t)
+
+    with open("records.md", 'a') as fp:
+        s = ''
+        if fp.tell() != 0:
+            s += "***\n"
+        s += "### " + t + '\n'
+        s += "* CPP files: %d (+%d)\n" %(len(cpp_file), len(empty_file))
+        s += "* Lines: %d\n" %lines
+        fp.write(s)

@@ -10,3 +10,4 @@
 * AGC 018 F - Two Trees
 * ARC 079 F - Namori Grundy
 * ARC 080 F - Prime Flip
+* ARC 081 F - Flip and Rectangles

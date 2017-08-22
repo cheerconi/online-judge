@@ -1,47 +1,46 @@
 #include <iostream>
 #include <algorithm>
-#include <vector>
-typedef long long LL;
 using namespace std;
-const int MAXN = 45;
-int graph[MAXN][MAXN];
-vector<int> group[MAXN];
-
+typedef long long LL;
+const int MAXN = 50;
+LL neg[MAXN];
+int card;
 double mymax(double a, double b) {
     if (a > b) return a;
     return b;
 }
-
-int solve(int n) {
-    for (int i = 0; i < n; i++) {
-        group[i].push_back(i);
-        for (int j = 0; j < i; j++) {
-            if (graph[i][j] == 0) continue;
-            if (group[i].size())
-            bool flag = true;
-            for (int k : group[j]) {
-                if (graph[i][k] == 0) {
-                    flag = false;
-                    break;
-                }
-            }
-
-
+int count(LL x) {
+    int cnt = 0;
+    while (x) {
+        cnt++;
+        x = x & (x-1);
+    }
+    return cnt;
+}
+void clique(LL cand, int sz) {
+    if (cand == 0) {
+        card = max(card, sz);
+        return;
+    }
+    for (int i = 0; cand != 0; i++) {
+        if (count(cand)+sz <= card) return;
+        if ((cand & (1LL<<i)) != 0) {
+            cand ^= (1LL << i);
+            clique(cand&neg[i], sz+1);
         }
     }
 }
-
-
 int main() {
-    freopen("test.txt", "r", stdin);
+//    freopen("test.txt", "r", stdin);
     int n, k, tmp;
     scanf("%d%d", &n, &k);
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
-            scanf("%d", &graph[i][j]);
+            scanf("%d", &tmp);
+            if (tmp == 1) neg[i] |= 1LL<<j;
         }
     }
-    int card = 0;
+    clique((1LL<<n)-1, 0);
 
     double ret = 0;
     if (card > 1) {
@@ -49,8 +48,6 @@ int main() {
             ret = mymax(ret, k*k*(i-1)/2.0/i);
         }
     }
-
-
     printf("%.8f\n", ret);
     return 0;
 }

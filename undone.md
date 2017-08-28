@@ -11,3 +11,4 @@
 * ARC 079 F - Namori Grundy
 * ARC 080 F - Prime Flip
 * ARC 081 F - Flip and Rectangles
+* Kickstart Round E 2017

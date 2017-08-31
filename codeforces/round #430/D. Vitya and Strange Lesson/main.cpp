@@ -1,5 +1,5 @@
 #include <iostream>
-const int POS = 21;
+const int POS = 19;
 int tree[(1<<(POS+2)) + 10];
 int bias[POS];
 inline int get(int num, int i) {
@@ -12,7 +12,12 @@ void add(int num) {
         int tmp = get(num, i);
         if (tmp == 1) cur = cur*2 + 1;
         else cur = cur * 2;
-        tree[cur]++;
+    }
+    if (tree[cur] == 0) {
+        while (cur != 1) {
+            tree[cur]++;
+            cur = cur / 2;
+        }
     }
 
 }
@@ -39,7 +44,7 @@ int find() {
 
 
 int main() {
-    freopen("test.txt", "r", stdin);
+//    freopen("test.txt", "r", stdin);
     int n, m, num;
     scanf("%d%d", &n, &m);
     for (int i = 0; i < n; i++) {

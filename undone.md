@@ -12,3 +12,7 @@
 * ARC 080 F - Prime Flip
 * ARC 081 F - Flip and Rectangles
 * Kickstart Round E 2017
+* AGC 019 C - Fountain Walk
+* AGC 019 D - Shift and Flip
+* AGC 019 E - Shuffle and Swap
+* AGC 019 F - Yes or No

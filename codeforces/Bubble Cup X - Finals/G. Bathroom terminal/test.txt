@@ -1,0 +1,7 @@
+4 2
+abc
+aec
+ac
+add
+a?c
+a??

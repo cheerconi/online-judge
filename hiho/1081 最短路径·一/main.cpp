@@ -2,32 +2,36 @@
 #include <vector>
 #include <algorithm>
 #include <limits.h>
+#include <queue>
 using namespace std;
-struct Edge {
-    int start, end, cost;
-    Edge(int s, int e, int c) {
-        start = s;
-        end = e;
-        cost = c;
-    }
-};
-vector<Edge> edges;
+typedef pair<int, int> pii;
 const int MAXN = 1000 + 10;
+vector<int> edges[MAXN];
+vector<int> costs[MAXN];
 int dis[MAXN];
 
 int n, m, s, t;
 
-void update() {
-    while (true) {
-        bool flag = false;
-        for (Edge e : edges) {
-            if (dis[e.start]!=INT_MAX && dis[e.start]+e.cost < dis[e.end]) {
-                dis[e.end] = dis[e.start] + e.cost;
-                flag = true;
+void dijkstra() {
+    fill(dis+1, dis+n+1, INT_MAX);
+    dis[s] = 0;
+    priority_queue<pii, vector<pii>, greater<pii> > pq;
+    pq.push({0, s});
+    while (!pq.empty()) {
+        int start = pq.top().second;
+        int cost = pq.top().first;
+        if (start == t) break;
+        pq.pop();
+        if (dis[start] < cost) continue;
+        for (int i = 0; i < edges[start].size(); i++) {
+            int end = edges[start][i];
+            if (dis[end] > dis[start]+costs[start][i]) {
+                dis[end] = dis[start]+costs[start][i];
+                pq.push({dis[end],end});
             }
         }
-        if (!flag) break;
     }
+
 }
 
 int main() {
@@ -36,12 +40,12 @@ int main() {
     scanf("%d%d%d%d", &n, &m, &s, &t);
     for (int i = 0; i < m; i++) {
         scanf("%d%d%d", &a, &b, &cost);
-        edges.push_back(Edge(a, b ,cost));
-        edges.push_back(Edge(b, a, cost));
+        edges[a].push_back(b);
+        edges[b].push_back(a);
+        costs[a].push_back(cost);
+        costs[b].push_back(cost);
     }
-    fill(dis+1, dis+n+1, INT_MAX);
-    dis[s] = 0;
-    update();
+    dijkstra();
     cout << dis[t] << endl;
 
     return 0;

@@ -1,67 +1,69 @@
 #include <iostream>
-#include <algorithm>
 #include <vector>
-#include <queue>
+#include <algorithm>
 using namespace std;
-typedef pair<int,int> pii;
+vector<bool> pos;
 int n, x, y;
-vector<int> ret;
 
-
-bool find2(int start, int end) {
-    if (start > end) return false;
-    printf("? %d ", end-start+1);
-    for (int i = start; i <= end; i++) {
-        printf("%d", i);
-        if (i == end) cout << endl;
-        else printf(" ");
-    }
-    int ret;
-    scanf("%d", &ret);
-    if (ret == 0 || ret == x) return false;
-    return true;
-}
-int find1(int start, int end) {
-    if (start == end) return start;
-    int mid = (start+end) >> 1;
-    printf("? %d ", mid-start+1);
-    for (int i = start; i <= mid; i++) {
-        printf("%d", i);
-        if (i == mid) cout << endl;
-        else printf(" ");
-    }
-    int ret;
-    scanf("%d", &ret);
-    if (ret == y || ret == (x^y)) return find1(start, mid);
-    return find1(mid+1, end);
-}
-
-bool solve(int start, int end) {
-    int mid = (start+end) >> 1;
-    if (find2(start, mid)) {
-        ret.push_back(find1(start, mid));
-        ret.push_back(find1(mid+1, end));
-        return true;
-    }
+bool ask(vector<int> & nums, int i, int j) {
+    int n = j-i+1;
+    if (n == 0) return false;
+    printf("? %d", n);
+    for (int k = i; k <= j; k++) printf(" %d", nums[k]);
+    cout << endl;
+    int val;
+    scanf("%d", &val);
+    if (val == (x^y) || val == y) return true;
     return false;
 }
 
+int find2(vector<int> & nums) {
+    int n = nums.size();
+    int i = 0, j = n-1;
+    while (i < j) {
+        int mid = (i + j) / 2;
+        if (ask(nums, i, mid)) {
+            j = mid;
+        }
+        else {
+            i = mid + 1;
+        }
+    }
+    return nums[i];
+}
+
+void solve() {
+    int i = 1;
+    for (int k = 0; i < 1024; k++) {
+        vector<int> nums;
+        for (int j = 1; j <= n; j++) {
+            if ((j & i) != 0) {
+                nums.push_back(j);
+            }
+        }
+        pos.push_back(ask(nums, 0, nums.size()-1));
+        i <<= 1;
+    }
+    i = 1;
+    for (int j = 0; !pos[j]; j++) i <<= 1;
+    vector<int> nums;
+    for (int j = 0; j <= n; j++) {
+        if ((j&i) != 0) nums.push_back(j);
+    }
+    int ret1 = find2(nums);
+    int ret2 = ret1;
+    i = 1;
+    for (int j = 0; j < pos.size(); j++) {
+        if (pos[j]) {
+            ret2 = ret2 ^ i;
+        }
+        i <<= 1;
+    }
+    if (ret1 > ret2) swap(ret1, ret2);
+    cout << "! " << ret1 << ' ' << ret2 << endl;
+}
 int main() {
     scanf("%d%d%d", &n, &x, &y);
-
-    queue<pii> q;
-    q.push({1,n});
-
-    while (true) {
-        int start = q.front().first;
-        int end = q.front().second;
-        q.pop();
-        if (solve(start, end)) break;
-        int mid = (start+end) >> 1;
-        q.push({start, mid});
-        q.push({mid+1, end});
-    }
-
-    cout << "! " << ret[0] << " " << ret[1] << endl;
+    solve();
     return 0;
 }

@@ -16,3 +16,7 @@
 * AGC 019 D - Shift and Flip
 * AGC 019 E - Shuffle and Swap
 * AGC 019 F - Yes or No
+* ARC 082 F - Sandglass
+* ARC 083 E - Bichrome Tree
+* ARC 083 F - Collecting Balls
+* atcoder CODE FESTIVAL 2017 qual A

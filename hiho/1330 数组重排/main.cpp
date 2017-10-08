@@ -1,10 +1,11 @@
 #include <iostream>
+typedef long long LL;
 using namespace std;
 const int MAXN = 100 + 5;
 int nums[MAXN];
 bool vis[MAXN];
 
-int gcd(int a, int b) {
+LL gcd(LL a, LL b) {
     if (b > a) return gcd(b, a);
     if (b == 0) return a;
     return gcd(b, a%b);
@@ -18,7 +19,7 @@ int main() {
     for (int i = 1; i <= n; i++) {
         scanf("%d", &nums[i]);
     }
-    int ret = 1;
+    LL ret = 1;
     for (int i = 1; i <= n; i++) {
         if (vis[i]) continue;
         vis[i] = true;

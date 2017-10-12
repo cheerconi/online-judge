@@ -21,3 +21,7 @@
 * ARC 083 F - Collecting Balls
 * atcoder CODE FESTIVAL 2017 qual A
 * csa Round #51 Wrong Brackets
+* SRM 722 MulticoreProcessingEasy
+* csa Round #52 Cut the Tree
+* csa Round #52 Robot in a Labyrinth
+* csa Round #52 An Unstable Graph

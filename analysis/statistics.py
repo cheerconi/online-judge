@@ -42,6 +42,6 @@ if __name__ == "__main__":
         if fp.tell() != 0:
             s += "***\n"
         s += "### " + t + '\n'
-        s += "* CPP files: %d (+%d)\n" %(len(cpp_file), len(empty_file))
-        s += "* Lines: %d\n" %lines
+        s += "* CPP files: {:,} (+{:,})\n".format(len(cpp_file), len(empty_file))
+        s += "* Lines: {:,}\n".format(lines)
         fp.write(s)

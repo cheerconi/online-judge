@@ -30,7 +30,7 @@ LL query(int a, int b) {
 }
 LL query(int a, int b, int c, int d) {
     LL ret = query(c, d) - query(a-1, d) - query(c, b-1) + query(a-1, b-1);
-    if (ret < 0) ret += mod;
+    while (ret < 0) ret += mod;
     ret = ret % mod;
     return ret;
 }

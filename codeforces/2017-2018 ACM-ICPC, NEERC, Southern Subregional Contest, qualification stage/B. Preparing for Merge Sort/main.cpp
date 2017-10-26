@@ -1,59 +1,78 @@
 #include <iostream>
-#include <limits.h>
-#include <algorithm>
+#define leftnode (node<<1)
+#define rightnode ((node<<1)|1)
 using namespace std;
+
 const int MAXN = 2e5 + 10;
-int bit[MAXN], nums[MAXN];
+int tree[MAXN<<2], nums[MAXN];
+int ind = 1;
 int n;
 
-inline int lowbit (int i) {
-    return i&(-i);
-}
-void update(int i, int val) {
-    bit[i] = val;
-    for (int j = i; j <= n; j += lowbit(j)) {
-        bit[j] = max(bit[j], val);
+void build (int node, int left, int right) {
+    if (left == right) {
+        scanf("%d", &nums[ind]);
+        tree[node] = ind++;
+        return;
     }
+    int mid = (left+right) >> 1;
+    build(leftnode, left, mid);
+    build (rightnode, mid+1, right);
+    if (nums[tree[leftnode]] > nums[tree[rightnode]]) tree[node] = tree[leftnode];
+    else tree[node] = tree[rightnode];
 }
-int query(int i) {
-    int ret = 0;
-    for (int j = i; j >= 1; j -= lowbit(j)) {
-        ret = max(ret, bit[j]);
+void update(int node, int left, int right, int i, int val) {
+    if (i > right || i < left) return;
+    if (left == right) {
+        nums[i] = val;
+        return;
     }
+    int mid = (left+right) >> 1;
+    update(leftnode, left, mid, i, val);
+    update(rightnode, mid+1, right, i, val);
+    if (nums[tree[leftnode]] > nums[tree[rightnode]]) tree[node] = tree[leftnode];
+    else tree[node] = tree[rightnode];
+}
+int query(int node, int left, int right, int i, int j) {
+    if (right < i || j < left) return 0;
+    if (i <= left && right <= j) return nums[tree[node]];
+    int mid = (left+right) >> 1;
+    int ret = query(leftnode, left, mid, i, j);
+    ret = max(ret, query(rightnode, mid+1, right, i, j));
     return ret;
 }
 
-int find(int val) {
-    int start = 1, end = n;
-    while (start < end) {
-        int mid = (start + end) / 2;
-        if (query(mid) > val) {
-            end = mid;
+int find (int i, int val) {
+    if (i == n) return 0;
+    int left = i+1, right = n;
+    while (left < right) {
+        int mid = (left+right) >> 1;
+        if (query(1, 1, n, left, mid) > val) {
+            right = mid;
         }
-        else start = mid + 1;
+        else left = mid + 1;
     }
-    if (query(start) > val) return start;
-    else return 0;
+    if (query(1, 1, n, left, left) > val) return left;
+    return 0;
 }
 
-int main() {
+
+
+int main () {
+//    freopen("test.txt", "r", stdin);
     cin >> n;
-    for (int i = 1; i <= n; i++) {
-        scanf("%d", &nums[i]);
-        update(i, nums[i]);
-    }
-    int start;
-    while (start = find(0)) {
-        printf("%d", nums[start]);
-        update(start, 0);
-        int cur = start;
-        while (cur = find(nums[cur])) {
-            printf(" %d", nums[cur]);
+    build(1, 1, n);
+    int i = 0;
+    while (i = find(i, 0)) {
+        printf("%d", nums[i]);
+        int val = nums[i];
+        update(1, 1, n, i, 0);
+        while (i = find(i, val)) {
+            printf(" %d", nums[i]);
+            val = nums[i];
+            update(1, 1, n, i, 0);
         }
         printf("\n");
     }
 
 
-
-    return 0;
 }

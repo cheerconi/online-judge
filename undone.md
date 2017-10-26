@@ -26,3 +26,5 @@
 * csa Round #52 Robot in a Labyrinth
 * csa Round #52 An Unstable Graph
 * atcoder CODE FESTIVAL 2017 qual C
+* csa Round #54 Voting
+* csa Round #54 Closest Numbers

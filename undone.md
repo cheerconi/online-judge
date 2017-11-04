@@ -1,24 +1,17 @@
 * meituan-CodeM
-* ARC 076 F - Exhausted?
+* ARC 076
 * poj 3162
-* AGC 017 E - Jigsaw
-* AGC 017 F - Zigzag
+* AGC 017
 * Kickstart Round D 2017
-* ARC 078 F - Mole and Abandoned Mine
-* AGC 018 D - Tree and Hamilton Path
-* AGC 018 E - Sightseeing Plan
-* AGC 018 F - Two Trees
-* ARC 079 F - Namori Grundy
-* ARC 080 F - Prime Flip
-* ARC 081 F - Flip and Rectangles
+* ARC 078
+* AGC 018
+* ARC 079
+* ARC 080
+* ARC 081
 * Kickstart Round E 2017
-* AGC 019 C - Fountain Walk
-* AGC 019 D - Shift and Flip
-* AGC 019 E - Shuffle and Swap
-* AGC 019 F - Yes or No
-* ARC 082 F - Sandglass
-* ARC 083 E - Bichrome Tree
-* ARC 083 F - Collecting Balls
+* AGC 019
+* ARC 082
+* ARC 083
 * atcoder CODE FESTIVAL 2017 qual A
 * csa Round #51 Wrong Brackets
 * SRM 722 MulticoreProcessingEasy
@@ -28,3 +21,5 @@
 * atcoder CODE FESTIVAL 2017 qual C
 * csa Round #54 Voting
 * csa Round #54 Closest Numbers
+* csa Round #55 Black White Tree
+* ARC 084

@@ -23,3 +23,10 @@
 * csa Round #54 Closest Numbers
 * csa Round #55 Black White Tree
 * ARC 084
+* csa Round #56 Find Path Union
+* csa Round #56 Disjoint Tree Paths
+* csa Round #56 Or Problem
+* csa Round #56 Expected Max
+* ARC 085
+* Wannafly挑战赛2
+* Wannafly挑战赛3

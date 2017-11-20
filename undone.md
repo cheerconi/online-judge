@@ -30,3 +30,5 @@
 * ARC 085
 * Wannafly挑战赛2
 * Wannafly挑战赛3
+* 牛客练习赛6
+* csa Round #57 Binary Flips

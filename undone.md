@@ -32,3 +32,5 @@
 * Wannafly挑战赛3
 * 牛客练习赛6
 * csa Round #57 Binary Flips
+* csa Round #58 Cut the Edges
+* csa Round #58 Binary Swaps

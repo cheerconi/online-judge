@@ -34,3 +34,4 @@
 * csa Round #57 Binary Flips
 * csa Round #58 Cut the Edges
 * csa Round #58 Binary Swaps
+* Wannafly挑战赛4

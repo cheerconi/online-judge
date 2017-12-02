@@ -35,3 +35,6 @@
 * csa Round #58 Cut the Edges
 * csa Round #58 Binary Swaps
 * Wannafly挑战赛4
+* csa Round #59 Editor
+* csa Round #59 Fibonacci Mod
+* 牛客练习赛7

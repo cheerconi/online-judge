@@ -37,5 +37,6 @@
 * Wannafly挑战赛4
 * csa Round #59 Editor
 * csa Round #59 Fibonacci Mod
-* 牛客练习赛7
 * poj 2991
+* csa Round #60 Flip the Edges
+* Wannafly挑战赛5

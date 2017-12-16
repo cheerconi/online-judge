@@ -40,3 +40,9 @@
 * poj 2991
 * csa Round #60 Flip the Edges
 * Wannafly挑战赛5
+* ARC 086
+* csa Round #61 Unstable Merge Sort
+* csa Round #61 Xor the Graph
+* csa Round #61 Find the Matrix
+* 牛客练习赛8
+* ARC 087

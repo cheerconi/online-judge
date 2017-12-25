@@ -46,3 +46,5 @@
 * csa Round #61 Find the Matrix
 * 牛客练习赛8
 * ARC 087
+* Wannafly挑战赛6
+* ARC 088

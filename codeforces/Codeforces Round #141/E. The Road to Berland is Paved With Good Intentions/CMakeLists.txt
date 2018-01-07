@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.9)
+project(E__The_Road_to_Berland_is_Paved_With_Good_Intentions)
+
+set(CMAKE_CXX_STANDARD 11)
+
+add_executable(E__The_Road_to_Berland_is_Paved_With_Good_Intentions main.cpp)

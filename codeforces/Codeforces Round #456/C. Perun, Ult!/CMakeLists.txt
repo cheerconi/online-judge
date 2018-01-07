@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.9)
+project(C__Perun__Ult_)
+
+set(CMAKE_CXX_STANDARD 14)
+
+add_executable(C__Perun__Ult_ main.cpp)

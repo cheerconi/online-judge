@@ -50,6 +50,5 @@
 * ARC 088
 * 牛客练习赛9
 * Wannafly挑战赛7
-csa Round #64 Election Spies
 csa Round #64 Find the Tree
 csa Round #64 Eliminate Edges

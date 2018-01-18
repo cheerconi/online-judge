@@ -54,3 +54,5 @@
 * csa Round #64 Eliminate Edges
 * 牛客练习赛10
 * AGC 020
+* csa Round #65 Count Arrays
+* csa Round #65 Classic Task

@@ -56,3 +56,5 @@
 * AGC 020
 * csa Round #65 Count Arrays
 * csa Round #65 Classic Task
+* Wannafly挑战赛8
+* ARC 089

@@ -59,3 +59,6 @@
 * Wannafly挑战赛8
 * ARC 089
 * ARC 090
+* csa Round #67 Hamming Distances
+* csa Round #67 Cyclic Shifts
+* csa Round #67 Divisible Matching

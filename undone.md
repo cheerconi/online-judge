@@ -62,3 +62,5 @@
 * csa Round #67 Hamming Distances
 * csa Round #67 Cyclic Shifts
 * csa Round #67 Divisible Matching
+* AtCoder Petrozavodsk Contest 001
+* csa Round #68 Sliding Product Sum

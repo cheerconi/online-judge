@@ -1,5 +1,4 @@
 * meituan-CodeM
-* ARC 076
 * poj 3162
 * AGC 017
 * Kickstart Round D 2017

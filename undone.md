@@ -2,7 +2,6 @@
 * poj 3162
 * AGC 017
 * Kickstart Round D 2017
-* ARC 078
 * AGC 018
 * ARC 079
 * ARC 080

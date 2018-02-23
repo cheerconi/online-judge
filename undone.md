@@ -61,3 +61,6 @@
 * csa Round #67 Cyclic Shifts
 * csa Round #67 Divisible Matching
 * AtCoder Petrozavodsk Contest 001
+* csa Round #70 Squared Ends
+* csa Round #70 And or Max
+* csa Round #70 Product Replace

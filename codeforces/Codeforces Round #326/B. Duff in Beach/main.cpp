@@ -10,6 +10,8 @@ int nums[MAXN], res[MAXN];
 
 int main() {
 //    freopen("test.txt", "r", stdin);
+    ios::sync_with_stdio(false);
+    cin.tie(0); cout.tie(0);
     LL n, m, k;
     cin >> n >> m >> k;
     for (int i = 0; i < n; i++) {

@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.9)
+project(A__Left_handers__Right_handers_and_Ambidexters)
+
+set(CMAKE_CXX_STANDARD 14)
+
+add_executable(A__Left_handers__Right_handers_and_Ambidexters main.cpp)

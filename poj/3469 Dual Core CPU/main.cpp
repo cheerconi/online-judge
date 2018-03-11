@@ -41,7 +41,7 @@ int dfs (int cur, int t, int f) {
         int tmp = dfs(item.to, t, min(f, item.cap));
         if (tmp > 0) {
             item.cap -= tmp;
-            edges[item.to][item.rev].cap -= tmp;
+            edges[item.to][item.rev].cap += tmp;
             return tmp;
         }
     }

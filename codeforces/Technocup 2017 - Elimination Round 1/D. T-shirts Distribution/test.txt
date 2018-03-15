@@ -1,0 +1,12 @@
+1 2 4 4 1 1
+10
+XL
+XL
+S,M
+L
+M,L
+L
+S,M
+M
+XL,XXL
+XL

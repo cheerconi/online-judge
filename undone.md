@@ -66,3 +66,4 @@
 * csa Round #70 Product Replace
 * AGC 021
 * csa Round #72 MST and Rectangles
+* ARC 092

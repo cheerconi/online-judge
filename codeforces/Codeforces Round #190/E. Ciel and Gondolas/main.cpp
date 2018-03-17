@@ -8,11 +8,27 @@ const int MAXN = 4000 + 10;
 int nums[MAXN][MAXN], cost[MAXN][MAXN];
 LL dp[MAXN], nxt[MAXN];
 
+inline char get(void) {
+    static char buf[100000], *S = buf, *T = buf;
+    if (S == T) {
+        T = (S = buf) + fread(buf, 1, 100000, stdin);
+        if (S == T) return EOF;
+    }
+    return *S++;
+}
+inline void read(int &x) {
+    static char c; x = 0; int sgn = 0;
+    for (c = get(); c < '0' || c > '9'; c = get()) if (c == '-') sgn = 1;
+    for (; c >= '0' && c <= '9'; c = get()) x = x * 10 + c - '0';
+    if (sgn) x = -x;
+}
+
+
 void solve (int opa, int opb, int i, int j) {
     if (i > j) return;
     int mid = (i+j) / 2;
     int idx = opa;
-    for (int k = opa; k <= opb; k++) {
+    for (int k = opa; k <= min(mid, opb); k++) {
         if (dp[k-1]+cost[k][mid] < dp[idx-1]+cost[idx][mid]) {
             idx = k;
         }
@@ -26,14 +42,12 @@ void solve (int opa, int opb, int i, int j) {
 }
 
 int main() {
-    freopen("test.txt", "r", stdin);
-    ios::sync_with_stdio(false);
-    cin.tie(0); cout.tie(0);
+//    freopen("test.txt", "r", stdin);
     int n, k;
-    cin >> n >> k;
+    read(n); read(k);
     for (int i = 1; i <= n; i++) {
         for (int j = 1; j <= n; j++) {
-            cin >> nums[i][j];
+            read(nums[i][j]);
             nums[i][j] += nums[i][j-1];
         }
     }
@@ -46,7 +60,7 @@ int main() {
     for (int i = 1; i <= k; i++) {
         solve (i, n, i, n);
         for (int j = i; j <= n; j++) {
-            dp[i] = nxt[i];
+            dp[j] = nxt[j];
         }
     }
     cout << dp[n] << endl;

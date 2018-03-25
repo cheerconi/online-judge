@@ -4,12 +4,9 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "echo",
+            "label": "C++14 O3",
             "type": "shell",
-            "command": "g++ --std=gnu++14 -o main.out main.cpp",
-            "problemMatcher": [
-                "$gcc"
-            ],
+            "command": "g++ --std=gnu++14 -O3 -o main.out main.cpp",
             "group": {
                 "kind": "build",
                 "isDefault": true

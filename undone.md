@@ -67,3 +67,4 @@
 * AGC 021
 * csa Round #72 MST and Rectangles
 * ARC 092
+* Kickstart Round A 2018 C. Scrambled Words

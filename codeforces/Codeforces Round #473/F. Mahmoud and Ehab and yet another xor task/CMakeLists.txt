@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.10)
+project(F__Mahmoud_and_Ehab_and_yet_another_xor_task)
+
+set(CMAKE_CXX_STANDARD 14)
+
+add_executable(F__Mahmoud_and_Ehab_and_yet_another_xor_task main.cpp)

@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.10)
+project(C__Mahmoud_and_Ehab_and_the_wrong_algorithm)
+
+set(CMAKE_CXX_STANDARD 14)
+
+add_executable(C__Mahmoud_and_Ehab_and_the_wrong_algorithm main.cpp)

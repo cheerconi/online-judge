@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.10)
+project(A__Mahmoud_and_Ehab_and_the_even_odd_game)
+
+set(CMAKE_CXX_STANDARD 14)
+
+add_executable(A__Mahmoud_and_Ehab_and_the_even_odd_game main.cpp)

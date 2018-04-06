@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.10)
+project(D__Mahmoud_and_Ehab_and_another_array_construction_task)
+
+set(CMAKE_CXX_STANDARD 14)
+
+add_executable(D__Mahmoud_and_Ehab_and_another_array_construction_task main.cpp)

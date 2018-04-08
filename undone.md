@@ -70,3 +70,4 @@
 * Kickstart Round A 2018 C. Scrambled Words
 * csa Round #75 Permutations
 * csa Round #75 Infinity Array
+* GCJ Qualification Round 2018 Cubic UFO 

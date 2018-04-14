@@ -72,3 +72,5 @@
 * csa Round #75 Infinity Array
 * GCJ Qualification Round 2018 Cubic UFO 
 * csa Round #76 Surround the Enemy
+* 牛客练习赛15
+* ARC 095

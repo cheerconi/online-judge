@@ -37,32 +37,33 @@ bool bfs(int s, int t) {
     return true;
 }
 
-LL dfs (int cur, int t, LL f) {
-    if (t == cur || f == 0) return f;
-    for (int & i = iter[cur]; i < edges[cur].size(); i++) {
-        auto & edge = edges[cur][i];
-        if (level[edge.to] != level[cur] + 1) continue;
-        LL tmp = dfs(edge.to, t, min(f, edge.cap));
-        if (tmp == 0) continue;
-        edge.cap -= tmp;
-        edges[edge.to][edge.rev].cap += tmp;
-        return tmp;
+LL dfs (int s, int t, LL f) {
+    if (t == s || f <= 0) return f;
+    int ret = 0;
+    for (int & i = iter[t]; i < edges[t].size(); i++) {
+        int tmp = edges[t][i].to;
+        auto & edge = edges[tmp][edges[t][i].rev];
+        if (edge.cap == 0 || level[tmp] >= level[t]) continue;
+        LL cur = dfs(s, tmp, min(edge.cap, f - ret));
+        if (cur <= 0) continue;
+        edge.cap -= cur;
+        edges[t][i].cap += cur;
+        ret += cur;
+        if (ret == f) break;
     }
-    return 0;
+    return ret;
 }
 
 LL max_flow(int s, int t) {
     LL ret = 0, tmp;
     while (bfs(s, t)) {
         memset(iter, 0, sizeof(iter));
-        while (tmp = dfs(s, t, inf)) {
-            ret += tmp;
-        }
+        ret += dfs(s, t, LLONG_MAX);
     }
     return ret;
 }
 int main() {
-    freopen("test.txt","r", stdin);
+//    freopen("test.txt","r", stdin);
     ios::sync_with_stdio(false);
     cin.tie(0); cout.tie(0);
     int n, m, a, b;

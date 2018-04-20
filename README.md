@@ -1,5 +1,5 @@
 # online-judge
-My code practices in many online judge websites. You can find me by searching id "txingml".
+My code practices in many online judge websites. You can find me by searching handle "txingml".
 * UVa https://uva.onlinejudge.org/
 * atcoder https://atcoder.jp/
 * codeforces http://codeforces.com/

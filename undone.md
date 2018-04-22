@@ -73,3 +73,4 @@
 * GCJ Qualification Round 2018 Cubic UFO 
 * 牛客练习赛15
 * ARC 095
+* ARC 096

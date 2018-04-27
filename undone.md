@@ -74,3 +74,6 @@
 * 牛客练习赛15
 * ARC 095
 * ARC 096
+* csa Round #78 Xor Transform
+* csa Round #78 Count BST
+* csa Round #78 Generating Set 

@@ -1,65 +1,94 @@
 #include <iostream>
+#include <climits>
+#include <memory.h>
+#include <random>
+#include <ctime>
+#include <cassert>
+#include <cmath>
+#include <algorithm>
 #include <vector>
+#include <string>
+#include <map>
+#include <unordered_map>
+#include <set>
+#include <unordered_set>
+#include <vector>
+#include <queue>
+#include <stack>
+#include <list>
 using namespace std;
+typedef long long LL;
+typedef vector<int> vi;
+typedef long double LD;
+typedef pair<int, int> pii;
+typedef pair<LL, LL> pll;
+#ifdef LOCAL
+    #define DEBUG(x) { cerr << "# " << #x << ": " << x << endl;}
+#else
+    #define DEBUG(x)
+#endif
+mt19937_64 mt(time(0));
+/*++++++++++++++++++++++++++++++++++++coding area start+++++++++++++++++++++++++++++++++++++++++*/
 
 struct TrieNode{
-    vector<TrieNode*> nxt;
-    int cnt = 0;
+    int mi = INT_MAX;
+    TrieNode* nxt[2];
 };
-
 const int MAXN = 1e5 + 10;
-bool vis[MAXN];
+const int MAXB = 16;
 vector<int> nums[MAXN];
+bool used[MAXN];
 TrieNode* tries[MAXN];
-int ret;
 
-
-void insert(int k, int val) {
-    if (tries[k] == NULL) tries[k] = new TrieNode();
-    auto root = tries[k];
-    for (int i = 16; i >= 0; i--) {
-        root->cnt++;
-        if (root->nxt.empty()) root->nxt.resize(2);
-        int idx = 0;
-        if (val & (1<<i)) idx = 1;
-        if (root->nxt[idx] == NULL) root->nxt[idx] = new TrieNode();
-        root = root->nxt[idx];
+void insert(int x, int num) {
+    if (tries[num] == NULL) tries[num] = new TrieNode();
+    TrieNode* cur = tries[num];
+    cur->mi = min(cur->mi, x);
+    for (int i = MAXB; i >= 0; i--) {
+        int idx = (x>>i) & 1;
+        if (cur->nxt[idx] == NULL) cur->nxt[idx] = new TrieNode();
+        cur = cur->nxt[idx];
+        cur->mi = min(cur->mi, x);
     }
 }
-
-
 
 void insert(int x) {
-    if (vis[x]) return;
-    vis[x] = true;
+    if (used[x]) return;
+    used[x] = true;
     for (int num : nums[x]) {
-        insert(num, x);
+        insert(x, num);
     }
 }
 
-bool query(TrieNode* cur, int x, int s, int val, int i) {
-    if (i == -1) {
-        ret = val;
-        return true;
-    }
-    if (cur == NULL) return false;
-    int idx = 1;
-    if (x & (1<<i)) idx = 0;
-    if (x + val + (idx<<i) > s || cur->nxt[idx] == NULL || !query(cur->nxt[idx], x, s, val+(idx<<i), i-1)) {
-        idx = 1 - idx;
-        if (x + val + (idx<<i) > s || cur->nxt[idx] == NULL || !query(cur->nxt[idx], x, s, val+(idx<<i), i-1)) {
-            return false;
+int solve(int x, int k, int s) {
+    if (x % k != 0 || tries[k] == NULL || tries[k]->mi+x > s) return -1;
+    TrieNode* cur = tries[k];
+    for (int i = MAXB; i >= 0; i--) {
+        int idx = (x>>i) & 1; idx = 1 - idx;
+        if (cur->nxt[idx] == NULL || cur->nxt[idx]->mi+x > s) {
+            idx = 1-idx;
+            if (cur->nxt[idx] == NULL || cur->nxt[idx]->mi+x > s) return -1;
         }
-        return true;
+        cur = cur->nxt[idx];
     }
-    return true;
+    return cur->mi;
+
 }
 
 
+
+
+
+/*-------------------------------------coding area end------------------------------------------*/
 int main() {
-//    freopen("test.txt", "r", stdin);
-    ios::sync_with_stdio(false);
-    cin.tie(0); cout.tie(0);
+    ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+    cout.precision(10); cout << fixed;
+    #ifdef LOCAL
+        freopen("../test.txt", "r", stdin);
+//        freopen("../output.txt", "w", stdout);
+    #endif
+/*++++++++++++++++++++++++++++++++++++coding area start+++++++++++++++++++++++++++++++++++++++++*/
+
     for (int i = 1; i < MAXN; i++) {
         for (int j = i; j < MAXN; j += i) {
             nums[j].push_back(i);
@@ -69,15 +98,21 @@ int main() {
     int cmd, x, k, s;
     while (q--) {
         cin >> cmd >> x;
-        if (cmd == 1) insert(x);
+        if (cmd == 1) {
+            insert(x);
+        }
         else {
             cin >> k >> s;
-            ret = -1;
-            if (x % k == 0) query(tries[k], x, s, 0, 16);
-            cout << ret << '\n';
+            cout << solve(x, k, s) << '\n';
 
         }
     }
 
+/*-------------------------------------coding area end------------------------------------------*/
+
+    #ifdef LOCAL
+        cerr << "Time elapsed: " << 1.0 * clock() / CLOCKS_PER_SEC << " s." << endl;
+    #endif
     return 0;
 }
+/* author:  txingml */

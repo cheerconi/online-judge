@@ -1,4 +1,4 @@
-* meituan-CodeM
+* CodeM 2017
 * poj 3162
 * AGC 017
 * Kickstart Round D 2017
@@ -77,3 +77,13 @@
 * csa Round #78 Xor Transform
 * csa Round #78 Count BST
 * csa Round #78 Generating Set 
+* csa Round #80 Shampoo Exchange
+* csa Round #80 Towns
+* csa Round #80 Anagram Sort
+* csa Round #80 Tournament
+* csa Round #80 Sort All
+* AGC 023
+* ARC 097
+* AGC 024
+* AGC 025
+* codeM 2018

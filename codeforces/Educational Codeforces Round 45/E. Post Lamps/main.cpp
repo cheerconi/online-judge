@@ -47,10 +47,21 @@ inline void read(int &x) {
     if (sgn) x = -x;
 }
 
-const int MAXB = 22;
-bool data[1<<MAXB], hidden[1<<MAXB];
+const int MAXN = 1e6 + 10;
+int pos[MAXN], prices[MAXN];
+LL ret = LLONG_MAX;
 
-
+void solve(int k, int n) {
+    int i = 0;
+    LL cur = 0;
+    while (i < n) {
+        int j = pos[i];
+        i = j + k;
+        cur += prices[k];
+        if (cur >= ret) return;
+    }
+    ret = cur;
+}
 
 
 /*-------------------------------------coding area end------------------------------------------*/
@@ -60,45 +71,33 @@ int main() {
 //        freopen("../output.txt", "w", stdout);
     #endif
 /*++++++++++++++++++++++++++++++++++++coding area start+++++++++++++++++++++++++++++++++++++++++*/
-    memset(data, true, sizeof(data));
-    int n, m, val;
-    read(n); read(m);
-    int mask = (1<<n) - 1;
+
+    int n, m, k, val;
+    read(n); read(m); read(k);
     for (int i = 0; i < m; i++) {
         read(val);
-        data[val] = false;
+        pos[val] = -1;
     }
-    int cnt = 0;
-    for (int i = 0; i <= mask; i++) {
-        if (data[i]) continue;
-        cnt++;
-        queue<pii> q;
-        q.push({i, 0});
-        data[i] = true;
-        while (!q.empty()) {
-            pii item = q.front(); q.pop();
-            val = item.first;
-            if (item.second == 1) {
-                for (int j = 0; j < n; j++) {
-                    if ((val>>j) & 1) continue;
-                    if (hidden[val|(1<<j)]) continue;
-                    hidden[val|(1<<j)] = true;
-                    q.push({val|(1<<j), 1});
-                }
-                int nxt = (~val) & mask;
-                if (data[nxt]) continue;
-                data[nxt] = true;
-                q.push({nxt, 0});
-            }
-            else {
-                if (hidden[val]) continue;
-                hidden[val] = true;
-                q.push({val, 1});
-            }
+    if (pos[0] == -1) {
+        cout << -1;
+        return 0;
+    }
+    int cur = 0, ma = 0;
+    for (int i = 0; i <= n; i++) {
+        if (pos[i] == 0) {
+            cur = i;
         }
+        pos[i] = cur;
+        ma = max(i - cur, ma);
     }
-    cout << cnt << endl;
-
+    for (int i = 1; i <= k; i++) {
+        read(prices[i]);
+    }
+    for (int i = ma+1; i <= k; i++) {
+        solve(i, n);
+    }
+    if (ret == LLONG_MAX) ret = -1;
+    cout << ret << endl;
 
 
 

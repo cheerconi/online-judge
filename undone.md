@@ -88,3 +88,8 @@
 * AGC 025
 * codeM 2018
 * aoj 2308
+* poj 2932
+* ARC 100
+* csa Round #82 Water Supply
+* csa Round #82 RBubbleSort
+* csa Round #82 Transpermutation

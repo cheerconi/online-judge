@@ -94,3 +94,5 @@
 * csa Round #82 RBubbleSort
 * csa Round #82 Transpermutation
 * AGC 026
+* Kickstart Round D 2018 A. Candies
+* Kickstart Round D 2018 C. Funniest Word Search

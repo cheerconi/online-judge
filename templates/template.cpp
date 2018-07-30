@@ -1,60 +1,67 @@
-#include <iostream>
-#include <climits>
-#include <memory.h>
-#include <random>
-#include <ctime>
-#include <cassert>
-#include <cmath>
 #include <algorithm>
-#include <vector>
-#include <string>
-#include <map>
-#include <unordered_map>
-#include <set>
-#include <unordered_set>
-#include <vector>
-#include <queue>
-#include <stack>
-#include <list>
-#include <deque>
 #include <bitset>
+#include <cassert>
+#include <climits>
+#include <cmath>
+#include <ctime>
+#include <deque>
+#include <iostream>
+#include <list>
+#include <map>
+#include <memory.h>
+#include <queue>
+#include <random>
+#include <set>
+#include <stack>
+#include <string>
+#include <vector>
+#include <unordered_map>
+#include <unordered_set>
 using namespace std;
-typedef long long LL;
-typedef vector<int> vi;
 typedef long double LD;
-typedef pair<int, int> pii;
+typedef long long LL;
 typedef pair<LL, LL> pll;
+typedef pair<int, int> pii;
+typedef vector<int> vi;
 #ifdef LOCAL
     #define DEBUG(x) { cerr << "# " << #x << ": " << x << endl;}
 #else
     #define DEBUG(x)
 #endif
 mt19937_64 mt(time(0));
-/*++++++++++++++++++++++++++++++++++++coding area start+++++++++++++++++++++++++++++++++++++++++*/
+/*---------------------------------------------------------------------------------------------------
+　　　　　　　　　　　 ∧＿∧  
+　　　　　 ∧＿∧ 　（´<_｀ ）　 Welcome to My Coding Space!
+　　　　 （ ´_ゝ`）　/　 ⌒i     
+　　　　／　　　＼　 　  |　|     
+　　　 /　　 /￣￣￣￣/　　|  
+　 ＿_(__ﾆつ/　    ＿/ .| .|＿＿＿＿  
+　 　　　＼/＿＿＿＿/　（u　⊃  
+---------------------------------------------------------------------------------------------------*/
 
 
 
 
 
-/*-------------------------------------coding area end------------------------------------------*/
+
 int main() {
     ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
     cout.precision(10); cout << fixed;
-    #ifdef LOCAL
-        freopen("../test.txt", "r", stdin);
-//        freopen("../output.txt", "w", stdout);
-    #endif
-/*++++++++++++++++++++++++++++++++++++coding area start+++++++++++++++++++++++++++++++++++++++++*/
+#ifdef LOCAL
+    freopen("../test.txt", "r", stdin);
+    // freopen("../output.txt", "w", stdout);
+#endif
 
 
 
 
 
-/*-------------------------------------coding area end------------------------------------------*/
 
-    #ifdef LOCAL
-        cerr << "Time elapsed: " << 1.0 * clock() / CLOCKS_PER_SEC << " s." << endl;
-    #endif
+/*---------------------------------------Coding Space End------------------------------------------*/
+#ifdef LOCAL
+    cerr << "Time elapsed: " << 1.0 * clock() / CLOCKS_PER_SEC << " s." << endl;
+#endif
     return 0;
 }
 /* author:  txingml */
+/* picture is from hamayanhamayan(CF handle) */

@@ -38,7 +38,11 @@ mt19937_64 mt(time(0));
 　 ＿_(__ﾆつ/　    ＿/ .| .|＿＿＿＿  
 　 　　　＼/＿＿＿＿/　（u　⊃  
 ---------------------------------------------------------------------------------------------------*/
-
+const int MAXN = 2e5 + 10;
+string s;
+vector<int> edges[MAXN];
+int degree[MAXN][2];
+bool del[MAXN];
 
 
 
@@ -51,6 +55,41 @@ int main() {
     freopen("../test.txt", "r", stdin);
     // freopen("../output.txt", "w", stdout);
 #endif
+    int n, m, a, b;
+    cin >> n >> m;
+    cin >> s;
+    for (int i = 0; i < m; i++) {
+        cin >> a >> b;
+        a--; b--;
+        edges[a].push_back(b);
+        edges[b].push_back(a);
+        degree[a][s[b]-'A']++;
+        degree[b][s[a]-'A']++;
+    }
+    queue<int> q;
+    for (int i = 0; i < n; i++) {
+        if (degree[i][0] == 0 || degree[i][1] == 0) {
+            q.push(i);
+        }
+    }
+    while (!q.empty()) {
+        int cur = q.front(); q.pop();
+        if (del[cur]) continue;
+        del[cur] = true;
+        for (int nxt : edges[cur]) {
+            if (del[nxt] && nxt != cur) continue;
+            degree[nxt][s[cur]-'A']--;
+            if (degree[nxt][s[cur]-'A'] == 0) {
+                q.push(nxt);
+            }
+        }
+    }
+    bool ret = false;
+    for (int i = 0; i < n; i++) {
+        if (!del[i]) ret = true;
+    }
+    if (ret) cout << "Yes" << endl;
+    else cout << "No" << endl;
 
 
 

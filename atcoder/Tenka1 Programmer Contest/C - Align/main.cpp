@@ -1,0 +1,116 @@
+#include <algorithm>
+#include <bitset>
+#include <cassert>
+#include <climits>
+#include <cmath>
+#include <ctime>
+#include <deque>
+#include <iostream>
+#include <list>
+#include <map>
+#include <memory.h>
+#include <queue>
+#include <random>
+#include <set>
+#include <stack>
+#include <string>
+#include <vector>
+#include <unordered_map>
+#include <unordered_set>
+using namespace std;
+typedef long double LD;
+typedef long long LL;
+typedef pair<LL, LL> pll;
+typedef pair<int, int> pii;
+typedef vector<int> vi;
+#ifdef LOCAL
+    #define DEBUG(x) { cerr << "# " << #x << ": " << x << endl;}
+#else
+    #define DEBUG(x)
+#endif
+mt19937_64 mt(time(0));
+/*---------------------------------------------------------------------------------------------------
+　　　　　　　　　　　 ∧＿∧  
+　　　　　 ∧＿∧ 　（´<_｀ ）　 Welcome to My Coding Space!
+　　　　 （ ´_ゝ`）　/　 ⌒i     
+　　　　／　　　＼　 　  |　|     
+　　　 /　　 /￣￣￣￣/　　|  
+　 ＿_(__ﾆつ/　    ＿/ .| .|＿＿＿＿  
+　 　　　＼/＿＿＿＿/　（u　⊃  
+---------------------------------------------------------------------------------------------------*/
+
+LL solve(deque<int> & dq, int num, bool b) {
+    LL ret = 0;
+    if (b) {
+        ret = abs(dq.back() - num);
+        dq.push_back(num);
+    } else {
+        ret = abs(dq.front() - num);
+        dq.push_front(num);
+    }
+    return ret;
+}
+
+LL real_solve(deque<int> nums, bool b) {
+    LL ret = 0;
+    deque<int> dq;
+    if (b) {
+        dq.push_back(nums.front());
+        nums.pop_front();
+    } else {
+        dq.push_back(nums.back());
+        nums.pop_back();
+    }
+
+    while (!nums.empty()) {
+        if (b) {
+            int num = nums.back(); nums.pop_back();
+            ret += solve(dq, num, true);
+            if (nums.empty()) break;
+            num = nums.back(); nums.pop_back();
+            ret += solve(dq, num, false);
+        } else {
+            int num = nums.front(); nums.pop_front();
+            ret += solve(dq, num, true);
+            if (nums.empty()) break;
+            num = nums.front(); nums.pop_front();
+            ret += solve(dq, num, false);
+        }
+        b = !b;
+    }
+    return ret;
+}
+
+
+
+int main() {
+    ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+    cout.precision(10); cout << fixed;
+#ifdef LOCAL
+    freopen("../test.txt", "r", stdin);
+    // freopen("../output.txt", "w", stdout);
+#endif
+    deque<int> nums;
+    int n; cin >> n;
+    int val;
+    for (int i = 0; i < n; i++) {
+        cin >> val;
+        nums.push_back(val);
+    }
+    sort(nums.begin(), nums.end());
+    LL ret = real_solve(nums, true);
+    ret = max(ret, real_solve(nums, false));
+    cout << ret << endl;
+
+
+
+
+
+/*---------------------------------------Coding Space End------------------------------------------*/
+#ifdef LOCAL
+    cerr << "Time elapsed: " << 1.0 * clock() / CLOCKS_PER_SEC << " s." << endl;
+#endif
+    return 0;
+}
+/* author:  txingml */
+/* picture is from hamayanhamayan(CF handle) */

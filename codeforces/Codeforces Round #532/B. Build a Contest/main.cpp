@@ -38,35 +38,10 @@ mt19937_64 mt(time(0));
 　 ＿_(__ﾆつ/　    ＿/ .| .|＿＿＿＿  
 　 　　　＼/＿＿＿＿/　（u　⊃  
 ---------------------------------------------------------------------------------------------------*/
-const int MAXN = 2e5 + 10;
-int factor[MAXN], nums[MAXN], ret;
-vector<int> edges[MAXN];
-map<int, int> dp[MAXN];
-void init() {
-    for (LL i = 2;  i < MAXN; i++) {
-        if (factor[i] != 0) continue;
-        for (LL j = i*i; j < MAXN; j += i) {
-            factor[j] = i;
-        }
-    }
-}
+const int MAXN = 1e5 + 10;
+set<pii> table;
+set<pii>::iterator idx[MAXN];
 
-void dfs(int root, int par) {
-    for (int nxt : edges[root]) {
-        if (nxt == par) continue;
-        dfs(nxt, root);
-    }
-    for (auto& item : dp[root]) {
-        ret = max(ret, 1);
-        for (int nxt : edges[root]) {
-            if (nxt == par) continue;
-            auto it = dp[nxt].find(item.first);
-            if (it == dp[nxt].end()) continue;
-            ret = max(ret, item.second + it->second);
-            item.second = max(item.second, 1 + it->second);
-        }
-    }
-}
 
 
 
@@ -77,26 +52,31 @@ int main() {
     freopen("../test.txt", "r", stdin);
     // freopen("../output.txt", "w", stdout);
 #endif
-    init();
-    int n, val, a, b;
-    cin >> n;
+    int n, m, val, tmp;
+    cin >> n >> m;
+    int base = 1;
     for (int i = 1; i <= n; i++) {
+        auto item = table.emplace(0, i);
+        idx[i] = item.first;
+    }
+    for (int i = 0; i < m; i++) {
         cin >> val;
-        nums[i] = val;
-        while (factor[val] != 0) {
-            int tmp = factor[val];
-            while (val % tmp == 0) val /= tmp;
-            dp[i][tmp] = 1;
+        auto it = idx[val];
+        tmp = it->first;
+        table.erase(it);
+        auto item = table.emplace(tmp+1, val);
+        idx[val] = item.first;
+        if (table.begin()->first >= base) {
+            cout << 1;
+            base++;
+        } else {
+            cout << 0;
         }
-        if (val != 1) dp[i][val] = 1;
     }
-    for (int i = 0; i < n-1; i++) {
-        cin >> a >> b;
-        edges[a].push_back(b);
-        edges[b].push_back(a);
-    }
-    dfs(1, 0);
-    cout << ret << endl;
+    cout << endl;
+
+
+
 
 
 

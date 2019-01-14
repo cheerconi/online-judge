@@ -38,35 +38,10 @@ mt19937_64 mt(time(0));
 　 ＿_(__ﾆつ/　    ＿/ .| .|＿＿＿＿  
 　 　　　＼/＿＿＿＿/　（u　⊃  
 ---------------------------------------------------------------------------------------------------*/
-const int MAXN = 2e5 + 10;
-int factor[MAXN], nums[MAXN], ret;
-vector<int> edges[MAXN];
-map<int, int> dp[MAXN];
-void init() {
-    for (LL i = 2;  i < MAXN; i++) {
-        if (factor[i] != 0) continue;
-        for (LL j = i*i; j < MAXN; j += i) {
-            factor[j] = i;
-        }
-    }
-}
+const long double eps = 1e-12;
+long double pi = acos((LD)-1);
 
-void dfs(int root, int par) {
-    for (int nxt : edges[root]) {
-        if (nxt == par) continue;
-        dfs(nxt, root);
-    }
-    for (auto& item : dp[root]) {
-        ret = max(ret, 1);
-        for (int nxt : edges[root]) {
-            if (nxt == par) continue;
-            auto it = dp[nxt].find(item.first);
-            if (it == dp[nxt].end()) continue;
-            ret = max(ret, item.second + it->second);
-            item.second = max(item.second, 1 + it->second);
-        }
-    }
-}
+
 
 
 
@@ -77,32 +52,26 @@ int main() {
     freopen("../test.txt", "r", stdin);
     // freopen("../output.txt", "w", stdout);
 #endif
-    init();
-    int n, val, a, b;
-    cin >> n;
-    for (int i = 1; i <= n; i++) {
-        cin >> val;
-        nums[i] = val;
-        while (factor[val] != 0) {
-            int tmp = factor[val];
-            while (val % tmp == 0) val /= tmp;
-            dp[i][tmp] = 1;
-        }
-        if (val != 1) dp[i][val] = 1;
+    int n, r;
+    cin >> n >> r;
+    pi /= n;
+    pi = sin(pi);
+    LD a = 0, b = 1e8;
+    while (fabs(a-b) > eps) {
+        LD mid = (a + b) / 2;
+        if (pi * (mid+r) > mid) a = mid;
+        else b = mid;
     }
-    for (int i = 0; i < n-1; i++) {
-        cin >> a >> b;
-        edges[a].push_back(b);
-        edges[b].push_back(a);
-    }
-    dfs(1, 0);
-    cout << ret << endl;
+    cout << a << endl;
 
 
 
 
 
-/*---------------------------------------Coding Space End------------------------------------------*/
+
+
+
+/*---------------------------------------Cod  ing Space End------------------------------------------*/
 #ifdef LOCAL
     cerr << "Time elapsed: " << 1.0 * clock() / CLOCKS_PER_SEC << " s." << endl;
 #endif

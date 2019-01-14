@@ -38,35 +38,42 @@ mt19937_64 mt(time(0));
 　 ＿_(__ﾆつ/　    ＿/ .| .|＿＿＿＿  
 　 　　　＼/＿＿＿＿/　（u　⊃  
 ---------------------------------------------------------------------------------------------------*/
-const int MAXN = 2e5 + 10;
-int factor[MAXN], nums[MAXN], ret;
-vector<int> edges[MAXN];
-map<int, int> dp[MAXN];
-void init() {
-    for (LL i = 2;  i < MAXN; i++) {
-        if (factor[i] != 0) continue;
-        for (LL j = i*i; j < MAXN; j += i) {
-            factor[j] = i;
-        }
-    }
+const int MAXN = 1234;
+int nums[MAXN][2], col[MAXN], row[MAXN];
+int x, y;
+
+void move(int a, int b) {
+    if (a == x && b == y) return;
+    int u = x, v = y;
+    if (u > a) u--;
+    else if (u < a) u++;
+    if (v > b) v--;
+    else if (v < b) v++;
+    if (row[u] != 0) cout << u << ' '  << y << endl;
+    else if (col[v] != 0) cout << x << ' ' << v << endl;
+    else cout << u << ' ' << v << endl;
+    x = u;
+    y = v;
+    int idx;
+    cin >> idx >> u >> v;
+    if (idx <= 0) exit(0);
+    row[u]++;
+    col[v]++;
+    row[nums[idx][0]]--;
+    col[nums[idx][1]]--;
+    nums[idx][0] = u;
+    nums[idx][1] = v;
+    move(a, b);
 }
 
-void dfs(int root, int par) {
-    for (int nxt : edges[root]) {
-        if (nxt == par) continue;
-        dfs(nxt, root);
-    }
-    for (auto& item : dp[root]) {
-        ret = max(ret, 1);
-        for (int nxt : edges[root]) {
-            if (nxt == par) continue;
-            auto it = dp[nxt].find(item.first);
-            if (it == dp[nxt].end()) continue;
-            ret = max(ret, item.second + it->second);
-            item.second = max(item.second, 1 + it->second);
-        }
-    }
+void solve(int idx) {
+    if (idx == 0) move(999, 999);
+    if (idx == 1) move(999, 1);
+    if (idx == 2) move(1, 999);
+    move(1, 1);
 }
+
+
 
 
 
@@ -77,28 +84,28 @@ int main() {
     freopen("../test.txt", "r", stdin);
     // freopen("../output.txt", "w", stdout);
 #endif
-    init();
-    int n, val, a, b;
-    cin >> n;
-    for (int i = 1; i <= n; i++) {
-        cin >> val;
-        nums[i] = val;
-        while (factor[val] != 0) {
-            int tmp = factor[val];
-            while (val % tmp == 0) val /= tmp;
-            dp[i][tmp] = 1;
+    cin >> x >> y;
+    for (int i = 1; i <= 666; i++) {
+        cin >> nums[i][0] >> nums[i][1];
+        row[nums[i][0]]++;
+        col[nums[i][1]]++;
+    }
+    move(500, 500);
+    int cnt[4] = {0};
+    for (int i = 1; i <= 666; i++) {
+        if (nums[i][0] < 500) {
+            if (nums[i][1] < 500) cnt[0]++;
+            else cnt[1]++;
+        } else {
+            if (nums[i][1] < 500) cnt[2]++;
+            else cnt[3]++;
         }
-        if (val != 1) dp[i][val] = 1;
     }
-    for (int i = 0; i < n-1; i++) {
-        cin >> a >> b;
-        edges[a].push_back(b);
-        edges[b].push_back(a);
+    int idx = 0;
+    for (int i = 1; i < 4; i++) {
+        if (cnt[idx] > cnt[i]) idx = i;
     }
-    dfs(1, 0);
-    cout << ret << endl;
-
-
+    solve(idx);
 
 
 

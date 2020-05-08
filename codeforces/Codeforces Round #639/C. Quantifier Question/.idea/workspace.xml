@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="C__Quantifier_Question" targetName="C__Quantifier_Question" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1db1f99b-549a-4b1c-9ce3-f3b822ff8c8b" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="ProjectId" id="1bXYKxLuIcYVN1DDxjmmmeNIh98" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration name="C__Quantifier_Question" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="C__Quantifier_Question" TARGET_NAME="C__Quantifier_Question" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="C__Quantifier_Question" RUN_TARGET_NAME="C__Quantifier_Question">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1440" height="235" key="GridCell.Tab.0.bottom" timestamp="1588862554216">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1280" height="203" key="GridCell.Tab.0.bottom/0.23.1280.777/-2560.-1062.2560.1417@0.23.1280.777" timestamp="1588782812050" />
+    <state width="1440" height="235" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1588862554216" />
+    <state width="1440" height="235" key="GridCell.Tab.0.center" timestamp="1588862554214">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1280" height="203" key="GridCell.Tab.0.center/0.23.1280.777/-2560.-1062.2560.1417@0.23.1280.777" timestamp="1588782812049" />
+    <state width="1440" height="235" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1588862554214" />
+    <state width="1440" height="235" key="GridCell.Tab.0.left" timestamp="1588862554214">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1280" height="203" key="GridCell.Tab.0.left/0.23.1280.777/-2560.-1062.2560.1417@0.23.1280.777" timestamp="1588782812049" />
+    <state width="1440" height="235" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1588862554214" />
+    <state width="1440" height="235" key="GridCell.Tab.0.right" timestamp="1588862554215">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1280" height="203" key="GridCell.Tab.0.right/0.23.1280.777/-2560.-1062.2560.1417@0.23.1280.777" timestamp="1588782812050" />
+    <state width="1440" height="235" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1588862554215" />
+    <state width="1280" height="254" key="GridCell.Tab.1.bottom" timestamp="1588781446506">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1280" height="254" key="GridCell.Tab.1.bottom/0.23.1280.777/-2560.-1062.2560.1417@0.23.1280.777" timestamp="1588781446506" />
+    <state width="1280" height="254" key="GridCell.Tab.1.center" timestamp="1588781446505">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1280" height="254" key="GridCell.Tab.1.center/0.23.1280.777/-2560.-1062.2560.1417@0.23.1280.777" timestamp="1588781446505" />
+    <state width="1280" height="254" key="GridCell.Tab.1.left" timestamp="1588781446505">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1280" height="254" key="GridCell.Tab.1.left/0.23.1280.777/-2560.-1062.2560.1417@0.23.1280.777" timestamp="1588781446505" />
+    <state width="1280" height="254" key="GridCell.Tab.1.right" timestamp="1588781446506">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1280" height="254" key="GridCell.Tab.1.right/0.23.1280.777/-2560.-1062.2560.1417@0.23.1280.777" timestamp="1588781446506" />
+  </component>
+</project>

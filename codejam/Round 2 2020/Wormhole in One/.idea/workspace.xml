@@ -37,50 +37,48 @@
     </configuration>
   </component>
   <component name="WindowStateProjectService">
-    <state width="1280" height="254" key="GridCell.Tab.0.bottom" timestamp="1589646758290">
-      <screen x="0" y="23" width="1280" height="777" />
+    <state width="1440" height="294" key="GridCell.Tab.0.bottom" timestamp="1589818493025">
+      <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1280" height="254" key="GridCell.Tab.0.bottom/0.23.1280.777/-2560.-1062.2560.1417@0.23.1280.777" timestamp="1589646758290" />
-    <state width="1280" height="254" key="GridCell.Tab.0.center" timestamp="1589646758290">
-      <screen x="0" y="23" width="1280" height="777" />
+    <state width="1440" height="294" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1589818493025" />
+    <state width="1440" height="294" key="GridCell.Tab.0.center" timestamp="1589818493023">
+      <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1280" height="254" key="GridCell.Tab.0.center/0.23.1280.777/-2560.-1062.2560.1417@0.23.1280.777" timestamp="1589646758290" />
-    <state width="1280" height="254" key="GridCell.Tab.0.left" timestamp="1589646758288">
-      <screen x="0" y="23" width="1280" height="777" />
+    <state width="1440" height="294" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1589818493023" />
+    <state width="1440" height="294" key="GridCell.Tab.0.left" timestamp="1589818493023">
+      <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1280" height="254" key="GridCell.Tab.0.left/0.23.1280.777/-2560.-1062.2560.1417@0.23.1280.777" timestamp="1589646758288" />
-    <state width="1280" height="254" key="GridCell.Tab.0.right" timestamp="1589646758290">
-      <screen x="0" y="23" width="1280" height="777" />
+    <state width="1440" height="294" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1589818493023" />
+    <state width="1440" height="294" key="GridCell.Tab.0.right" timestamp="1589818493024">
+      <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1280" height="254" key="GridCell.Tab.0.right/0.23.1280.777/-2560.-1062.2560.1417@0.23.1280.777" timestamp="1589646758290" />
-    <state width="1280" height="254" key="GridCell.Tab.1.bottom" timestamp="1589646758291">
-      <screen x="0" y="23" width="1280" height="777" />
+    <state width="1440" height="294" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1589818493024" />
+    <state width="1440" height="294" key="GridCell.Tab.1.bottom" timestamp="1589818493027">
+      <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1280" height="254" key="GridCell.Tab.1.bottom/0.23.1280.777/-2560.-1062.2560.1417@0.23.1280.777" timestamp="1589646758291" />
-    <state width="1280" height="254" key="GridCell.Tab.1.center" timestamp="1589646758291">
-      <screen x="0" y="23" width="1280" height="777" />
+    <state width="1440" height="294" key="GridCell.Tab.1.bottom/0.23.1440.877@0.23.1440.877" timestamp="1589818493027" />
+    <state width="1440" height="294" key="GridCell.Tab.1.center" timestamp="1589818493026">
+      <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1280" height="254" key="GridCell.Tab.1.center/0.23.1280.777/-2560.-1062.2560.1417@0.23.1280.777" timestamp="1589646758291" />
-    <state width="1280" height="254" key="GridCell.Tab.1.left" timestamp="1589646758291">
-      <screen x="0" y="23" width="1280" height="777" />
+    <state width="1440" height="294" key="GridCell.Tab.1.center/0.23.1440.877@0.23.1440.877" timestamp="1589818493026" />
+    <state width="1440" height="294" key="GridCell.Tab.1.left" timestamp="1589818493025">
+      <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1280" height="254" key="GridCell.Tab.1.left/0.23.1280.777/-2560.-1062.2560.1417@0.23.1280.777" timestamp="1589646758291" />
-    <state width="1280" height="254" key="GridCell.Tab.1.right" timestamp="1589646758291">
-      <screen x="0" y="23" width="1280" height="777" />
+    <state width="1440" height="294" key="GridCell.Tab.1.left/0.23.1440.877@0.23.1440.877" timestamp="1589818493025" />
+    <state width="1440" height="294" key="GridCell.Tab.1.right" timestamp="1589818493027">
+      <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1280" height="254" key="GridCell.Tab.1.right/0.23.1280.777/-2560.-1062.2560.1417@0.23.1280.777" timestamp="1589646758291" />
+    <state width="1440" height="294" key="GridCell.Tab.1.right/0.23.1440.877@0.23.1440.877" timestamp="1589818493027" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <condition expression="i == 0 &amp;&amp; j == 2" language="ObjectiveC" />
-          <url>file://$PROJECT_DIR$/main.cpp</url>
-          <line>46</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="CMakeRunConfiguration">
         <watch expression="hole" language="ObjectiveC" />

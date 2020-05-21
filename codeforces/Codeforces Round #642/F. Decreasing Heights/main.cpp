@@ -38,61 +38,28 @@ mt19937_64 mt(time(0));
 　 ＿_(__ﾆつ/　    ＿/ .| .|＿＿＿＿
 　 　　　＼/＿＿＿＿/　（u　⊃
 ---------------------------------------------------------------------------------------------------*/
-const int MAXN = 123;
-int nums[MAXN][2];
+const int MAXN = 101;
+LL mat[MAXN][MAXN], dp[MAXN][MAXN];
+int n, m;
 
-int gcd(LL a, LL b) {
-  if (a > b) swap(a, b);
-  if (a == 0) return b;
-  return gcd(b%a, a);
-}
-
-pii slope(int i, int j) {
-  int dx = nums[i][0] - nums[j][0];
-  int dy = nums[i][1] - nums[j][1];
-  int tmp = gcd(abs(dx), abs(dy));
-  dx /= tmp;
-  dy /= tmp;
-  if (dx == 0) dy = 1;
-  if (dy == 0) dx = 1;
-  if (dx < 0) {
-    dx = -dx;
-    dy = -dy;
+LL solve(LL s) {
+  memset(dp, -1, sizeof(dp));
+  dp[0][1] = 0;
+  dp[1][0] = 0;
+  for (int i = 1; i <= n; i++) {
+    for (int j = 1; j <= m; j++) {
+      LL need = mat[i][j] - (s + i + j - 2);
+      if (need < 0) continue;
+      if (dp[i-1][j] != -1) {
+        dp[i][j] = dp[i-1][j] + need;
+      }
+      if (dp[i][j-1] != -1 && (dp[i][j] == -1 || dp[i][j] > need+dp[i][j-1])) {
+        dp[i][j] = dp[i][j-1] + need;
+      }
+    }
   }
-  return {dy, dx};
+  return dp[n][m];
 }
-
-pll bias(pii k, int i) {
-  LL b1 = (LL)k.second * nums[i][1] - (LL)k.first * nums[i][0];
-  LL b2 = k.second;
-  if (b1 == 0 && b2 == 0) return {0LL, 0LL};
-  if (b2 == 0) return {(LL)nums[i][0], 1LL};
-  LL tmp = gcd(abs(b1), abs(b2));
-  b1 /= tmp;
-  b2 /= tmp;
-  if (b1 == 0) b2 = 1;
-  if (b1 < 0) {
-    b1 = -b1;
-    b2 = -b2;
-  }
-  return {b1, b2};
-}
-
-int solve(const map<pll, int>& table) {
-  int n = table.size();
-  if (n == 1) return table.begin()->second;
-
-  int dual = 0, one = 0, tot = 0;
-  for (const auto &item : table) {
-    if (item.second == 1) one++;
-    else if (item.second % 2 == 0) dual++;
-    tot += item.second;
-  }
-  if (dual == n) return tot;
-  if ((n - dual - one) % 2 == 1) one++;
-  return tot - max(one-2, 0);
-}
-
 
 
 
@@ -104,25 +71,26 @@ int main() {
   freopen("../test.txt", "r", stdin);
     // freopen("../output.txt", "w", stdout);
 #endif
-  int T; cin >> T;
-  for (int cs = 1; cs <= T; cs++) {
-    int n; cin >> n;
-    for (int i = 0; i < n; i++) {
-      cin >> nums[i][0] >> nums[i][1];
-    }
-    int ret = 1;
-    for (int i = 0; i < n; i++) {
-      for (int j = i+1; j < n; j++) {
-        pii sl = slope(i, j);
-        map<pll, int> table;
-        for (int k = 0; k < n; k++) {
-          table[bias(sl, k)]++;
-        }
-        ret = max(ret, solve(table));
+  int t; cin >> t;
+  while(t--) {
+    cin >> n >> m;
+    for (int i = 1; i <= n; i++) {
+      for (int j = 1; j <= m; j++) {
+        cin >> mat[i][j];
       }
     }
-    cout << "Case #" << cs << ": " << ret << '\n';
+    LL ret = LLONG_MAX;
+    for (int i = 1; i <= n; i++) {
+      for (int j = 1; j <= m; j++) {
+        LL tmp = solve(mat[i][j] - i - j + 2);
+        if (tmp != -1) ret = min(ret, tmp);
+      }
+    }
+    cout << ret << '\n';
+
   }
+
+
 
 
 

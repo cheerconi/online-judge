@@ -1,3 +1,8 @@
+/*
+ID: txingml
+PROG: hamming
+LANG: C++
+*/
 #include <algorithm>
 #include <bitset>
 #include <cassert>
@@ -38,65 +43,34 @@ mt19937_64 mt(time(0));
 　 ＿_(__ﾆつ/　    ＿/ .| .|＿＿＿＿
 　 　　　＼/＿＿＿＿/　（u　⊃
 ---------------------------------------------------------------------------------------------------*/
-const LD eps = 1e-8;
-const LD pi = acos((LD)-1);
-
-pair<LD, LD> check(LD v, LD c) {
-  LD h = 0, cur = c;
-  while (cur < pi) {
-    h += std::sin(cur);
-    cur = pi - v + cur;
+bool check(const vi& vs, int val, int d) {
+  for (int num : vs) {
+    int tmp = num ^ val;
+    if (__builtin_popcount(tmp) < d) return false;
   }
-  LD w = 0;
-  cur = c;
-  while (cur < pi/2) {
-    w += std::cos(cur);
-    cur = pi - v + cur;
-  }
-  cur = pi - v - c;
-  while (cur < pi/2) {
-    w += std::cos(cur);
-    cur = pi - v + cur;
-  }
-  return {h, w};
+  return true;
 }
-
-
-LD solve(int n) {
-  LD v = pi * (n-2) / n;
-  LD a = 0, b = pi/2 - v/2;
-  while (b - a > eps) {
-    LD c = (b+a) / 2;
-    auto tmp = check(v, c);
-    if (tmp.first - tmp.second >= 0) {
-      b = c;
-    } else {
-      a = c;
-    }
-  }
-  return check(v, a).first;
-
-}
-
-
-
-
 
 int main() {
   ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
   cout.precision(10); cout << fixed;
-#ifdef LOCAL
-  freopen("../test.txt", "r", stdin);
-  // freopen("../output.txt", "w", stdout);
-#endif
-  int t; cin >> t;
-  while (t--) {
-    int n; cin >> n;
-    n *= 2;
-    cout << solve(n) << '\n';
-
+  freopen("hamming.in", "r", stdin);
+  freopen("hamming.out", "w", stdout);
+  int n, b, d; cin >> n >> b >> d;
+  int mask = 1<<b;
+  vi ret;
+  for (int i = 0; i < mask && ret.size() < n; i++) {
+    if (check(ret, i, d)) ret.push_back(i);
   }
-
+  assert(ret.size() == n);
+  for (int i = 0; i < ret.size(); i++) {
+    cout << ret[i];
+    if (i+1 == ret.size() || i % 10 == 9) {
+      cout << '\n';
+    } else {
+      cout << ' ';
+    }
+  }
 
 
 

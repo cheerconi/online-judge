@@ -38,39 +38,23 @@ mt19937_64 mt(time(0));
 　 ＿_(__ﾆつ/　    ＿/ .| .|＿＿＿＿
 　 　　　＼/＿＿＿＿/　（u　⊃
 ---------------------------------------------------------------------------------------------------*/
+const int MAXB = 13;
 const int MAXN = 1234;
-LL ret[MAXN];
+int code[MAXN];
+LL ret[MAXB];
 
-LL ask(int a, int b, int c) {
-  int n = b-a+1;
-  if (a <= c && c <= b) n--;
-  cout << "? " << n;
-  for (int i = a; i <= b; i++) {
-    if (i == c) continue;
-    cout << ' ' << i;
+LL ask(const vector<int>& nums) {
+  if (nums.empty()) return 0;
+  cout << "? " << nums.size();
+  for (int num : nums) {
+    cout << ' ' << num;
   }
   cout << endl;
   LL val; cin >> val;
   return val;
 }
 
-void solve(int a, int b, int n, LL tot) {
-  if (a == b) {
-    ret[a] = ask(1, n, a);
-    return;
-  }
-  int mid = (a+b) >> 1;
-  LL tmp = ask(a, mid, -1);
-  if (tmp == tot) {
-    for (int i = mid+1; i <= b; i++) {
-      ret[i] = tot;
-    }
-    solve(a, mid, n, tot);
-    return;
-  }
 
-
-}
 
 
 
@@ -78,15 +62,42 @@ int main() {
   ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
   cout.precision(10); cout << fixed;
 #ifdef LOCAL
-  freopen("../test.txt", "r", stdin);
+//  freopen("../test.txt", "r", stdin);
     // freopen("../output.txt", "w", stdout);
 #endif
-  memset(ret, -1, sizeof(ret));
   int n; cin >> n;
-  LL tot = ask(1, n, -1);
-
-
-
+  int cur = 0;
+  for (int i = 1; i <= n; i++) {
+    while (__builtin_popcount(cur) != 6) cur++;
+    code[i] = cur++;
+  }
+  for (int i = 0; i < MAXB; i++) {
+    int mask = 1<<i;
+    vector<int> nums;
+    for (int j = 1; j <= n; j++) {
+      if (code[j] & mask) {
+        nums.push_back(j);
+      }
+    }
+    ret[i] = ask(nums);
+  }
+  cout << "!";
+  for (int i = 1; i <= n; i++) {
+    LL val = 0;
+    for (int j = 1; j <= n; j++) {
+      if (i == j) continue;
+      for (int k = 0; k < MAXB; k++) {
+        int mask = 1<<k;
+        if (mask & code[i]) continue;
+        if (mask & code[j]) {
+          val |= ret[k];
+          break;
+        }
+      }
+    }
+    cout << ' ' << val;
+  }
+  cout << endl;
 
 
 

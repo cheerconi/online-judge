@@ -38,63 +38,57 @@ mt19937_64 mt(time(0));
 　 ＿_(__ﾆつ/　    ＿/ .| .|＿＿＿＿
 　 　　　＼/＿＿＿＿/　（u　⊃
 ---------------------------------------------------------------------------------------------------*/
-const int MAXN = 1234;
-int nums[MAXN];
-vector<int> left_array;
+const int MAXN = 1e5 + 10;
+bool dp[MAXN][2][2];
 
-int longest_increase_seq(const vector<int>& array) {
-  int n = array.size();
-  if (n <= 1) return n;
-  vector<int> dp(1, 0);
-  for (int num : array) {
-    auto it = lower_bound(dp.begin(), dp.end(), num);
-    auto tmp = it; tmp--;
-    if (it == dp.end()) dp.push_back(num);
-    else *it = num;
+bool solve01(LL a, LL b) {
+  int tmp[2];
+  tmp[b%2] = 0;
+  tmp[1-b%2] = 1;
+  LL cur = b/2;
+  while (true) {
+    if (a > cur) return tmp[a%2];
+    int x = 1 - (tmp[(cur+1)%2] & tmp[0]);
+    int y = 1 - (x & tmp[0]);
+    tmp[cur%2] = x;
+    tmp[1-cur%2] = y;
+    cur /= 2;
   }
-  return dp.size() - 1;
+  assert(false);
 }
 
-int solve_left(int m, int idx) {
-  if (idx == 0) return 0;
-  int t = idx-1;
-  for (int i = idx-1; i >= 0; i--) {
-    if (left_array[t] == nums[i]) {
-      t--;
-    } else {
-      m = max(m, nums[i]);
-    }
+bool solve00(LL a, LL b) {
+  int tmp[2];
+  tmp[0] = 0;
+  tmp[1] = 0;
+  LL cur = b/2;
+  while (true) {
+    if (a > cur) return tmp[a%2];
+    int x = 1 - (tmp[(cur+1)%2] | tmp[0]);
+    int y = 1 - (x | tmp[0]);
+    tmp[cur%2] = x;
+    tmp[1-cur%2] = y;
+    cur /= 2;
   }
-  int ret = 0;
-  for (int i = 0; i < idx; i++) {
-    if (nums[i] <= m) ret++;
-  }
-  return ret;
-
+  assert(false);
 }
 
-int solve(int k, int idx, int n) {
-  vector<int> rem;
-  int ret = 0, last = n;
-  for (int i = idx+1; i < n; i++) {
-    if (i == k) {
-      ret++;
-      continue;
-    }
-    if (nums[i] > nums[k]) {
-      if (nums[i] > last) return INT_MAX;
-      last = nums[i];
-      ret += rem.size();
-      rem.clear();
-    } else {
-      rem.push_back(nums[i]);
-    }
-  }
-  reverse(rem.begin(), rem.end());
-  ret += rem.size() - longest_increase_seq(rem);
-  ret += solve_left(nums[k], idx);
+bool solve10(LL a, LL b) {
+  if (2*a > b) return 1;
+  int ret = solve00(a+1, b);
+  if (a*2 <= b) ret |= solve00(a*2, b);
   return ret;
 }
+
+bool solve11(LL a, LL b) {
+  if (a == b) return 1;
+  int ret = solve01(a+1, b);
+  if (a*2 <= b) ret &= solve01(a*2, b);
+  return ret;
+}
+
+
+
 
 
 int main() {
@@ -104,30 +98,46 @@ int main() {
   freopen("../test.txt", "r", stdin);
     // freopen("../output.txt", "w", stdout);
 #endif
-  int n; cin >> n;
-  int idx = -1;
-  for (int i = 0; i < n; i++) {
-    cin >> nums[i];
-    if (nums[i] == n) idx = i;
+  int t; cin >> t;
+  LL a, b;
+  for (int i = 0; i < t; i++) {
+    cin >> a >> b;
+    dp[i][0][0] = solve00(a, b);
+    dp[i][0][1] = solve01(a, b);
+    dp[i][1][0] = solve10(a, b);
+    dp[i][1][1] = solve11(a, b);
   }
-  for (int i = 0; i < idx; i++) {
-    left_array.push_back(nums[i]);
-  }
-  sort(left_array.begin(), left_array.end());
-  int ret = INT_MAX;
-  for (int i = idx+1; i < n; i++) {
-    ret = min(ret, solve(i, idx, n));
-  }
+  int x = 1;
   bool flag = true;
-  for (int i = idx+1; i < n; i++) {
-    if (nums[i-1] < nums[i]) {
+  for (int i = t-1; i >= 0; i--) {
+    if (dp[i][0][x] == x && dp[i][1][x] == x) {
+      x = 0;
+      break;
+    }
+    if (dp[i][0][x] != x && dp[i][1][x] != x) {
       flag = false;
       break;
     }
+    if (dp[i][0][x] == x) x = 0;
+    else x = 1;
   }
-  if (flag)  ret = min(ret, solve_left(-1, idx));
-  cout << ret << '\n';
+  cout << (flag && x == 0);
 
+  x = 0;
+  flag = true;
+  for (int i = t-1; i >= 0; i--) {
+    if (dp[i][0][x] == x && dp[i][1][x] == x) {
+      x = 0;
+      break;
+    }
+    if (dp[i][0][x] != x && dp[i][1][x] != x) {
+      flag = false;
+      break;
+    }
+    if (dp[i][0][x] == x) x = 0;
+    else x = 1;
+  }
+  cout << ' ' << (flag && x == 0) << endl;
 
 
 

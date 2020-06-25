@@ -38,63 +38,35 @@ mt19937_64 mt(time(0));
 　 ＿_(__ﾆつ/　    ＿/ .| .|＿＿＿＿
 　 　　　＼/＿＿＿＿/　（u　⊃
 ---------------------------------------------------------------------------------------------------*/
-const int MAXN = 1234;
+const int MAXN = 2e5 + 10;
 int nums[MAXN];
-vector<int> left_array;
 
-int longest_increase_seq(const vector<int>& array) {
-  int n = array.size();
-  if (n <= 1) return n;
-  vector<int> dp(1, 0);
-  for (int num : array) {
-    auto it = lower_bound(dp.begin(), dp.end(), num);
-    auto tmp = it; tmp--;
-    if (it == dp.end()) dp.push_back(num);
-    else *it = num;
+bool solve(LL bound, int n, int k) {
+  int cnt = 0, tmp = 0;
+  int i = 0;
+  while (i < n) {
+    if (nums[i] <= bound) {
+      cnt++;
+      i += 2;
+      if (i <= n) tmp++;
+    } else i++;
   }
-  return dp.size() - 1;
+  if (cnt >= (k+1)/2 && tmp+cnt >= k) return true;
+
+  cnt = 0;
+  tmp = 1;
+  i = 1;
+  while (i < n) {
+    if (nums[i] <= bound) {
+      cnt++;
+      i += 2;
+      if (i <= n) tmp++;
+    } else i++;
+  }
+  if (cnt >= k/2 && tmp+cnt >= k) return true;
+  return false;
 }
 
-int solve_left(int m, int idx) {
-  if (idx == 0) return 0;
-  int t = idx-1;
-  for (int i = idx-1; i >= 0; i--) {
-    if (left_array[t] == nums[i]) {
-      t--;
-    } else {
-      m = max(m, nums[i]);
-    }
-  }
-  int ret = 0;
-  for (int i = 0; i < idx; i++) {
-    if (nums[i] <= m) ret++;
-  }
-  return ret;
-
-}
-
-int solve(int k, int idx, int n) {
-  vector<int> rem;
-  int ret = 0, last = n;
-  for (int i = idx+1; i < n; i++) {
-    if (i == k) {
-      ret++;
-      continue;
-    }
-    if (nums[i] > nums[k]) {
-      if (nums[i] > last) return INT_MAX;
-      last = nums[i];
-      ret += rem.size();
-      rem.clear();
-    } else {
-      rem.push_back(nums[i]);
-    }
-  }
-  reverse(rem.begin(), rem.end());
-  ret += rem.size() - longest_increase_seq(rem);
-  ret += solve_left(nums[k], idx);
-  return ret;
-}
 
 
 int main() {
@@ -104,29 +76,17 @@ int main() {
   freopen("../test.txt", "r", stdin);
     // freopen("../output.txt", "w", stdout);
 #endif
-  int n; cin >> n;
-  int idx = -1;
+  int n, k; cin >> n >> k;
   for (int i = 0; i < n; i++) {
     cin >> nums[i];
-    if (nums[i] == n) idx = i;
   }
-  for (int i = 0; i < idx; i++) {
-    left_array.push_back(nums[i]);
+  LL a = 1, b = 1e9;
+  while (a < b) {
+    LL mid = (a+b) >> 1;
+    if (solve(mid, n, k)) b = mid;
+    else a = mid + 1;
   }
-  sort(left_array.begin(), left_array.end());
-  int ret = INT_MAX;
-  for (int i = idx+1; i < n; i++) {
-    ret = min(ret, solve(i, idx, n));
-  }
-  bool flag = true;
-  for (int i = idx+1; i < n; i++) {
-    if (nums[i-1] < nums[i]) {
-      flag = false;
-      break;
-    }
-  }
-  if (flag)  ret = min(ret, solve_left(-1, idx));
-  cout << ret << '\n';
+  cout << a << endl;
 
 
 

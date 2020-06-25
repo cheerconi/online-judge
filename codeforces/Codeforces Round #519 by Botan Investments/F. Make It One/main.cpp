@@ -38,63 +38,57 @@ mt19937_64 mt(time(0));
 　 ＿_(__ﾆつ/　    ＿/ .| .|＿＿＿＿
 　 　　　＼/＿＿＿＿/　（u　⊃
 ---------------------------------------------------------------------------------------------------*/
-const int MAXN = 1234;
-int nums[MAXN];
-vector<int> left_array;
+const int MAXN = 3e5 + 10;
+const int mod = 1e9 + 7;
+LL fact[MAXN], cnt[MAXN], dp[MAXN], factor[MAXN], inv[MAXN];
 
-int longest_increase_seq(const vector<int>& array) {
-  int n = array.size();
-  if (n <= 1) return n;
-  vector<int> dp(1, 0);
-  for (int num : array) {
-    auto it = lower_bound(dp.begin(), dp.end(), num);
-    auto tmp = it; tmp--;
-    if (it == dp.end()) dp.push_back(num);
-    else *it = num;
-  }
-  return dp.size() - 1;
+int gcd(int a, int b) {
+  if (a > b) swap(a, b);
+  if (a == 0) return b;
+  return gcd(b%a, a);
 }
 
-int solve_left(int m, int idx) {
-  if (idx == 0) return 0;
-  int t = idx-1;
-  for (int i = idx-1; i >= 0; i--) {
-    if (left_array[t] == nums[i]) {
-      t--;
-    } else {
-      m = max(m, nums[i]);
-    }
-  }
-  int ret = 0;
-  for (int i = 0; i < idx; i++) {
-    if (nums[i] <= m) ret++;
+int power(LL base, int p) {
+  LL ret = 1;
+  base = base % mod;
+  while (p) {
+    if (p&1) ret = ret * base % mod;
+    base = base * base % mod;
+    p >>= 1;
   }
   return ret;
+}
+
+int combine(int n, int k) {
+  LL ret = factor[n] * inv[n-k] % mod;
+  return ret * inv[k] % mod;
 
 }
 
-int solve(int k, int idx, int n) {
-  vector<int> rem;
-  int ret = 0, last = n;
-  for (int i = idx+1; i < n; i++) {
-    if (i == k) {
-      ret++;
-      continue;
-    }
-    if (nums[i] > nums[k]) {
-      if (nums[i] > last) return INT_MAX;
-      last = nums[i];
-      ret += rem.size();
-      rem.clear();
-    } else {
-      rem.push_back(nums[i]);
+void dfs(int i, int cur, const vector<int>& ps) {
+  if (i == ps.size()) {
+    cnt[cur]++;
+    return;
+  }
+  dfs(i+1, cur, ps);
+  dfs(i+1, cur*ps[i], ps);
+}
+
+bool solve(int k) {
+  memset(dp, 0, sizeof(dp));
+  for (int i = MAXN-1; i >= 1; i--) {
+    if (cnt[i] < k) continue;
+    dp[i] = combine(cnt[i], k);
+    for (LL j = 2; j*i < MAXN; j++) {
+      dp[i] = (dp[i] - dp[j*i] + mod) % mod;
     }
   }
-  reverse(rem.begin(), rem.end());
-  ret += rem.size() - longest_increase_seq(rem);
-  ret += solve_left(nums[k], idx);
-  return ret;
+  return dp[1] != 0;
 }
+
+
+
+
 
 
 int main() {
@@ -104,29 +98,46 @@ int main() {
   freopen("../test.txt", "r", stdin);
     // freopen("../output.txt", "w", stdout);
 #endif
+  for (int i = 2; i < MAXN; i++) {
+    if (fact[i] != 0) continue;
+    for (int j = i+i; j < MAXN; j += i) {
+      fact[j] = i;
+    }
+  }
+  factor[0] = 1;
+  for (int i = 1; i < MAXN; i++) {
+    factor[i] = factor[i-1] * i % mod;
+  }
+  inv[MAXN-1] = power(factor[MAXN-1], mod-2);
+  for (int i = MAXN-2; i >= 0; i--) {
+    inv[i] = inv[i+1] * (i+1) % mod;
+  }
   int n; cin >> n;
-  int idx = -1;
+  int tot = 0;
   for (int i = 0; i < n; i++) {
-    cin >> nums[i];
-    if (nums[i] == n) idx = i;
+    int val; cin >> val;
+    tot = gcd(tot, val);
+    vector<int> ps;
+    while (fact[val] != 0) {
+      if (ps.empty() || ps.back() != fact[val]) {
+        ps.push_back(fact[val]);
+      }
+      val = val / fact[val];
+    }
+    if (val > 1 && (ps.empty() || ps.back() != val)) ps.push_back(val);
+    dfs(0, 1, ps);
   }
-  for (int i = 0; i < idx; i++) {
-    left_array.push_back(nums[i]);
+  if (tot != 1) {
+    cout << "-1\n";
+    return 0;
   }
-  sort(left_array.begin(), left_array.end());
-  int ret = INT_MAX;
-  for (int i = idx+1; i < n; i++) {
-    ret = min(ret, solve(i, idx, n));
-  }
-  bool flag = true;
-  for (int i = idx+1; i < n; i++) {
-    if (nums[i-1] < nums[i]) {
-      flag = false;
+  for (int i = 1; i <= 10; i++) {
+    if (solve(i)) {
+      cout << i << endl;
       break;
     }
   }
-  if (flag)  ret = min(ret, solve_left(-1, idx));
-  cout << ret << '\n';
+
 
 
 

@@ -38,63 +38,22 @@ mt19937_64 mt(time(0));
 　 ＿_(__ﾆつ/　    ＿/ .| .|＿＿＿＿
 　 　　　＼/＿＿＿＿/　（u　⊃
 ---------------------------------------------------------------------------------------------------*/
-const int MAXN = 1234;
-int nums[MAXN];
-vector<int> left_array;
 
-int longest_increase_seq(const vector<int>& array) {
-  int n = array.size();
-  if (n <= 1) return n;
-  vector<int> dp(1, 0);
-  for (int num : array) {
-    auto it = lower_bound(dp.begin(), dp.end(), num);
-    auto tmp = it; tmp--;
-    if (it == dp.end()) dp.push_back(num);
-    else *it = num;
-  }
-  return dp.size() - 1;
-}
-
-int solve_left(int m, int idx) {
-  if (idx == 0) return 0;
-  int t = idx-1;
-  for (int i = idx-1; i >= 0; i--) {
-    if (left_array[t] == nums[i]) {
-      t--;
-    } else {
-      m = max(m, nums[i]);
-    }
-  }
+int solve(LL a, LL b, LL n) {
   int ret = 0;
-  for (int i = 0; i < idx; i++) {
-    if (nums[i] <= m) ret++;
+  if (a > n || b > n) return ret;
+  if (a > b) swap(a, b);
+  while (b <= n) {
+    a += b;
+    swap(a, b);
+    ret++;
   }
   return ret;
 
+
 }
 
-int solve(int k, int idx, int n) {
-  vector<int> rem;
-  int ret = 0, last = n;
-  for (int i = idx+1; i < n; i++) {
-    if (i == k) {
-      ret++;
-      continue;
-    }
-    if (nums[i] > nums[k]) {
-      if (nums[i] > last) return INT_MAX;
-      last = nums[i];
-      ret += rem.size();
-      rem.clear();
-    } else {
-      rem.push_back(nums[i]);
-    }
-  }
-  reverse(rem.begin(), rem.end());
-  ret += rem.size() - longest_increase_seq(rem);
-  ret += solve_left(nums[k], idx);
-  return ret;
-}
+
 
 
 int main() {
@@ -104,30 +63,12 @@ int main() {
   freopen("../test.txt", "r", stdin);
     // freopen("../output.txt", "w", stdout);
 #endif
-  int n; cin >> n;
-  int idx = -1;
-  for (int i = 0; i < n; i++) {
-    cin >> nums[i];
-    if (nums[i] == n) idx = i;
+  int t; cin >> t;
+  while (t--) {
+    int a, b, n;
+    cin >> a >> b >> n;
+    cout << solve(a, b, n) << '\n';
   }
-  for (int i = 0; i < idx; i++) {
-    left_array.push_back(nums[i]);
-  }
-  sort(left_array.begin(), left_array.end());
-  int ret = INT_MAX;
-  for (int i = idx+1; i < n; i++) {
-    ret = min(ret, solve(i, idx, n));
-  }
-  bool flag = true;
-  for (int i = idx+1; i < n; i++) {
-    if (nums[i-1] < nums[i]) {
-      flag = false;
-      break;
-    }
-  }
-  if (flag)  ret = min(ret, solve_left(-1, idx));
-  cout << ret << '\n';
-
 
 
 

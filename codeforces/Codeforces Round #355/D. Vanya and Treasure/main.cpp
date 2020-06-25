@@ -38,63 +38,52 @@ mt19937_64 mt(time(0));
 　 ＿_(__ﾆつ/　    ＿/ .| .|＿＿＿＿
 　 　　　＼/＿＿＿＿/　（u　⊃
 ---------------------------------------------------------------------------------------------------*/
-const int MAXN = 1234;
-int nums[MAXN];
-vector<int> left_array;
+const int MAXN = 333;
+int mat[MAXN][MAXN];
+int dist[MAXN][MAXN], dp[MAXN][MAXN];
+vector<pii> keys[MAXN*MAXN];
+int dx[] = {1, -1, 0, 0};
+int dy[] = {0, 0, -1, 1};
+int n, m;
 
-int longest_increase_seq(const vector<int>& array) {
-  int n = array.size();
-  if (n <= 1) return n;
-  vector<int> dp(1, 0);
-  for (int num : array) {
-    auto it = lower_bound(dp.begin(), dp.end(), num);
-    auto tmp = it; tmp--;
-    if (it == dp.end()) dp.push_back(num);
-    else *it = num;
-  }
-  return dp.size() - 1;
-}
-
-int solve_left(int m, int idx) {
-  if (idx == 0) return 0;
-  int t = idx-1;
-  for (int i = idx-1; i >= 0; i--) {
-    if (left_array[t] == nums[i]) {
-      t--;
-    } else {
-      m = max(m, nums[i]);
+void solve_n2(int i) {
+  for (const auto& a : keys[i-1]) {
+    for (const auto& b : keys[i]) {
+      int val = abs(a.first - b.first) + abs(a.second - b.second) + dist[a.first][a.second];
+      if (dist[b.first][b.second] == -1 || dist[b.first][b.second] > val) {
+        dist[b.first][b.second] = val;
+      }
     }
   }
-  int ret = 0;
-  for (int i = 0; i < idx; i++) {
-    if (nums[i] <= m) ret++;
-  }
-  return ret;
-
 }
 
-int solve(int k, int idx, int n) {
-  vector<int> rem;
-  int ret = 0, last = n;
-  for (int i = idx+1; i < n; i++) {
-    if (i == k) {
-      ret++;
-      continue;
-    }
-    if (nums[i] > nums[k]) {
-      if (nums[i] > last) return INT_MAX;
-      last = nums[i];
-      ret += rem.size();
-      rem.clear();
-    } else {
-      rem.push_back(nums[i]);
+void solve_n(int i) {
+  memset(dp, -1, sizeof(dp));
+  typedef pair<int, pii> piii;
+  priority_queue<piii, vector<piii>, greater<piii>> pq;
+  for (const auto& a : keys[i-1]) {
+    dp[a.first][a.second] = dist[a.first][a.second];
+    pq.emplace(dist[a.first][a.second], a);
+  }
+  while (!pq.empty()) {
+    auto item = pq.top(); pq.pop();
+    int d = item.first;
+    pii a = item.second;
+    if (dp[a.first][a.second] < d) continue;
+    for (int k = 0; k < 4; k++) {
+      int i = a.first + dx[k];
+      int j = a.second + dy[k];
+      if (j < 0 || j >= m || i < 0 || i >= n) continue;
+      if (dp[i][j] != -1 && dp[i][j] <= d+1) continue;
+      dp[i][j] = d+1;
+      pq.emplace(d+1, make_pair(i, j));
     }
   }
-  reverse(rem.begin(), rem.end());
-  ret += rem.size() - longest_increase_seq(rem);
-  ret += solve_left(nums[k], idx);
-  return ret;
+  for (const auto& b : keys[i]) {
+    dist[b.first][b.second] = dp[b.first][b.second];
+  }
 }
+
 
 
 int main() {
@@ -104,29 +93,26 @@ int main() {
   freopen("../test.txt", "r", stdin);
     // freopen("../output.txt", "w", stdout);
 #endif
-  int n; cin >> n;
-  int idx = -1;
+  int p; cin >> n >> m >> p;
+  memset(dist, -1, sizeof(dist));
   for (int i = 0; i < n; i++) {
-    cin >> nums[i];
-    if (nums[i] == n) idx = i;
-  }
-  for (int i = 0; i < idx; i++) {
-    left_array.push_back(nums[i]);
-  }
-  sort(left_array.begin(), left_array.end());
-  int ret = INT_MAX;
-  for (int i = idx+1; i < n; i++) {
-    ret = min(ret, solve(i, idx, n));
-  }
-  bool flag = true;
-  for (int i = idx+1; i < n; i++) {
-    if (nums[i-1] < nums[i]) {
-      flag = false;
-      break;
+    for (int j = 0; j < m; j++) {
+      cin >> mat[i][j];
+      keys[mat[i][j]].emplace_back(i, j);
+      if (mat[i][j] == 1) {
+        dist[i][j] = i+j;
+      }
     }
   }
-  if (flag)  ret = min(ret, solve_left(-1, idx));
-  cout << ret << '\n';
+
+  for (int i = 2; i <= p; i++) {
+    LL tmp1 = keys[i-1].size();
+    tmp1 *= keys[i].size();
+    if (tmp1 <= 1e7) solve_n2(i);
+    else solve_n(i);
+
+  }
+  cout << dist[keys[p][0].first][keys[p][0].second] << '\n';
 
 
 

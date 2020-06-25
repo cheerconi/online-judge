@@ -39,37 +39,30 @@ mt19937_64 mt(time(0));
 　 　　　＼/＿＿＿＿/　（u　⊃
 ---------------------------------------------------------------------------------------------------*/
 const int MAXN = 1234;
-vi edges[MAXN];
 vi nums;
-int node, dist, deep[MAXN];
+vi edges[MAXN];
+int node, dist, par[MAXN], deep[MAXN];
+bool valid[MAXN];
 
-void ask(int i, int j) {
-  cout << "? " <<  j-i + 1;
-  for (int k = i; k <= j; k++) {
-    cout << ' ' << nums[k];
+void ask() {
+  assert(!nums.empty());
+  cout << "? " << nums.size();
+  for (int num : nums) {
+    cout << ' ' << num;
   }
   cout << endl;
   cin >> node >> dist;
   assert(node != -1);
 }
 
-void bfs(int root) {
-  memset(deep, -1, sizeof(deep));
-  nums.clear();
-  queue<int> q;
-  q.push(root);
-  deep[root] = 0;
-  nums.push_back(root);
-  while (!q.empty()) {
-    int cur = q.front(); q.pop();
-    for (int nxt : edges[cur]) {
-      if (deep[nxt] != -1) continue;
-      q.push(nxt);
-      deep[nxt] = deep[cur] + 1;
-      nums.push_back(nxt);
-    }
+void dfs(int cur) {
+  valid[cur] = true;
+  for (int nxt : edges[cur]) {
+    if (nxt == par[cur]) continue;
+    deep[nxt] = deep[cur] + 1;
+    par[nxt] = cur;
+    dfs(nxt);
   }
-
 }
 
 
@@ -96,35 +89,66 @@ int main() {
       edges[a].push_back(b);
       edges[b].push_back(a);
     }
-    ask(0, n-1);
-    int root = node;
-    int md = dist;
-    bfs(root);
-    int a = 0, b = n-1;
-    while (deep[nums.back()] > md/2) {
-      nums.pop_back();
-      b--;
+    ask();
+    int root = node, d = dist;
+    deep[root] = 0;
+    par[root] = 0;
+    dfs(root);
+    int a = n, b = 0;
+    for (int i = 1; i <= n; i++) {
+      if (deep[i] < d/2) continue;
+      if (deep[i] > d) continue;
+      b = max(b, deep[i]);
+      a = min(a, deep[i]);
     }
     while (a < b) {
-      int mid = (a+b) >> 1;
-      ask(mid+1, b);
-      if (dist == md) a = mid+1;
-      else b = mid;
+      int mid = (a+b+1) >> 1;
+      nums.clear();
+      for (int i = 1; i <= n; i++) {
+        if (deep[i] == mid && valid[i]) nums.push_back(i);
+      }
+      if (nums.empty()) {
+        b = mid-1;
+        continue;
+      }
+      ask();
+      if (d == dist) {
+        memset(valid, false, sizeof(valid));
+        dfs(node);
+        a = mid;
+      } else {
+        b = mid-1;
+      }
     }
-    int ret1 = nums[a];
-    bfs(ret1);
     nums.clear();
     for (int i = 1; i <= n; i++) {
-      if (deep[i] == md) nums.push_back(i);
+      if (deep[i] == a && valid[i]) nums.push_back(i);
     }
-    if (nums.size() != 1) {
-      ask(0, nums.size()-1);
+    int ret = -1;
+    if (nums.size() == 1) {
+      ret = nums[0];
     } else {
-      node = nums[0];
+      ask();
+      ret = node;
     }
-    cout << "! " <<  ret1 << ' ' << node << endl;
+
+    par[ret] = 0;
+    deep[ret] = 0;
+    dfs(ret);
+    nums.clear();
+    for (int i = 1; i <= n; i++) {
+      if (deep[i] == d) nums.push_back(i);
+    }
+    ask();
+    cout << "! " << ret << ' ' << node << endl;
     string s; cin >> s;
     assert(s == "Correct");
+
+
+
+
+
+
   }
 
 

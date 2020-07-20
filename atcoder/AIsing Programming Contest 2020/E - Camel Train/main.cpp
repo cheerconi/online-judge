@@ -38,12 +38,12 @@ mt19937_64 mt(time(0));
 　 ＿_(__ﾆつ/　    ＿/ .| .|＿＿＿＿
 　 　　　＼/＿＿＿＿/　（u　⊃
 ---------------------------------------------------------------------------------------------------*/
-const int mod = 998244353;
-const int MAXN = 333;
-int dp[MAXN][MAXN][MAXN];
+const int MAXN = 2e5 + 10;
+int k[MAXN], a[MAXN], b[MAXN], idx[MAXN];
 
-
-
+bool cmp(int i, int j) {
+  return k[i] < k[j];
+}
 
 
 int main() {
@@ -53,41 +53,58 @@ int main() {
   freopen("../test.txt", "r", stdin);
     // freopen("../output.txt", "w", stdout);
 #endif
-  string s; cin >> s;
-  int k; cin >> k;
-  vector<int> nums;
-  int cur = 0;
-  for (char c : s) {
-    if (c == '0') {
-      nums.push_back(cur);
-      cur = 0;
-    } else {
-      cur++;
+  int t; cin >> t;
+  while (t--) {
+    int n; cin >> n;
+    LL ret = 0;
+    vector<int> idx[2];
+    for (int i = 0; i < n; i++) {
+      cin >> k[i] >> a[i] >> b[i];
+      LL tmp = min(a[i], b[i]);
+      ret += tmp;
+      a[i] -= tmp;
+      b[i] -= tmp;
+      if (a[i] > b[i]) idx[0].push_back(i);
+      else if (b[i] > a[i]) idx[1].push_back(i);
     }
-  }
-  if (cur != 0) nums.push_back(cur);
-  int n = nums.size();
-  int m = s.size();
-  dp[n][0][0] = 1;
-  for (int i = n-1; i >= 0; i--) {
-    for (int a = 0; a <= m; a++) {
-      int tmp = 0;
-      for (int b = a; b >= 0; b--) {
-        tmp = (tmp + dp[i+1][a][b]) % mod;
-        dp[i][a][b] = (tmp + dp[i][a][b]) % mod;
-        if (dp[i+1][a][b] == 0) continue;
-        for (int c = 1; c <= nums[i]; c++) {
-          dp[i][a+c][b+c] = (dp[i][a+c][b+c] + dp[i+1][a][b]) % mod;
+    {
+      sort(idx[0].begin(), idx[0].end(), cmp);
+      priority_queue<int, vector<int>, greater<int>> pq;
+      for (int i : idx[0]) {
+        if (pq.size() < k[i]) {
+          pq.push(a[i]);
+          ret += a[i];
+        }
+        else {
+          if (pq.top() < a[i]) {
+            ret -= pq.top();
+            pq.pop();
+            pq.push(a[i]);
+            ret += a[i];
+          }
         }
       }
     }
+    {
+      sort(idx[1].begin(), idx[1].end(), cmp);
+      reverse(idx[1].begin(), idx[1].end());
+      priority_queue<int, vector<int>, greater<int>> pq;
+      for (int i : idx[1]) {
+        int tmp = n - k[i];
+        if (tmp == 0) continue;
+        if (pq.size() < tmp) {
+          ret += b[i];
+          pq.push(b[i]);
+        } else if (pq.top() < b[i]) {
+          ret -= pq.top();
+          pq.pop();
+          ret += b[i];
+          pq.push(b[i]);
+        }
+      }
+    }
+    cout << ret << '\n';
   }
-  LL ret = 0;
-  for (int i = 0; i <= min(k, m); i++) {
-    ret = (ret + dp[0][i][0]) % mod;
-  }
-  cout << ret << '\n';
-
 
 
 

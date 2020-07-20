@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="A__Three_Indices" targetName="A__Three_Indices" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9919f4ee-50a7-4d54-8279-8023d1201e67" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="ProjectId" id="1er3JF2NzEfJTxWsB2kzMSNChM9" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration name="A__Three_Indices" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="A__Three_Indices" TARGET_NAME="A__Three_Indices" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="A__Three_Indices" RUN_TARGET_NAME="A__Three_Indices">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1440" height="237" key="GridCell.Tab.0.bottom" timestamp="1595065875437">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1440" height="237" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1595065875437" />
+    <state width="1440" height="237" key="GridCell.Tab.0.center" timestamp="1595065875436">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1440" height="237" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1595065875436" />
+    <state width="1440" height="237" key="GridCell.Tab.0.left" timestamp="1595065875436">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1440" height="237" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1595065875436" />
+    <state width="1440" height="237" key="GridCell.Tab.0.right" timestamp="1595065875436">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1440" height="237" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1595065875436" />
+  </component>
+</project>

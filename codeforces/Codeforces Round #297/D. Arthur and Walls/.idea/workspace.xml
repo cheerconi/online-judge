@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="D__Arthur_and_Walls" targetName="D__Arthur_and_Walls" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1e9b19a6-87e8-42df-a21e-60673c0f9332" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="ProjectId" id="1eX2ddWOR3xLVGeaqLd7gANafjQ" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration name="D__Arthur_and_Walls" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="D__Arthur_and_Walls" TARGET_NAME="D__Arthur_and_Walls" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="D__Arthur_and_Walls" RUN_TARGET_NAME="D__Arthur_and_Walls">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1440" height="294" key="GridCell.Tab.0.bottom" timestamp="1594822233320">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1440" height="294" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1594822233320" />
+    <state width="1440" height="294" key="GridCell.Tab.0.center" timestamp="1594822233318">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1440" height="294" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1594822233318" />
+    <state width="1440" height="294" key="GridCell.Tab.0.left" timestamp="1594822233317">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1440" height="294" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1594822233317" />
+    <state width="1440" height="294" key="GridCell.Tab.0.right" timestamp="1594822233320">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1440" height="294" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1594822233320" />
+    <state width="1440" height="294" key="GridCell.Tab.1.bottom" timestamp="1594822233322">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1440" height="294" key="GridCell.Tab.1.bottom/0.23.1440.877@0.23.1440.877" timestamp="1594822233322" />
+    <state width="1440" height="294" key="GridCell.Tab.1.center" timestamp="1594822233321">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1440" height="294" key="GridCell.Tab.1.center/0.23.1440.877@0.23.1440.877" timestamp="1594822233321" />
+    <state width="1440" height="294" key="GridCell.Tab.1.left" timestamp="1594822233321">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1440" height="294" key="GridCell.Tab.1.left/0.23.1440.877@0.23.1440.877" timestamp="1594822233321" />
+    <state width="1440" height="294" key="GridCell.Tab.1.right" timestamp="1594822233321">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1440" height="294" key="GridCell.Tab.1.right/0.23.1440.877@0.23.1440.877" timestamp="1594822233321" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <condition expression="i==3 &amp;&amp; j==4" language="ObjectiveC" />
+          <url>file://$PROJECT_DIR$/main.cpp</url>
+          <line>48</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

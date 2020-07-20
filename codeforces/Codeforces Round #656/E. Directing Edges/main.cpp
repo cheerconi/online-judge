@@ -38,10 +38,26 @@ mt19937_64 mt(time(0));
 　 ＿_(__ﾆつ/　    ＿/ .| .|＿＿＿＿
 　 　　　＼/＿＿＿＿/　（u　⊃
 ---------------------------------------------------------------------------------------------------*/
-const int mod = 998244353;
-const int MAXN = 333;
-int dp[MAXN][MAXN][MAXN];
+const int MAXN = 2e5 + 10;
+int a[MAXN], b[MAXN], degree[MAXN], ret[MAXN];
+vi edges[MAXN];
 
+bool solve(int n) {
+  queue<int> q;
+  for (int i = 1; i <= n; i++) {
+    if (degree[i] == 0) q.push(i);
+  }
+  int tot = 0;
+  while (!q.empty()) {
+    int cur = q.front(); q.pop();
+    ret[cur] = tot++;
+    for (int nxt : edges[cur]) {
+      degree[nxt]--;
+      if (degree[nxt] == 0) q.push(nxt);
+    }
+  }
+  return tot == n;
+}
 
 
 
@@ -53,41 +69,32 @@ int main() {
   freopen("../test.txt", "r", stdin);
     // freopen("../output.txt", "w", stdout);
 #endif
-  string s; cin >> s;
-  int k; cin >> k;
-  vector<int> nums;
-  int cur = 0;
-  for (char c : s) {
-    if (c == '0') {
-      nums.push_back(cur);
-      cur = 0;
-    } else {
-      cur++;
+  int t; cin >> t;
+  while (t--) {
+    int n, m; cin >> n >> m;
+    for (int i = 1; i <= n; i++) {
+      edges[i].clear();
+      degree[i] = 0;
     }
-  }
-  if (cur != 0) nums.push_back(cur);
-  int n = nums.size();
-  int m = s.size();
-  dp[n][0][0] = 1;
-  for (int i = n-1; i >= 0; i--) {
-    for (int a = 0; a <= m; a++) {
-      int tmp = 0;
-      for (int b = a; b >= 0; b--) {
-        tmp = (tmp + dp[i+1][a][b]) % mod;
-        dp[i][a][b] = (tmp + dp[i][a][b]) % mod;
-        if (dp[i+1][a][b] == 0) continue;
-        for (int c = 1; c <= nums[i]; c++) {
-          dp[i][a+c][b+c] = (dp[i][a+c][b+c] + dp[i+1][a][b]) % mod;
-        }
+    for (int i = 0; i < m; i++) {
+      int c; cin >> c >> a[i] >> b[i];
+      if (c == 1) {
+        edges[a[i]].push_back(b[i]);
+        degree[b[i]]++;
       }
     }
-  }
-  LL ret = 0;
-  for (int i = 0; i <= min(k, m); i++) {
-    ret = (ret + dp[0][i][0]) % mod;
-  }
-  cout << ret << '\n';
+    if (solve(n)) {
+      cout << "YES\n";
+      for (int i = 0; i < m; i++) {
+        if (ret[a[i]] > ret[b[i]]) swap(a[i], b[i]);
+        cout << a[i] << ' ' << b[i] << '\n';
+      }
 
+    } else {
+      cout << "NO\n";
+    }
+
+  }
 
 
 

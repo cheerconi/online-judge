@@ -24,6 +24,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
@@ -35,22 +36,22 @@
     </configuration>
   </component>
   <component name="WindowStateProjectService">
-    <state width="1440" height="294" key="GridCell.Tab.0.bottom" timestamp="1592663353786">
+    <state width="1440" height="237" key="GridCell.Tab.0.bottom" timestamp="1594057797935">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1440" height="294" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1592663353786" />
-    <state width="1440" height="294" key="GridCell.Tab.0.center" timestamp="1592663353785">
+    <state width="1440" height="237" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1594057797935" />
+    <state width="1440" height="237" key="GridCell.Tab.0.center" timestamp="1594057797934">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1440" height="294" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1592663353785" />
-    <state width="1440" height="294" key="GridCell.Tab.0.left" timestamp="1592663353784">
+    <state width="1440" height="237" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1594057797934" />
+    <state width="1440" height="237" key="GridCell.Tab.0.left" timestamp="1594057797934">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1440" height="294" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1592663353784" />
-    <state width="1440" height="294" key="GridCell.Tab.0.right" timestamp="1592663353785">
+    <state width="1440" height="237" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1594057797934" />
+    <state width="1440" height="237" key="GridCell.Tab.0.right" timestamp="1594057797935">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1440" height="294" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1592663353785" />
+    <state width="1440" height="237" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1594057797935" />
     <state width="1440" height="294" key="GridCell.Tab.1.bottom" timestamp="1592663353786">
       <screen x="0" y="23" width="1440" height="877" />
     </state>

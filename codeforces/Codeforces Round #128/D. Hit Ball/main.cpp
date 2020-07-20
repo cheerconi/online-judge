@@ -38,11 +38,33 @@ mt19937_64 mt(time(0));
 　 ＿_(__ﾆつ/　    ＿/ .| .|＿＿＿＿
 　 　　　＼/＿＿＿＿/　（u　⊃
 ---------------------------------------------------------------------------------------------------*/
-const int mod = 998244353;
-const int MAXN = 333;
-int dp[MAXN][MAXN][MAXN];
 
+pii add(pii a, pii b) {
+  return {a.first * b.second + b.first * a.second, a.second * b.second};
+}
 
+pii div(pii a, pii b) {
+  return {a.first * b.second, a.second * b.first};
+}
+
+pii mul(pii a, pii b) {
+  return {a.first * b.first, a.second * b.second};
+}
+
+double solve(pii t, int speed, int len, pii offset) {
+  int sign = 1;
+  if (speed < 0) {
+    speed = -speed;
+    sign = 0;
+  }
+  pii dist = add(offset, mul({speed, 1}, t));
+  pii times = div(dist, {len , 1});
+  int n = times.first / times.second;
+  int k = times.first % times.second;
+  double ret = (double)k / times.second * len;
+  if (n % 2 == sign) ret = len - ret;
+  return ret;
+}
 
 
 
@@ -53,40 +75,12 @@ int main() {
   freopen("../test.txt", "r", stdin);
     // freopen("../output.txt", "w", stdout);
 #endif
-  string s; cin >> s;
-  int k; cin >> k;
-  vector<int> nums;
-  int cur = 0;
-  for (char c : s) {
-    if (c == '0') {
-      nums.push_back(cur);
-      cur = 0;
-    } else {
-      cur++;
-    }
-  }
-  if (cur != 0) nums.push_back(cur);
-  int n = nums.size();
-  int m = s.size();
-  dp[n][0][0] = 1;
-  for (int i = n-1; i >= 0; i--) {
-    for (int a = 0; a <= m; a++) {
-      int tmp = 0;
-      for (int b = a; b >= 0; b--) {
-        tmp = (tmp + dp[i+1][a][b]) % mod;
-        dp[i][a][b] = (tmp + dp[i][a][b]) % mod;
-        if (dp[i+1][a][b] == 0) continue;
-        for (int c = 1; c <= nums[i]; c++) {
-          dp[i][a+c][b+c] = (dp[i][a+c][b+c] + dp[i+1][a][b]) % mod;
-        }
-      }
-    }
-  }
-  LL ret = 0;
-  for (int i = 0; i <= min(k, m); i++) {
-    ret = (ret + dp[0][i][0]) % mod;
-  }
-  cout << ret << '\n';
+  int a, b, m;
+  cin >> a >> b >> m;
+  int x, y, z;
+  cin >> x >> y >> z;
+  pii t = {m, -y};
+  cout << solve(t, x, a, {a, 2}) << ' ' << solve(t, z, b, {0, 1}) << '\n';
 
 
 

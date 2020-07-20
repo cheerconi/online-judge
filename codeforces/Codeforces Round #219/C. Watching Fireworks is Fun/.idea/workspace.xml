@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="C__Watching_Fireworks_is_Fun" targetName="C__Watching_Fireworks_is_Fun" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="bd8c7417-60f7-4cce-9032-43991d57ffc0" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="ProjectId" id="1ePcOIYQgh2t4D3yOi0kCrjmOz0" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration name="C__Watching_Fireworks_is_Fun" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="C__Watching_Fireworks_is_Fun" TARGET_NAME="C__Watching_Fireworks_is_Fun" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="C__Watching_Fireworks_is_Fun" RUN_TARGET_NAME="C__Watching_Fireworks_is_Fun">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1440" height="294" key="GridCell.Tab.0.bottom" timestamp="1594396384692">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1440" height="294" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1594396384692" />
+    <state width="1440" height="294" key="GridCell.Tab.0.center" timestamp="1594396384691">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1440" height="294" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1594396384691" />
+    <state width="1440" height="294" key="GridCell.Tab.0.left" timestamp="1594396384690">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1440" height="294" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1594396384690" />
+    <state width="1440" height="294" key="GridCell.Tab.0.right" timestamp="1594396384691">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1440" height="294" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1594396384691" />
+    <state width="1440" height="294" key="GridCell.Tab.1.bottom" timestamp="1594396384695">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1440" height="294" key="GridCell.Tab.1.bottom/0.23.1440.877@0.23.1440.877" timestamp="1594396384695" />
+    <state width="1440" height="294" key="GridCell.Tab.1.center" timestamp="1594396384693">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1440" height="294" key="GridCell.Tab.1.center/0.23.1440.877@0.23.1440.877" timestamp="1594396384693" />
+    <state width="1440" height="294" key="GridCell.Tab.1.left" timestamp="1594396384693">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1440" height="294" key="GridCell.Tab.1.left/0.23.1440.877@0.23.1440.877" timestamp="1594396384693" />
+    <state width="1440" height="294" key="GridCell.Tab.1.right" timestamp="1594396384694">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1440" height="294" key="GridCell.Tab.1.right/0.23.1440.877@0.23.1440.877" timestamp="1594396384694" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/main.cpp</url>
+          <line>97</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="CMakeRunConfiguration">
+        <watch expression="dp" language="ObjectiveC" />
+      </configuration>
+    </watches-manager>
+  </component>
+</project>

@@ -38,9 +38,7 @@ mt19937_64 mt(time(0));
 　 ＿_(__ﾆつ/　    ＿/ .| .|＿＿＿＿
 　 　　　＼/＿＿＿＿/　（u　⊃
 ---------------------------------------------------------------------------------------------------*/
-const int mod = 998244353;
-const int MAXN = 333;
-int dp[MAXN][MAXN][MAXN];
+
 
 
 
@@ -50,43 +48,32 @@ int main() {
   ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
   cout.precision(10); cout << fixed;
 #ifdef LOCAL
-  freopen("../test.txt", "r", stdin);
+//  freopen("../test.txt", "r", stdin);
     // freopen("../output.txt", "w", stdout);
 #endif
-  string s; cin >> s;
-  int k; cin >> k;
-  vector<int> nums;
-  int cur = 0;
-  for (char c : s) {
-    if (c == '0') {
-      nums.push_back(cur);
-      cur = 0;
-    } else {
-      cur++;
+  LL a[3];
+  cin >> a[0] >> a[1] >> a[2];
+  cout << "First" << endl;
+  vector<int> ret;
+  while (true) {
+    vector<LL> nums;
+    for (int i = 0; i < 3; i++) nums.push_back(a[i]);
+    sort(nums.begin(), nums.end());
+    LL d1 = nums[1] - nums[0];
+    LL d2 = nums[2] - nums[1];
+    if (d1 == d2 && !ret.empty() && a[ret.back()-1] == nums[2]) {
+      cout << d1 << endl;
+      int val; cin >> val;
+      assert(val == 0);
+      return 0;
     }
+    cout << d1 + d2*2 << endl;
+    int val; cin >> val;
+    assert(val > 0);
+    ret.push_back(val);
+    a[val-1] += d1+d2*2;
   }
-  if (cur != 0) nums.push_back(cur);
-  int n = nums.size();
-  int m = s.size();
-  dp[n][0][0] = 1;
-  for (int i = n-1; i >= 0; i--) {
-    for (int a = 0; a <= m; a++) {
-      int tmp = 0;
-      for (int b = a; b >= 0; b--) {
-        tmp = (tmp + dp[i+1][a][b]) % mod;
-        dp[i][a][b] = (tmp + dp[i][a][b]) % mod;
-        if (dp[i+1][a][b] == 0) continue;
-        for (int c = 1; c <= nums[i]; c++) {
-          dp[i][a+c][b+c] = (dp[i][a+c][b+c] + dp[i+1][a][b]) % mod;
-        }
-      }
-    }
-  }
-  LL ret = 0;
-  for (int i = 0; i <= min(k, m); i++) {
-    ret = (ret + dp[0][i][0]) % mod;
-  }
-  cout << ret << '\n';
+
 
 
 

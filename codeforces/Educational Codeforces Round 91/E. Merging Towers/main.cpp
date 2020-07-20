@@ -38,11 +38,33 @@ mt19937_64 mt(time(0));
 　 ＿_(__ﾆつ/　    ＿/ .| .|＿＿＿＿
 　 　　　＼/＿＿＿＿/　（u　⊃
 ---------------------------------------------------------------------------------------------------*/
-const int mod = 998244353;
-const int MAXN = 333;
-int dp[MAXN][MAXN][MAXN];
+const int MAXN = 2e5 + 10;
+vi dis[MAXN];
+set<pii> table[MAXN];
 
-
+int merge(int a, int b) {
+  int diff = 0;
+  for (const auto& item : table[b]) {
+    auto it = table[a].lower_bound(item);
+    pii tmp = item;
+    if (it != table[a].begin()) {
+      auto pre = it; pre--;
+      if (pre->second+1 == item.first) {
+        tmp.first = pre->first;
+        table[a].erase(pre);
+        diff--;
+      }
+    }
+    if (it->first == item.second + 1) {
+      tmp.second = it->second;
+      table[a].erase(it);
+      diff--;
+    }
+    table[a].insert(tmp);
+  }
+  table[b].clear();
+  return diff;
+}
 
 
 
@@ -53,40 +75,48 @@ int main() {
   freopen("../test.txt", "r", stdin);
     // freopen("../output.txt", "w", stdout);
 #endif
-  string s; cin >> s;
-  int k; cin >> k;
-  vector<int> nums;
-  int cur = 0;
-  for (char c : s) {
-    if (c == '0') {
-      nums.push_back(cur);
-      cur = 0;
-    } else {
-      cur++;
-    }
+  int n, m; cin >> n >> m;
+  for (int i = 0; i < n; i++) {
+    int idx; cin >> idx;
+    dis[idx].push_back(i);
   }
-  if (cur != 0) nums.push_back(cur);
-  int n = nums.size();
-  int m = s.size();
-  dp[n][0][0] = 1;
-  for (int i = n-1; i >= 0; i--) {
-    for (int a = 0; a <= m; a++) {
-      int tmp = 0;
-      for (int b = a; b >= 0; b--) {
-        tmp = (tmp + dp[i+1][a][b]) % mod;
-        dp[i][a][b] = (tmp + dp[i][a][b]) % mod;
-        if (dp[i+1][a][b] == 0) continue;
-        for (int c = 1; c <= nums[i]; c++) {
-          dp[i][a+c][b+c] = (dp[i][a+c][b+c] + dp[i+1][a][b]) % mod;
-        }
+  int cnt = 0;
+  for (int i = 1; i <= m; i++) {
+    int a = 0;
+    for (int b = 1; b < dis[i].size(); b++) {
+      if (dis[i][b-1]+1 != dis[i][b]) {
+        table[i].emplace(dis[i][a], dis[i][b-1]);
+        a = b;
       }
     }
+    table[i].emplace(dis[i][a], dis[i].back());
+    cnt += table[i].size();
   }
-  LL ret = 0;
-  for (int i = 0; i <= min(k, m); i++) {
-    ret = (ret + dp[0][i][0]) % mod;
+//  for (int i = 1; i <= m; i++) {
+//    cout << i << ':';
+//    for (const auto item : table[i]) {
+//      cout << ' ' << item.first+1 << "-->" << item.second+1;
+//    }
+//    cout << endl;
+//  }
+  cout << cnt -1 << '\n';
+  for (int i = 0; i < m-1; i++) {
+    int a, b; cin >> a >> b;
+    if (table[a].size() > table[b].size()) {
+      cnt += merge(a, b);
+    } else {
+      cnt += merge(b, a);
+      table[a] = move(table[b]);
+    }
+//    for (int i = 1; i <= m; i++) {
+//      cout << i << ':';
+//      for (const auto item : table[i]) {
+//        cout << ' ' << item.first+1 << "-->" << item.second+1;
+//      }
+//      cout << endl;
+//    }
+    cout << cnt - 1 << '\n';
   }
-  cout << ret << '\n';
 
 
 

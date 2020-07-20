@@ -38,11 +38,14 @@ mt19937_64 mt(time(0));
 　 ＿_(__ﾆつ/　    ＿/ .| .|＿＿＿＿
 　 　　　＼/＿＿＿＿/　（u　⊃
 ---------------------------------------------------------------------------------------------------*/
-const int mod = 998244353;
-const int MAXN = 333;
-int dp[MAXN][MAXN][MAXN];
+const int MAXN = 55;
+bool dp[MAXN][MAXN][MAXN][MAXN];
+string cards[MAXN];
 
-
+bool check(int i, int j) {
+  if (cards[i-1][0] == cards[j-1][0]) return true;
+  return cards[i-1][1] == cards[j-1][1];
+}
 
 
 
@@ -53,41 +56,54 @@ int main() {
   freopen("../test.txt", "r", stdin);
     // freopen("../output.txt", "w", stdout);
 #endif
-  string s; cin >> s;
-  int k; cin >> k;
-  vector<int> nums;
-  int cur = 0;
-  for (char c : s) {
-    if (c == '0') {
-      nums.push_back(cur);
-      cur = 0;
-    } else {
-      cur++;
+  int n; cin >> n;
+  for (int i = 0; i < n; i++) {
+    cin >> cards[i];
+  }
+  for (int i = 1; i <= n; i++) {
+    dp[0][i][0][0] = true;
+  }
+  for (int i = 1; i <= n; i++) {
+    for (int j = 1; j <= n; j++) {
+      if (i == j) continue;
+      if (check(i, j)) dp[0][i][j][0] = true;
     }
   }
-  if (cur != 0) nums.push_back(cur);
-  int n = nums.size();
-  int m = s.size();
-  dp[n][0][0] = 1;
-  for (int i = n-1; i >= 0; i--) {
-    for (int a = 0; a <= m; a++) {
-      int tmp = 0;
-      for (int b = a; b >= 0; b--) {
-        tmp = (tmp + dp[i+1][a][b]) % mod;
-        dp[i][a][b] = (tmp + dp[i][a][b]) % mod;
-        if (dp[i+1][a][b] == 0) continue;
-        for (int c = 1; c <= nums[i]; c++) {
-          dp[i][a+c][b+c] = (dp[i][a+c][b+c] + dp[i+1][a][b]) % mod;
+  for (int i = 1; i <= n; i++) {
+    for (int j = 1; j <= n; j++) {
+      if (i == j) continue;
+      for (int k = 1; k <= n; k++) {
+        if (i == k || j == k) continue;
+        if (check(k, i) && check(k, j)) dp[0][i][j][k] = true;
+      }
+    }
+  }
+  for (int i = 1; i <= n; i++) {
+    dp[i][0][0][0] = dp[i-1][i][0][0];
+    for (int j = i+1; j <= n; j++) {
+      if (check(j, i)) dp[i][j][0][0] |= dp[i-1][j][0][0];
+      if (i-2 >= 1 && check(i-2, j)) dp[i][j][0][0] |= dp[i-3][j][i-1][i];
+    }
+    for (int j = i+1; j <= n; j++) {
+      for (int k = i+1; k <= n; k++) {
+        if (j == k) continue;
+        if (check(j, k)) dp[i][j][k][0] |= dp[i][k][0][0];
+        if (i-1 >= 1 && check(i-1, k)) dp[i][j][k][0] |= dp[i-2][k][i][j];
+      }
+    }
+    for (int a = i+1; a <= n; a++) {
+      for (int b = i+1; b <= n; b++) {
+        if (a == b) continue;
+        for (int c = i+1; c <= n; c++) {
+          if (c == a || c == b) continue;
+          if (check(c, b)) dp[i][a][b][c] |= dp[i][a][c][0];
+          if (check(i, c)) dp[i][a][b][c] |= dp[i-1][c][a][b];
         }
       }
     }
   }
-  LL ret = 0;
-  for (int i = 0; i <= min(k, m); i++) {
-    ret = (ret + dp[0][i][0]) % mod;
-  }
-  cout << ret << '\n';
-
+  if (dp[n][0][0][0]) cout << "YES\n";
+  else cout << "NO\n";
 
 
 

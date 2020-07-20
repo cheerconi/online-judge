@@ -38,9 +38,9 @@ mt19937_64 mt(time(0));
 　 ＿_(__ﾆつ/　    ＿/ .| .|＿＿＿＿
 　 　　　＼/＿＿＿＿/　（u　⊃
 ---------------------------------------------------------------------------------------------------*/
-const int mod = 998244353;
-const int MAXN = 333;
-int dp[MAXN][MAXN][MAXN];
+const int MAXN = 1234;
+int nums[MAXN];
+vi edges[MAXN];
 
 
 
@@ -53,40 +53,32 @@ int main() {
   freopen("../test.txt", "r", stdin);
     // freopen("../output.txt", "w", stdout);
 #endif
-  string s; cin >> s;
-  int k; cin >> k;
-  vector<int> nums;
-  int cur = 0;
-  for (char c : s) {
-    if (c == '0') {
-      nums.push_back(cur);
-      cur = 0;
-    } else {
-      cur++;
-    }
+  int n; cin >> n;
+  for (int i = 0; i < n; i++) {
+    cin >> nums[i];
   }
-  if (cur != 0) nums.push_back(cur);
-  int n = nums.size();
-  int m = s.size();
-  dp[n][0][0] = 1;
-  for (int i = n-1; i >= 0; i--) {
-    for (int a = 0; a <= m; a++) {
-      int tmp = 0;
-      for (int b = a; b >= 0; b--) {
-        tmp = (tmp + dp[i+1][a][b]) % mod;
-        dp[i][a][b] = (tmp + dp[i][a][b]) % mod;
-        if (dp[i+1][a][b] == 0) continue;
-        for (int c = 1; c <= nums[i]; c++) {
-          dp[i][a+c][b+c] = (dp[i][a+c][b+c] + dp[i+1][a][b]) % mod;
-        }
+  int tot = 0;
+  for (int i = 0; i < n; i++) {
+    for (int j = i+1; j < n; j++) {
+      if (nums[i] > nums[j]) {
+        edges[i].push_back(j);
+        tot++;
       }
     }
   }
-  LL ret = 0;
-  for (int i = 0; i <= min(k, m); i++) {
-    ret = (ret + dp[0][i][0]) % mod;
+  for (int i = 0; i < n; i++) {
+    sort(edges[i].begin(), edges[i].end(), [](int x, int y) {
+      if (nums[x] != nums[y]) return nums[x] > nums[y];
+      return x > y;
+    });
   }
-  cout << ret << '\n';
+  cout << tot << endl;
+  for (int i = 0; i < n; i++) {
+    for (int j : edges[i]) {
+      cout << i+1 << ' ' << j+1 << '\n';
+    }
+  }
+
 
 
 

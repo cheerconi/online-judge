@@ -39,8 +39,20 @@ mt19937_64 mt(time(0));
 　 　　　＼/＿＿＿＿/　（u　⊃
 ---------------------------------------------------------------------------------------------------*/
 const int mod = 998244353;
-const int MAXN = 333;
-int dp[MAXN][MAXN][MAXN];
+const int MAXN = 3e5 + 10;
+int nums[MAXN], sum[MAXN], ret[MAXN];
+
+LL power(LL base, int p) {
+  LL ret = 1;
+  base = base % mod;
+  while (p) {
+    if (p&1) ret = ret * base % mod;
+    base = base * base % mod;
+    p >>= 1;
+  }
+  return ret;
+}
+
 
 
 
@@ -53,41 +65,29 @@ int main() {
   freopen("../test.txt", "r", stdin);
     // freopen("../output.txt", "w", stdout);
 #endif
-  string s; cin >> s;
-  int k; cin >> k;
-  vector<int> nums;
-  int cur = 0;
-  for (char c : s) {
-    if (c == '0') {
-      nums.push_back(cur);
-      cur = 0;
-    } else {
-      cur++;
+  int n; cin >> n;
+  for (int i = 0; i < n; i++) {
+    cin >> nums[i];
+  }
+  sort(nums, nums+n, greater<int>());
+  sum[0] = nums[0];
+  for (int i = 1; i < n; i++) {
+    sum[i] = (sum[i-1] + nums[i]) % mod;
+  }
+  for (int i = 0; i < n; i++) {
+    LL coeff = 1;
+    for (int j = i+1; j < n; j += i+1) {
+      LL tmp = (sum[min(j+i, n-1)] - sum[j-1] + mod) % mod * coeff % mod;
+      ret[i] = (ret[i] + tmp) % mod;
+      coeff++;
     }
   }
-  if (cur != 0) nums.push_back(cur);
-  int n = nums.size();
-  int m = s.size();
-  dp[n][0][0] = 1;
-  for (int i = n-1; i >= 0; i--) {
-    for (int a = 0; a <= m; a++) {
-      int tmp = 0;
-      for (int b = a; b >= 0; b--) {
-        tmp = (tmp + dp[i+1][a][b]) % mod;
-        dp[i][a][b] = (tmp + dp[i][a][b]) % mod;
-        if (dp[i+1][a][b] == 0) continue;
-        for (int c = 1; c <= nums[i]; c++) {
-          dp[i][a+c][b+c] = (dp[i][a+c][b+c] + dp[i+1][a][b]) % mod;
-        }
-      }
-    }
+  LL inv = power(n, mod-2);
+  for (int i = 0; i < n; i++) {
+    cout << ret[i] * inv % mod;
+    if (i+1 == n) cout << '\n';
+    else cout << ' ';
   }
-  LL ret = 0;
-  for (int i = 0; i <= min(k, m); i++) {
-    ret = (ret + dp[0][i][0]) % mod;
-  }
-  cout << ret << '\n';
-
 
 
 

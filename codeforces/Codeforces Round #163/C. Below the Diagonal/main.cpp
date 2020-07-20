@@ -38,9 +38,8 @@ mt19937_64 mt(time(0));
 　 ＿_(__ﾆつ/　    ＿/ .| .|＿＿＿＿
 　 　　　＼/＿＿＿＿/　（u　⊃
 ---------------------------------------------------------------------------------------------------*/
-const int mod = 998244353;
-const int MAXN = 333;
-int dp[MAXN][MAXN][MAXN];
+const int MAXN = 1234;
+int mat[MAXN][MAXN], row[MAXN], col[MAXN], cnt[MAXN];
 
 
 
@@ -53,40 +52,50 @@ int main() {
   freopen("../test.txt", "r", stdin);
     // freopen("../output.txt", "w", stdout);
 #endif
-  string s; cin >> s;
-  int k; cin >> k;
-  vector<int> nums;
-  int cur = 0;
-  for (char c : s) {
-    if (c == '0') {
-      nums.push_back(cur);
-      cur = 0;
-    } else {
-      cur++;
-    }
+  int n; cin >> n;
+  for (int i = 0; i < n-1; i++) {
+    int a, b; cin >> a >> b;
+    mat[a][b] = 1;
+    cnt[a]++;
   }
-  if (cur != 0) nums.push_back(cur);
-  int n = nums.size();
-  int m = s.size();
-  dp[n][0][0] = 1;
-  for (int i = n-1; i >= 0; i--) {
-    for (int a = 0; a <= m; a++) {
-      int tmp = 0;
-      for (int b = a; b >= 0; b--) {
-        tmp = (tmp + dp[i+1][a][b]) % mod;
-        dp[i][a][b] = (tmp + dp[i][a][b]) % mod;
-        if (dp[i+1][a][b] == 0) continue;
-        for (int c = 1; c <= nums[i]; c++) {
-          dp[i][a+c][b+c] = (dp[i][a+c][b+c] + dp[i+1][a][b]) % mod;
-        }
+  for (int i = 1; i <= n; i++) {
+    row[i] = i;
+    col[i] = i;
+  }
+  vector<vi> ret;
+  int k = 1;
+  for (int i = 1; i <= n; i++) {
+    int idx = i;
+    for (int j = idx+1; j <= n; j++) {
+      if (cnt[row[idx]] > cnt[row[j]]) idx = j;
+    }
+    if (idx != i) {
+      ret.push_back({1, idx, i});
+      swap(row[idx], row[i]);
+    }
+    for (int j = k, jj = k; j < i; j++) {
+      if (mat[row[i]][col[j]] == 1) {
+        k = j+1;
+        continue;
       }
+      jj = max(j+1, jj);
+      while (jj <= n) {
+        if (mat[row[i]][col[jj]] == 0) jj++;
+        else break;
+      }
+      if (jj == n+1) break;
+      ret.push_back({2, j, jj});
+      swap(col[j], col[jj]);
+      k = j+1;
+    }
+    for (int j = k; j <= n; j++) {
+      assert (mat[row[i]][col[j]] == 0);
     }
   }
-  LL ret = 0;
-  for (int i = 0; i <= min(k, m); i++) {
-    ret = (ret + dp[0][i][0]) % mod;
+  cout << ret.size() << '\n';
+  for (const auto& item : ret) {
+    cout << item[0] << ' ' << item[1] << ' ' << item[2] << '\n';
   }
-  cout << ret << '\n';
 
 
 

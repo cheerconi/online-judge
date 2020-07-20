@@ -38,10 +38,65 @@ mt19937_64 mt(time(0));
 　 ＿_(__ﾆつ/　    ＿/ .| .|＿＿＿＿
 　 　　　＼/＿＿＿＿/　（u　⊃
 ---------------------------------------------------------------------------------------------------*/
-const int mod = 998244353;
-const int MAXN = 333;
-int dp[MAXN][MAXN][MAXN];
+const int MAXN = 2e5 + 10;
+int a[MAXN], b[MAXN];
+LL n, m, x, k, y;
 
+LL solve(int i, int j) {
+  if (i == n) {
+    if (j == m) return 0;
+    int ma = b[j], cnt = 0;
+    for (int u = j; u < m; u++) {
+      cnt++;
+      ma = max(ma, b[u]);
+    }
+    LL ret = 0;
+    if (ma > a[i-1]) {
+      if (cnt < k) return -1;
+      cnt -= k;
+      ret += x;
+    }
+    if (cnt % k != 0) {
+      ret += cnt%k * y;
+      cnt = cnt / k * k;
+    }
+    if (y*k <= x) {
+      ret += y*cnt;
+    } else {
+      ret += cnt/k * x;
+    }
+    return ret;
+  }
+  if (j == m) return -1;
+  int cnt = 0, ma = b[j];
+  int idx = j;
+  for (; idx < m; idx++) {
+    if (b[idx] == a[i]) {
+      break;
+    }
+    cnt++;
+    ma = max(ma, b[idx]);
+  }
+  if (idx == m) return -1;
+  LL ret = 0;
+  if (ma > a[i] && (i == 0 || ma > a[i-1])) {
+    if (cnt < k) return -1;
+    cnt -= k;
+    ret += x;
+  }
+  if (cnt % k != 0) {
+    ret += cnt%k * y;
+    cnt = cnt / k * k;
+  }
+  if (y*k <= x) {
+    ret += y*cnt;
+  } else {
+    ret += cnt/k * x;
+  }
+  LL nxt = solve(i+1, idx+1);
+  if (nxt == -1) return -1;
+  return nxt + ret;
+}
 
 
 
@@ -53,40 +108,11 @@ int main() {
   freopen("../test.txt", "r", stdin);
     // freopen("../output.txt", "w", stdout);
 #endif
-  string s; cin >> s;
-  int k; cin >> k;
-  vector<int> nums;
-  int cur = 0;
-  for (char c : s) {
-    if (c == '0') {
-      nums.push_back(cur);
-      cur = 0;
-    } else {
-      cur++;
-    }
-  }
-  if (cur != 0) nums.push_back(cur);
-  int n = nums.size();
-  int m = s.size();
-  dp[n][0][0] = 1;
-  for (int i = n-1; i >= 0; i--) {
-    for (int a = 0; a <= m; a++) {
-      int tmp = 0;
-      for (int b = a; b >= 0; b--) {
-        tmp = (tmp + dp[i+1][a][b]) % mod;
-        dp[i][a][b] = (tmp + dp[i][a][b]) % mod;
-        if (dp[i+1][a][b] == 0) continue;
-        for (int c = 1; c <= nums[i]; c++) {
-          dp[i][a+c][b+c] = (dp[i][a+c][b+c] + dp[i+1][a][b]) % mod;
-        }
-      }
-    }
-  }
-  LL ret = 0;
-  for (int i = 0; i <= min(k, m); i++) {
-    ret = (ret + dp[0][i][0]) % mod;
-  }
-  cout << ret << '\n';
+  cin >> m >> n;
+  cin >> x >> k >> y;
+  for (int i = 0; i < m; i++) cin >> b[i];
+  for (int i = 0; i < n; i++) cin >> a[i];
+  cout << solve(0, 0) << '\n';
 
 
 

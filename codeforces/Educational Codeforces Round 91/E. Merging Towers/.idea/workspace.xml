@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="E__Merging_Towers" targetName="E__Merging_Towers" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d428e2cd-a584-4497-8ea2-a9c2da9648b0" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="ProjectId" id="1ear7gQT7Wsw8PtiR76HXPcCj31" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration name="E__Merging_Towers" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="E__Merging_Towers" TARGET_NAME="E__Merging_Towers" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="E__Merging_Towers" RUN_TARGET_NAME="E__Merging_Towers">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1280" height="254" key="GridCell.Tab.0.bottom" timestamp="1594572672948">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1280" height="254" key="GridCell.Tab.0.bottom/0.23.1280.777/-2560.-1062.2560.1417@0.23.1280.777" timestamp="1594572672948" />
+    <state width="1280" height="254" key="GridCell.Tab.0.center" timestamp="1594572672947">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1280" height="254" key="GridCell.Tab.0.center/0.23.1280.777/-2560.-1062.2560.1417@0.23.1280.777" timestamp="1594572672947" />
+    <state width="1280" height="254" key="GridCell.Tab.0.left" timestamp="1594572672946">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1280" height="254" key="GridCell.Tab.0.left/0.23.1280.777/-2560.-1062.2560.1417@0.23.1280.777" timestamp="1594572672946" />
+    <state width="1280" height="254" key="GridCell.Tab.0.right" timestamp="1594572672947">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1280" height="254" key="GridCell.Tab.0.right/0.23.1280.777/-2560.-1062.2560.1417@0.23.1280.777" timestamp="1594572672947" />
+    <state width="1280" height="254" key="GridCell.Tab.1.bottom" timestamp="1594572672949">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1280" height="254" key="GridCell.Tab.1.bottom/0.23.1280.777/-2560.-1062.2560.1417@0.23.1280.777" timestamp="1594572672949" />
+    <state width="1280" height="254" key="GridCell.Tab.1.center" timestamp="1594572672948">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1280" height="254" key="GridCell.Tab.1.center/0.23.1280.777/-2560.-1062.2560.1417@0.23.1280.777" timestamp="1594572672948" />
+    <state width="1280" height="254" key="GridCell.Tab.1.left" timestamp="1594572672948">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1280" height="254" key="GridCell.Tab.1.left/0.23.1280.777/-2560.-1062.2560.1417@0.23.1280.777" timestamp="1594572672948" />
+    <state width="1280" height="254" key="GridCell.Tab.1.right" timestamp="1594572672949">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1280" height="254" key="GridCell.Tab.1.right/0.23.1280.777/-2560.-1062.2560.1417@0.23.1280.777" timestamp="1594572672949" />
+  </component>
+</project>

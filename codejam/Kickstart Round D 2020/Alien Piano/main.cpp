@@ -38,11 +38,28 @@ mt19937_64 mt(time(0));
 　 ＿_(__ﾆつ/　    ＿/ .| .|＿＿＿＿
 　 　　　＼/＿＿＿＿/　（u　⊃
 ---------------------------------------------------------------------------------------------------*/
-const int mod = 998244353;
-const int MAXN = 333;
-int dp[MAXN][MAXN][MAXN];
+vi nums;
 
-
+int solve(int i, int n) {
+  if (i == n || i+1 == n) return 0;
+  int cur = 0;
+  if (nums[i] > nums[i+1]) cur = -2;
+  else cur = 2;
+  i += 2;
+  while (i < n) {
+    if (nums[i-1] > nums[i]) {
+      if (cur < 0) cur--;
+      else cur = -2;
+      if (cur == -5) return 1 + solve(i, n);
+    } else {
+      if (cur > 0) cur++;
+      else cur = 2;
+      if (cur == 5) return 1+solve(i, n);
+    }
+    i++;
+  }
+  return 0;
+}
 
 
 
@@ -53,41 +70,16 @@ int main() {
   freopen("../test.txt", "r", stdin);
     // freopen("../output.txt", "w", stdout);
 #endif
-  string s; cin >> s;
-  int k; cin >> k;
-  vector<int> nums;
-  int cur = 0;
-  for (char c : s) {
-    if (c == '0') {
-      nums.push_back(cur);
-      cur = 0;
-    } else {
-      cur++;
+  int T; cin >> T;
+  for (int cs = 1; cs <= T; cs++) {
+    nums.clear();
+    int n; cin >> n;
+    for(int i = 0; i < n; i++) {
+      int val; cin >> val;
+      if (nums.empty() || nums.back() != val) nums.push_back(val);
     }
+    cout << "Case #" << cs << ": " << solve(0, nums.size()) << '\n';
   }
-  if (cur != 0) nums.push_back(cur);
-  int n = nums.size();
-  int m = s.size();
-  dp[n][0][0] = 1;
-  for (int i = n-1; i >= 0; i--) {
-    for (int a = 0; a <= m; a++) {
-      int tmp = 0;
-      for (int b = a; b >= 0; b--) {
-        tmp = (tmp + dp[i+1][a][b]) % mod;
-        dp[i][a][b] = (tmp + dp[i][a][b]) % mod;
-        if (dp[i+1][a][b] == 0) continue;
-        for (int c = 1; c <= nums[i]; c++) {
-          dp[i][a+c][b+c] = (dp[i][a+c][b+c] + dp[i+1][a][b]) % mod;
-        }
-      }
-    }
-  }
-  LL ret = 0;
-  for (int i = 0; i <= min(k, m); i++) {
-    ret = (ret + dp[0][i][0]) % mod;
-  }
-  cout << ret << '\n';
-
 
 
 

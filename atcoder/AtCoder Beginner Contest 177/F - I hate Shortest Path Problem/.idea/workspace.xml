@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="F___I_hate_Shortest_Path_Problem" targetName="F___I_hate_Shortest_Path_Problem" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d7ac63ef-7275-4b55-8810-59fc103ee776" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="ProjectId" id="1glzLNTv1M3SH3t5qPc9OsXJiMx" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration name="F___I_hate_Shortest_Path_Problem" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="F___I_hate_Shortest_Path_Problem" TARGET_NAME="F___I_hate_Shortest_Path_Problem" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="F___I_hate_Shortest_Path_Problem" RUN_TARGET_NAME="F___I_hate_Shortest_Path_Problem">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="WindowStateProjectService">
+    <state width="1280" height="254" key="GridCell.Tab.0.bottom" timestamp="1598721129843">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1280" height="204" key="GridCell.Tab.0.bottom/0.23.1280.777/-2560.-1062.2560.1417@0.23.1280.777" timestamp="1598720760051" />
+    <state width="1280" height="254" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1598721129843" />
+    <state width="1280" height="254" key="GridCell.Tab.0.center" timestamp="1598721129842">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1280" height="204" key="GridCell.Tab.0.center/0.23.1280.777/-2560.-1062.2560.1417@0.23.1280.777" timestamp="1598720760050" />
+    <state width="1280" height="254" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1598721129842" />
+    <state width="1280" height="254" key="GridCell.Tab.0.left" timestamp="1598721129841">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1280" height="204" key="GridCell.Tab.0.left/0.23.1280.777/-2560.-1062.2560.1417@0.23.1280.777" timestamp="1598720760050" />
+    <state width="1280" height="254" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1598721129841" />
+    <state width="1280" height="254" key="GridCell.Tab.0.right" timestamp="1598721129842">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1280" height="204" key="GridCell.Tab.0.right/0.23.1280.777/-2560.-1062.2560.1417@0.23.1280.777" timestamp="1598720760051" />
+    <state width="1280" height="254" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1598721129842" />
+    <state width="1280" height="254" key="GridCell.Tab.1.bottom" timestamp="1598721129844">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1280" height="254" key="GridCell.Tab.1.bottom/0.23.1280.777/-2560.-1062.2560.1417@0.23.1280.777" timestamp="1598708332980" />
+    <state width="1280" height="254" key="GridCell.Tab.1.bottom/0.23.1440.877@0.23.1440.877" timestamp="1598721129844" />
+    <state width="1280" height="254" key="GridCell.Tab.1.center" timestamp="1598721129844">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1280" height="254" key="GridCell.Tab.1.center/0.23.1280.777/-2560.-1062.2560.1417@0.23.1280.777" timestamp="1598708332977" />
+    <state width="1280" height="254" key="GridCell.Tab.1.center/0.23.1440.877@0.23.1440.877" timestamp="1598721129844" />
+    <state width="1280" height="254" key="GridCell.Tab.1.left" timestamp="1598721129843">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1280" height="254" key="GridCell.Tab.1.left/0.23.1280.777/-2560.-1062.2560.1417@0.23.1280.777" timestamp="1598708332977" />
+    <state width="1280" height="254" key="GridCell.Tab.1.left/0.23.1440.877@0.23.1440.877" timestamp="1598721129843" />
+    <state width="1280" height="254" key="GridCell.Tab.1.right" timestamp="1598721129844">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1280" height="254" key="GridCell.Tab.1.right/0.23.1280.777/-2560.-1062.2560.1417@0.23.1280.777" timestamp="1598708332978" />
+    <state width="1280" height="254" key="GridCell.Tab.1.right/0.23.1440.877@0.23.1440.877" timestamp="1598721129844" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="CMakeRunConfiguration">
+        <watch expression="info[1][node]" language="ObjectiveC" />
+        <watch expression="tree[node]" language="ObjectiveC" />
+        <watch expression="tree[1]" language="ObjectiveC" />
+      </configuration>
+    </watches-manager>
+  </component>
+</project>

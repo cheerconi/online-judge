@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="D__Rarity_and_New_Dress" targetName="D__Rarity_and_New_Dress" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="67c12f48-1a92-4cb3-b1c3-3123f927fc8a" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="ProjectId" id="1fmCK9QMPcVpqlbByPvX4iuOrN7" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration name="D__Rarity_and_New_Dress" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="D__Rarity_and_New_Dress" TARGET_NAME="D__Rarity_and_New_Dress" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="D__Rarity_and_New_Dress" RUN_TARGET_NAME="D__Rarity_and_New_Dress">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1440" height="294" key="GridCell.Tab.0.bottom" timestamp="1596818660505">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1440" height="294" key="GridCell.Tab.0.bottom/0.23.1280.777/-2560.-1062.2560.1417@0.23.1280.777" timestamp="1596818660505" />
+    <state width="1440" height="237" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1596818209097" />
+    <state width="1440" height="294" key="GridCell.Tab.0.center" timestamp="1596818660500">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1440" height="294" key="GridCell.Tab.0.center/0.23.1280.777/-2560.-1062.2560.1417@0.23.1280.777" timestamp="1596818660500" />
+    <state width="1440" height="237" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1596818209097" />
+    <state width="1440" height="294" key="GridCell.Tab.0.left" timestamp="1596818660499">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1440" height="294" key="GridCell.Tab.0.left/0.23.1280.777/-2560.-1062.2560.1417@0.23.1280.777" timestamp="1596818660499" />
+    <state width="1440" height="237" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1596818209096" />
+    <state width="1440" height="294" key="GridCell.Tab.0.right" timestamp="1596818660502">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1440" height="294" key="GridCell.Tab.0.right/0.23.1280.777/-2560.-1062.2560.1417@0.23.1280.777" timestamp="1596818660502" />
+    <state width="1440" height="237" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1596818209097" />
+    <state width="1440" height="294" key="GridCell.Tab.1.bottom" timestamp="1596818660509">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1440" height="294" key="GridCell.Tab.1.bottom/0.23.1280.777/-2560.-1062.2560.1417@0.23.1280.777" timestamp="1596818660509" />
+    <state width="1440" height="294" key="GridCell.Tab.1.bottom/0.23.1440.877@0.23.1440.877" timestamp="1596818197925" />
+    <state width="1440" height="294" key="GridCell.Tab.1.center" timestamp="1596818660507">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1440" height="294" key="GridCell.Tab.1.center/0.23.1280.777/-2560.-1062.2560.1417@0.23.1280.777" timestamp="1596818660507" />
+    <state width="1440" height="294" key="GridCell.Tab.1.center/0.23.1440.877@0.23.1440.877" timestamp="1596818197924" />
+    <state width="1440" height="294" key="GridCell.Tab.1.left" timestamp="1596818660506">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1440" height="294" key="GridCell.Tab.1.left/0.23.1280.777/-2560.-1062.2560.1417@0.23.1280.777" timestamp="1596818660506" />
+    <state width="1440" height="294" key="GridCell.Tab.1.left/0.23.1440.877@0.23.1440.877" timestamp="1596818197924" />
+    <state width="1440" height="294" key="GridCell.Tab.1.right" timestamp="1596818660508">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1440" height="294" key="GridCell.Tab.1.right/0.23.1280.777/-2560.-1062.2560.1417@0.23.1280.777" timestamp="1596818660508" />
+    <state width="1440" height="294" key="GridCell.Tab.1.right/0.23.1440.877@0.23.1440.877" timestamp="1596818197925" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="CMakeRunConfiguration">
+        <watch expression="n" language="ObjectiveC" />
+      </configuration>
+    </watches-manager>
+  </component>
+</project>

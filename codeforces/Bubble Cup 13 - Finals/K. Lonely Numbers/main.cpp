@@ -38,50 +38,9 @@ mt19937_64 mt(time(0));
 　 ＿_(__ﾆつ/　    ＿/ .| .|＿＿＿＿
 　 　　　＼/＿＿＿＿/　（u　⊃
 ---------------------------------------------------------------------------------------------------*/
-
-int solve(deque<int> as, deque<int> bs, deque<int> cs, vector<int> cnt) {
-  int ret = 0;
-  while (cnt[0] || cnt[1] || cnt[2]) {
-    int tmp = 0;
-    int idx = -1;
-    if (cnt[0]) {
-      if (as[0] * bs[0] >= tmp) {
-        tmp = as[0] * bs[0];
-        idx = 0;
-      }
-    }
-    if (cnt[1]) {
-      if (as[0] * cs[0] >= tmp) {
-        tmp = as[0] * cs[0];
-        idx = 1;
-      }
-    }
-    if (cnt[2]) {
-      if (bs[0] * cs[0] >= tmp) {
-        tmp = bs[0] * cs[0];
-        idx = 2;
-      }
-    }
-
-    assert(idx != -1);
-    ret += tmp;
-    if (idx == 0) {
-      as.pop_front();
-      bs.pop_front();
-
-    }
-    if (idx == 1) {
-      as.pop_front();
-      cs.pop_front();
-    }
-    if (idx == 2) {
-      bs.pop_front();
-      cs.pop_front();
-    }
-    cnt[idx]--;
-  }
-  return ret;
-}
+const int MAXN = 1e6 + 10;
+bool not_prime[MAXN];
+int ret[MAXN];
 
 
 
@@ -94,34 +53,25 @@ int main() {
   freopen("../test.txt", "r", stdin);
     // freopen("../output.txt", "w", stdout);
 #endif
-  int a, b, c;
-  cin >> a >> b >> c;
-  deque<int> as, bs, cs;
-  for (int i = 0; i < a; i++) {
-    int val; cin >> val;
-    as.push_back(val);
+  for (int i = 2; i <= 1e6; i++) {
+    if (not_prime[i]) continue;
+    for (int j = i+i; j <= 1e6; j += i) not_prime[j] = true;
   }
-  for (int i = 0; i < b; i++) {
-    int val; cin >> val;
-    bs.push_back(val);
-  }
-  for (int i = 0; i < c; i++) {
-    int val; cin >> val;
-    cs.push_back(val);
-  }
-  sort(as.begin(), as.end(), greater<int>());
-  sort(bs.begin(), bs.end(), greater<int>());
-  sort(cs.begin(), cs.end(), greater<int>());
-
-  int ret = 0;
-  for (int i = 0; i <= min(a, b); i++) {
-    for (int j = 0; j <= min(a-i, c); j++) {
-      int k = min(b-i, c-j);
-      if (a-i-j > 0 && b-j-k > 0) continue;
-      ret = max(ret, solve(as, bs, cs, {i, j, k}));
+  ret[1] = 1;
+  deque<LL> q;
+  for (LL i = 2; i <= 1e6; i++) {
+    if (!not_prime[i]) q.push_back(i);
+    while (!q.empty() && i >= q.front()*q.front()) {
+      q.pop_front();
     }
+    ret[i] = 1 + q.size();
   }
-  cout << ret << endl;
+  int n; cin >> n;
+  while (n--) {
+    int val; cin >> val;
+    cout << ret[val] << '\n';
+  }
+
 
 
 

@@ -38,49 +38,35 @@ mt19937_64 mt(time(0));
 　 ＿_(__ﾆつ/　    ＿/ .| .|＿＿＿＿
 　 　　　＼/＿＿＿＿/　（u　⊃
 ---------------------------------------------------------------------------------------------------*/
+const int MAXN = 2e4 + 10;
+vector<pii> edges[MAXN];
+int used[MAXN], id, match[MAXN], mi;
 
-int solve(deque<int> as, deque<int> bs, deque<int> cs, vector<int> cnt) {
-  int ret = 0;
-  while (cnt[0] || cnt[1] || cnt[2]) {
-    int tmp = 0;
-    int idx = -1;
-    if (cnt[0]) {
-      if (as[0] * bs[0] >= tmp) {
-        tmp = as[0] * bs[0];
-        idx = 0;
-      }
+bool dfs(int i, int d) {
+  used[i] = id;
+  for (const auto& item : edges[i]) {
+    if (item.first > d) break;
+    int j = item.second;
+    int w = match[j];
+    if (w == -1 || (used[w] < id && dfs(w, d))) {
+      match[i] = j;
+      match[j] = i;
+      return true;
     }
-    if (cnt[1]) {
-      if (as[0] * cs[0] >= tmp) {
-        tmp = as[0] * cs[0];
-        idx = 1;
-      }
-    }
-    if (cnt[2]) {
-      if (bs[0] * cs[0] >= tmp) {
-        tmp = bs[0] * cs[0];
-        idx = 2;
-      }
-    }
-
-    assert(idx != -1);
-    ret += tmp;
-    if (idx == 0) {
-      as.pop_front();
-      bs.pop_front();
-
-    }
-    if (idx == 1) {
-      as.pop_front();
-      cs.pop_front();
-    }
-    if (idx == 2) {
-      bs.pop_front();
-      cs.pop_front();
-    }
-    cnt[idx]--;
   }
-  return ret;
+  return false;
+}
+
+bool solve(int n, int d) {
+  if (d < mi) return false;
+  fill(match, match+n+1, -1);
+  for (int i = 1; i <= n; i++) {
+    if (match[i] == -1) {
+      id++;
+      if (!dfs(i, d)) return false;
+    }
+  }
+  return true;
 }
 
 
@@ -94,34 +80,37 @@ int main() {
   freopen("../test.txt", "r", stdin);
     // freopen("../output.txt", "w", stdout);
 #endif
-  int a, b, c;
-  cin >> a >> b >> c;
-  deque<int> as, bs, cs;
-  for (int i = 0; i < a; i++) {
-    int val; cin >> val;
-    as.push_back(val);
+  int n, m; cin >> n >> m;
+  vector<int> ws;
+  ws.reserve(m);
+  while (m--) {
+    int a, b, c; cin >> a >> b >> c;
+    edges[a].emplace_back(c, b+n);
+    edges[b+n].emplace_back(c, a);
+    ws.push_back(c);
   }
-  for (int i = 0; i < b; i++) {
-    int val; cin >> val;
-    bs.push_back(val);
-  }
-  for (int i = 0; i < c; i++) {
-    int val; cin >> val;
-    cs.push_back(val);
-  }
-  sort(as.begin(), as.end(), greater<int>());
-  sort(bs.begin(), bs.end(), greater<int>());
-  sort(cs.begin(), cs.end(), greater<int>());
-
-  int ret = 0;
-  for (int i = 0; i <= min(a, b); i++) {
-    for (int j = 0; j <= min(a-i, c); j++) {
-      int k = min(b-i, c-j);
-      if (a-i-j > 0 && b-j-k > 0) continue;
-      ret = max(ret, solve(as, bs, cs, {i, j, k}));
+  n = n*2;
+  for (int i = 1; i <= n; i++) {
+    sort(edges[i].begin(), edges[i].end());
+    if (edges[i].empty()) {
+      cout << "-1\n";
+      return 0;
     }
+    mi = max(mi, edges[i][0].first);
   }
-  cout << ret << endl;
+  sort(ws.begin(), ws.end());
+  ws.resize(unique(ws.begin(), ws.end()) - ws.begin());
+  int a = 0, b = (int)ws.size() - 1;
+  if (!solve(n, ws[b])) {
+    cout << "-1\n";
+    return 0;
+  }
+  while (a < b) {
+    int mid = (a+b) >> 1;
+    if (solve(n, ws[mid])) b = mid;
+    else a = mid+1;
+  }
+  cout << ws[a] << '\n';
 
 
 

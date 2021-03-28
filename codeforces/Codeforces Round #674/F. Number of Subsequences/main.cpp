@@ -38,50 +38,7 @@ mt19937_64 mt(time(0));
 　 ＿_(__ﾆつ/　    ＿/ .| .|＿＿＿＿
 　 　　　＼/＿＿＿＿/　（u　⊃
 ---------------------------------------------------------------------------------------------------*/
-
-int solve(deque<int> as, deque<int> bs, deque<int> cs, vector<int> cnt) {
-  int ret = 0;
-  while (cnt[0] || cnt[1] || cnt[2]) {
-    int tmp = 0;
-    int idx = -1;
-    if (cnt[0]) {
-      if (as[0] * bs[0] >= tmp) {
-        tmp = as[0] * bs[0];
-        idx = 0;
-      }
-    }
-    if (cnt[1]) {
-      if (as[0] * cs[0] >= tmp) {
-        tmp = as[0] * cs[0];
-        idx = 1;
-      }
-    }
-    if (cnt[2]) {
-      if (bs[0] * cs[0] >= tmp) {
-        tmp = bs[0] * cs[0];
-        idx = 2;
-      }
-    }
-
-    assert(idx != -1);
-    ret += tmp;
-    if (idx == 0) {
-      as.pop_front();
-      bs.pop_front();
-
-    }
-    if (idx == 1) {
-      as.pop_front();
-      cs.pop_front();
-    }
-    if (idx == 2) {
-      bs.pop_front();
-      cs.pop_front();
-    }
-    cnt[idx]--;
-  }
-  return ret;
-}
+const int mod = 1e9 + 7;
 
 
 
@@ -94,35 +51,22 @@ int main() {
   freopen("../test.txt", "r", stdin);
     // freopen("../output.txt", "w", stdout);
 #endif
-  int a, b, c;
-  cin >> a >> b >> c;
-  deque<int> as, bs, cs;
-  for (int i = 0; i < a; i++) {
-    int val; cin >> val;
-    as.push_back(val);
-  }
-  for (int i = 0; i < b; i++) {
-    int val; cin >> val;
-    bs.push_back(val);
-  }
-  for (int i = 0; i < c; i++) {
-    int val; cin >> val;
-    cs.push_back(val);
-  }
-  sort(as.begin(), as.end(), greater<int>());
-  sort(bs.begin(), bs.end(), greater<int>());
-  sort(cs.begin(), cs.end(), greater<int>());
-
-  int ret = 0;
-  for (int i = 0; i <= min(a, b); i++) {
-    for (int j = 0; j <= min(a-i, c); j++) {
-      int k = min(b-i, c-j);
-      if (a-i-j > 0 && b-j-k > 0) continue;
-      ret = max(ret, solve(as, bs, cs, {i, j, k}));
+  int n; cin >> n;
+  string s; cin >> s;
+  vector<LL> dp(3);
+  LL tot = 1;
+  for (char c : s) {
+    if (c == 'c') dp[2] = (dp[2] + dp[1]) % mod;
+    if (c == 'b') dp[1] = (dp[1] + dp[0]) % mod;
+    if (c == 'a') dp[0] = (dp[0] + tot) % mod;
+    if (c == '?') {
+      dp[2] = (dp[2] * 3 + dp[1]) % mod;
+      dp[1] = (dp[1] * 3 + dp[0]) % mod;
+      dp[0] = (dp[0] * 3 + tot) % mod;
+      tot = tot * 3 % mod;
     }
   }
-  cout << ret << endl;
-
+  cout << dp[2] << '\n';
 
 
 

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="K__Lonely_Numbers" targetName="K__Lonely_Numbers" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a3fc995e-b110-4cd9-8a64-a4eb3feb0a4c" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="ProjectId" id="1iSiaNpmHuLaF5OSl2Sdy8v726I" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration name="K__Lonely_Numbers" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="K__Lonely_Numbers" TARGET_NAME="K__Lonely_Numbers" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="K__Lonely_Numbers" RUN_TARGET_NAME="K__Lonely_Numbers">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="WindowStateProjectService">
+    <state width="1440" height="294" key="GridCell.Tab.0.bottom" timestamp="1601920486849">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1440" height="294" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1601920486849" />
+    <state width="1440" height="294" key="GridCell.Tab.0.center" timestamp="1601920486848">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1440" height="294" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1601920486848" />
+    <state width="1440" height="294" key="GridCell.Tab.0.left" timestamp="1601920486848">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1440" height="294" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1601920486848" />
+    <state width="1440" height="294" key="GridCell.Tab.0.right" timestamp="1601920486849">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1440" height="294" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1601920486849" />
+    <state width="1440" height="294" key="GridCell.Tab.1.bottom" timestamp="1601920486850">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1440" height="294" key="GridCell.Tab.1.bottom/0.23.1440.877@0.23.1440.877" timestamp="1601920486850" />
+    <state width="1440" height="294" key="GridCell.Tab.1.center" timestamp="1601920486849">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1440" height="294" key="GridCell.Tab.1.center/0.23.1440.877@0.23.1440.877" timestamp="1601920486849" />
+    <state width="1440" height="294" key="GridCell.Tab.1.left" timestamp="1601920486849">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1440" height="294" key="GridCell.Tab.1.left/0.23.1440.877@0.23.1440.877" timestamp="1601920486849" />
+    <state width="1440" height="294" key="GridCell.Tab.1.right" timestamp="1601920486850">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1440" height="294" key="GridCell.Tab.1.right/0.23.1440.877@0.23.1440.877" timestamp="1601920486850" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/main.cpp</url>
+          <line>62</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

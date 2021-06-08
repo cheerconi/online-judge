@@ -38,49 +38,26 @@ mt19937_64 mt(time(0));
 　 ＿_(__ﾆつ/　    ＿/ .| .|＿＿＿＿
 　 　　　＼/＿＿＿＿/　（u　⊃
 ---------------------------------------------------------------------------------------------------*/
+const int MAXN = 233;
+int dp[MAXN][MAXN][MAXN];
+int as[MAXN], bs[MAXN], cs[MAXN];
 
-int solve(deque<int> as, deque<int> bs, deque<int> cs, vector<int> cnt) {
-  int ret = 0;
-  while (cnt[0] || cnt[1] || cnt[2]) {
-    int tmp = 0;
-    int idx = -1;
-    if (cnt[0]) {
-      if (as[0] * bs[0] >= tmp) {
-        tmp = as[0] * bs[0];
-        idx = 0;
-      }
-    }
-    if (cnt[1]) {
-      if (as[0] * cs[0] >= tmp) {
-        tmp = as[0] * cs[0];
-        idx = 1;
-      }
-    }
-    if (cnt[2]) {
-      if (bs[0] * cs[0] >= tmp) {
-        tmp = bs[0] * cs[0];
-        idx = 2;
-      }
-    }
-
-    assert(idx != -1);
-    ret += tmp;
-    if (idx == 0) {
-      as.pop_front();
-      bs.pop_front();
-
-    }
-    if (idx == 1) {
-      as.pop_front();
-      cs.pop_front();
-    }
-    if (idx == 2) {
-      bs.pop_front();
-      cs.pop_front();
-    }
-    cnt[idx]--;
+int solve(int i, int j, int k) {
+  if (dp[i][j][k] != -1) return dp[i][j][k];
+  if (i >= 1 && j >= 1) {
+    int tmp = solve(i-1, j-1, k);
+    if (tmp != -2) dp[i][j][k] = max(dp[i][j][k], tmp + as[i-1] * bs[j-1]);
   }
-  return ret;
+  if (i >= 1 && k >= 1) {
+    int tmp = solve(i-1, j, k-1);
+    if (tmp != -2) dp[i][j][k] = max(dp[i][j][k], tmp  + as[i-1] * cs[k-1]);
+  }
+  if (j >= 1 && k >= 1) {
+    int tmp = solve(i, j-1, k-1);
+    if (tmp != -2) dp[i][j][k] = max(dp[i][j][k], tmp  + bs[j-1] * cs[k-1]);
+  }
+  if (dp[i][j][k] == -1) dp[i][j][k] = -2;
+  return dp[i][j][k];
 }
 
 
@@ -96,32 +73,25 @@ int main() {
 #endif
   int a, b, c;
   cin >> a >> b >> c;
-  deque<int> as, bs, cs;
-  for (int i = 0; i < a; i++) {
-    int val; cin >> val;
-    as.push_back(val);
-  }
-  for (int i = 0; i < b; i++) {
-    int val; cin >> val;
-    bs.push_back(val);
-  }
-  for (int i = 0; i < c; i++) {
-    int val; cin >> val;
-    cs.push_back(val);
-  }
-  sort(as.begin(), as.end(), greater<int>());
-  sort(bs.begin(), bs.end(), greater<int>());
-  sort(cs.begin(), cs.end(), greater<int>());
 
+  for (int i = 0; i < a; i++) cin >> as[i];
+  for (int i = 0; i < b; i++) cin >> bs[i];
+  for (int i = 0; i < c; i++) cin >> cs[i];
+  sort(as, as + a, greater<int>());
+  sort(bs, bs + b, greater<int>());
+  sort(cs, cs + c, greater<int>());
+  memset(dp, -1, sizeof(dp));
+  dp[0][0][0] = 0;
   int ret = 0;
-  for (int i = 0; i <= min(a, b); i++) {
-    for (int j = 0; j <= min(a-i, c); j++) {
-      int k = min(b-i, c-j);
-      if (a-i-j > 0 && b-j-k > 0) continue;
-      ret = max(ret, solve(as, bs, cs, {i, j, k}));
+  for (int i = 0; i <= a; i++) {
+    for (int j = 0; j <= b; j++) {
+      for (int k = 0; k <= c; k++) {
+        ret = max(ret, solve(i, j, k));
+      }
     }
   }
   cout << ret << endl;
+
 
 
 

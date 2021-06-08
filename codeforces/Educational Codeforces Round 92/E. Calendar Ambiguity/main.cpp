@@ -44,31 +44,13 @@ LL gcd(LL a, LL b) {
   return gcd(b%a, a);
 }
 
-LL solve(LL x, LL y) {
-
-}
-LL solve(LL n, LL a, LL w) {
-  if (n == 1) return 0;
-  a = a % w;
-  if (w == 1 || a == 1) return n * (n-1) / 2;
-  LL x = n / w;
-  LL y = n % w;
-  LL ret = y * (x+1) * x / 2;
-  ret += (w - y) * x * (x-1) / 2;
-  if (a <= 2) return ret;
-  a -= 2;
-  LL tmp = gcd(a, w);
-  if (tmp == 1) return ret;
-  tmp = w / tmp;
-  if (tmp+1 <= y) {
-    ret += solve(x+1, x+1) * (y-tmp);
-  }
-
-
-
-
-
-
+LL solve(LL m, LL d, LL w) {
+  LL x = min(m, d);
+  if (x == 1) return 0;
+  if (w == 1) return x * (x-1) / 2;
+  w = w / gcd(d-1, w);
+  LL n = x / w;
+  return n * x  - (1 + n) * n / 2 * w;
 }
 
 
@@ -82,11 +64,10 @@ int main() {
   freopen("../test.txt", "r", stdin);
     // freopen("../output.txt", "w", stdout);
 #endif
-  int t; cin >> t;
-  while (t--) {
-    int m, d, w;
-    cout << solve(min(m, d), d, w) << '\n';
-
+  int T; cin >> T;
+  while (T--) {
+    int m, d, w; cin >> m >> d >> w;
+    cout << solve(m, d, w) << '\n';
   }
 
 

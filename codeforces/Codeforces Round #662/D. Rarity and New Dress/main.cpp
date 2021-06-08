@@ -39,67 +39,46 @@ mt19937_64 mt(time(0));
 　 　　　＼/＿＿＿＿/　（u　⊃
 ---------------------------------------------------------------------------------------------------*/
 const int MAXN = 2000 + 10;
+int g_dp[2][MAXN][MAXN];
 string mat[MAXN];
-int dp[MAXN][MAXN][2];
 int n, m;
 
-LL solve(char c) {
-  for (int i = 0; i < n; i++) {
-    for (int j = 0; j < m; j++) {
-      for (int k = 0; k < 2; k++) {
-        if (mat[i][j] == c) dp[i][j][k] = 1;
-        else dp[i][j][k] = 0;
+void solve(int dp[][MAXN], int s, int delta) {
+  for (int j = 0; j < m; j++) {
+    dp[s][j] = 1;
+  }
+  for (int k = 0; k < 26; k++) {
+    char c = k + 'a';
+    for (int i = s + delta; i >= 0 && i < n; i += delta) {
+      vector<pii> ranges;
+      for (int j = 0; j < m; j++) {
+        if (mat[i][j] != c) continue;
+        if (!ranges.empty() && ranges.back().second == j-1) {
+          ranges.back().second = j;
+        } else {
+          ranges.emplace_back(j, j);
+        }
+      }
+      int u = 0;
+      for (int j = 0; j < m; j++) {
+        if (mat[i][j] != c) continue;
+        dp[i][j] = 1;
+        if (mat[i - delta][j] != c) continue;
+        while (u < ranges.size()) {
+          if (ranges[u].first <= j && j <= ranges[u].second) break;
+          u++;
+        }
+        assert(u < ranges.size());
+        int tmp1 = dp[i - delta][j] + 1;
+        int tmp2 = ranges[u].second - j + 1;
+        int tmp3 = j - ranges[u].first + 1;
+        tmp1 = min(tmp1, tmp2);
+        tmp1 = min(tmp1, tmp3);
+        dp[i][j] = tmp1;
       }
     }
   }
-  for (int i = 1; i < n; i++) {
-    for (int j = 0; j < m; j++) {
-      if (dp[i][j][0] == 0) continue;
-      dp[i][j][0] += dp[i-1][j][0];
-    }
-  }
-  for (int i = n-2; i >= 0; i--) {
-    for (int j = 0; j < m; j++) {
-      if (dp[i][j][1] == 0) continue;
-      dp[i][j][1] += dp[i+1][j][1];
-    }
-  }
-  LL ret = 0;
-  for (int i = 0; i < n; i++) {
-    vector<pii> tmp;
-    if (dp[i][0][0] > 0) tmp.emplace_back(1, 0);
-    else tmp.emplace_back(0, 0);
-    for (int j = 1; j <= m; j++) {
-      int len = min(dp[i][j][0], dp[i][j][1]);
-      if (j == m) len = 0;
-      while (!tmp.empty()) {
-        if (len + j - tmp.back().second <= tmp.back().first) tmp.pop_back();
-        else break;
-      }
-      if (tmp.empty() || (tmp.back().first+j-tmp.back().second > len)) tmp.emplace_back(len, j);
-    }
-    for (int j = m-1; j >= 0; j--) {
-      if (j >= tmp.back().second) {
-        LL tot = tmp.back().first + j - tmp.back().second;
-        ret += tot;
-        continue;
-      }
-      while (tmp.size() >= 2 && tmp[tmp.size()-2].second >= j) tmp.pop_back();
-      if (tmp.size() == 1) {
-        LL tot = tmp.back().first + tmp.back().second - j;
-        ret += tot;
-        continue;
-      }
-      int sz = tmp.size();
-      LL tot = min(tmp.back().first + tmp.back().second - j, tmp[sz-2].first + j - tmp[sz-2].second);
-      ret += tot;
-    }
-  }
-  return ret;
-
 }
-
-
 
 
 
@@ -111,15 +90,24 @@ int main() {
     // freopen("../output.txt", "w", stdout);
 #endif
   cin >> n >> m;
-
   for (int i = 0; i < n; i++) {
     cin >> mat[i];
   }
+  solve(g_dp[0], 0, 1);
+  solve(g_dp[1], n-1, -1);
   LL ret = 0;
-  for (char c  = 'a'; c <= 'z'; c++) {
-    ret += solve(c);
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < m; j++) {
+      LL tmp = min(g_dp[0][i][j], g_dp[1][i][j]);
+      ret += tmp;
+    }
   }
-  cout << ret << '\n';
+  cout << ret << endl;
+
+
+
+
+
 
 
 

@@ -38,49 +38,14 @@ mt19937_64 mt(time(0));
 　 ＿_(__ﾆつ/　    ＿/ .| .|＿＿＿＿
 　 　　　＼/＿＿＿＿/　（u　⊃
 ---------------------------------------------------------------------------------------------------*/
-const int MAXN = 1000 + 10;
-bool ban[MAXN][MAXN];
-int dx[] = {0, 0, -1, 1};
-int dy[] = {1, -1, 0, 0};
-int n, m;
+const int MAXN = 4e5 + 10;
+const int MAXM = 20;
+int table[MAXM][MAXN<<1];
+int state[1<<MAXM];
+int needs[MAXM];
+int values[1<<MAXM][2];
 
-inline bool check(int i, int j) {
-    return i >= 0 && i < n && j >= 0 && j < m && !ban[i][j];
-}
 
-LL count(int i, int j, int idx1, int idx2, int first_step, int step) {
-    int ret = 0;
-    while (first_step--) {
-        i += dx[idx1];
-        j += dy[idx1];
-        if (!check(i, j)) return 0;
-        swap(idx1, idx2);
-    }
-    while (check(i, j)) {
-        ret++;
-        for (int k = 0; k < step; k++) {
-            i += dx[idx1];
-            j += dy[idx1];
-            if (!check(i, j)) return ret;
-            swap(idx1, idx2);
-        }
-    }
-    return ret;
-}
-
-LL solve(int x, int y) {
-    LL tmp1 =  count(x, y, 1, 2, 1, 2);
-    LL tmp2 =  count(x, y, 2, 1, 2, 2);
-    LL tmp3 =  count(x, y, 0, 3, 1, 1);
-    LL tmp4 = count(x, y, 3, 0, 1, 1);
-
-    LL tmp5 =  count(x, y, 1, 2, 2, 2);
-    LL tmp6 = count(x, y, 2, 1, 1, 2);
-    LL tmp7 = count(x, y, 3, 0, 1, 1);
-    LL tmp8 = count(x, y, 0, 3, 1, 1);
-
-    return tmp1 * (tmp4 + 1) + (tmp2 +1) * (tmp3 + 1) + (tmp5 + 1) * (tmp7 + 1) + tmp6 * (tmp8 + 1) - 1;
-}
 
 
 
@@ -91,27 +56,47 @@ int main() {
   freopen("../test.txt", "r", stdin);
     // freopen("../output.txt", "w", stdout);
 #endif
-    int q; cin >> n >> m >> q;
-    LL ret = -n*m;
+    memset(values, -1, sizeof(values));
+    int n; cin >> n;
     for (int i = 0; i < n; i++) {
-        int len_i = n - i;
-        for (int j = 0; j < m; j++) {
-            int len_j = m - j;
-            ret += min(len_i * 2, len_j * 2 - 1);
-            ret += min(len_i * 2 - 1, len_j * 2);
+        int mask_i = 1<<i;
+        string s; cin >> s;
+        for (char c : s) {
+            if (c == '(') state[mask_i]++;
+            else state[mask_i]--;
+            needs[i] = min(needs[i], state[mask_i]);
+            if (state[mask_i] <= 0 && -state[mask_i] >= -needs[i]) {
+                table[i][state[mask_i]+MAXN]++;
+            }
+        }
+        values[mask_i][0] = table[i][MAXN];
+        if (needs[i] == 0) values[mask_i][1] = table[i][MAXN];
+    }
+    int mask = 1<<n;
+    vector<int> idxes(mask-1);
+    iota(idxes.begin(), idxes.end(), 1);
+    sort(idxes.begin(), idxes.end(), [](int i, int j){
+        return __builtin_popcount(i) < __builtin_popcount(j);
+    });
+    for (int mask_i : idxes) {
+        if (values[mask_i][1] == -1) continue;
+        for (int j = 0; j < n; j++) {
+            int mask_j = 1<<j;
+            if (mask_i&mask_j) continue;
+            state[mask_i|mask_j] = state[mask_i] + state[mask_j];
+            values[mask_i|mask_j][0] = max(values[mask_i|mask_j][0], values[mask_i][1] + table[j][MAXN - state[mask_i]]);
+            if (needs[j] + state[mask_i] >= 0) {
+                values[mask_i|mask_j][1] = max(values[mask_i|mask_j][1], values[mask_i][1] + table[j][MAXN - state[mask_i]]);
+            }
+
         }
     }
-    while (q--) {
-        int x, y; cin >> x >> y;
-        x--; y--;
-        ban[x][y] = !ban[x][y];
-        if (ban[x][y]) ret -= solve(x, y);
-        else ret += solve(x, y);
-        cout << ret << '\n';
+    int ret = 0;
+    for (int i = 1; i < mask; i++) {
+        ret = max(ret, values[i][0]);
+        ret = max(ret, values[i][1]);
     }
-
-
-
+    cout << ret << '\n';
 
 
 

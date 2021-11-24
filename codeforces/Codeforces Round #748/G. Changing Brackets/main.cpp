@@ -38,49 +38,56 @@ mt19937_64 mt(time(0));
 　 ＿_(__ﾆつ/　    ＿/ .| .|＿＿＿＿
 　 　　　＼/＿＿＿＿/　（u　⊃
 ---------------------------------------------------------------------------------------------------*/
-const int MAXN = 1000 + 10;
-bool ban[MAXN][MAXN];
-int dx[] = {0, 0, -1, 1};
-int dy[] = {1, -1, 0, 0};
-int n, m;
+#define leftnode (node<<1)
+#define rightnode ((node<<1)|1)
+#define getmid ((left + right)>>1)
+const int MAXN = 1e6 + 10;
+pii tree[MAXN<<2];
+string s;
 
-inline bool check(int i, int j) {
-    return i >= 0 && i < n && j >= 0 && j < m && !ban[i][j];
-}
-
-LL count(int i, int j, int idx1, int idx2, int first_step, int step) {
-    int ret = 0;
-    while (first_step--) {
-        i += dx[idx1];
-        j += dy[idx1];
-        if (!check(i, j)) return 0;
-        swap(idx1, idx2);
-    }
-    while (check(i, j)) {
-        ret++;
-        for (int k = 0; k < step; k++) {
-            i += dx[idx1];
-            j += dy[idx1];
-            if (!check(i, j)) return ret;
-            swap(idx1, idx2);
-        }
+pii merge(const pii& a, const pii& b) {
+    if (a.first == 0) return b;
+    if (b.first == 0) return a;
+    pii ret;
+    int tmp = (a.second + a.first + 1) % 2;
+    if (tmp == b.second) {
+        ret.first = abs(a.first - b.first);
+        ret.second = a.second;
+        if (b.first > a.first) ret.second ^= 1;
+    } else {
+        ret.first = a.first + b.first;
+        ret.second = a.second;
     }
     return ret;
 }
 
-LL solve(int x, int y) {
-    LL tmp1 =  count(x, y, 1, 2, 1, 2);
-    LL tmp2 =  count(x, y, 2, 1, 2, 2);
-    LL tmp3 =  count(x, y, 0, 3, 1, 1);
-    LL tmp4 = count(x, y, 3, 0, 1, 1);
-
-    LL tmp5 =  count(x, y, 1, 2, 2, 2);
-    LL tmp6 = count(x, y, 2, 1, 1, 2);
-    LL tmp7 = count(x, y, 3, 0, 1, 1);
-    LL tmp8 = count(x, y, 0, 3, 1, 1);
-
-    return tmp1 * (tmp4 + 1) + (tmp2 +1) * (tmp3 + 1) + (tmp5 + 1) * (tmp7 + 1) + tmp6 * (tmp8 + 1) - 1;
+void build(int node, int left, int right) {
+    if (left == right) {
+        tree[node].first = 1;
+        if (s[left-1] == '(' || s[left-1] == ')') tree[node].second = 0;
+        else tree[node].second = 1;
+        return;
+    }
+    int mid = getmid;
+    build(leftnode, left, mid);
+    build(rightnode, mid+1, right);
+    tree[node] = merge(tree[leftnode], tree[rightnode]);
 }
+
+pii query(int node, int left, int right, int i, int j) {
+    if (right < i || j < left) return {0, 0};
+    if (i <= left && right <= j) {
+        return tree[node];
+    }
+    int mid = getmid;
+    pii a = query(leftnode, left, mid, i, j);
+    pii b = query(rightnode, mid+1, right, i, j);
+    pii ret =  merge(a, b);
+    return ret;
+}
+
+
+
 
 
 
@@ -91,26 +98,19 @@ int main() {
   freopen("../test.txt", "r", stdin);
     // freopen("../output.txt", "w", stdout);
 #endif
-    int q; cin >> n >> m >> q;
-    LL ret = -n*m;
-    for (int i = 0; i < n; i++) {
-        int len_i = n - i;
-        for (int j = 0; j < m; j++) {
-            int len_j = m - j;
-            ret += min(len_i * 2, len_j * 2 - 1);
-            ret += min(len_i * 2 - 1, len_j * 2);
+    int T; cin >> T;
+    while (T--) {
+        cin >> s;
+        int n = s.size();
+        build(1, 1, n);
+        int q; cin >> q;
+        int a, b;
+        while (q--) {
+            cin >> a >> b;
+            cout << query(1, 1, n, a, b).first / 2 << '\n';
         }
-    }
-    while (q--) {
-        int x, y; cin >> x >> y;
-        x--; y--;
-        ban[x][y] = !ban[x][y];
-        if (ban[x][y]) ret -= solve(x, y);
-        else ret += solve(x, y);
-        cout << ret << '\n';
-    }
 
-
+    }
 
 
 

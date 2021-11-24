@@ -38,49 +38,34 @@ mt19937_64 mt(time(0));
 　 ＿_(__ﾆつ/　    ＿/ .| .|＿＿＿＿
 　 　　　＼/＿＿＿＿/　（u　⊃
 ---------------------------------------------------------------------------------------------------*/
-const int MAXN = 1000 + 10;
-bool ban[MAXN][MAXN];
-int dx[] = {0, 0, -1, 1};
-int dy[] = {1, -1, 0, 0};
-int n, m;
-
-inline bool check(int i, int j) {
-    return i >= 0 && i < n && j >= 0 && j < m && !ban[i][j];
+int tot = 0;
+int ask(int i, int j) {
+    assert(tot < 40);
+    cout << "? " << i << ' ' << j << endl;
+    int val; cin >> val;
+    assert(val != -1);
+    tot++;
+    return val;
 }
 
-LL count(int i, int j, int idx1, int idx2, int first_step, int step) {
-    int ret = 0;
-    while (first_step--) {
-        i += dx[idx1];
-        j += dy[idx1];
-        if (!check(i, j)) return 0;
-        swap(idx1, idx2);
+pll solve(const pll& item1, const pll& item2) {
+    if (item1.first == item2.first || item1.first+1 == item2.first) {
+        if (item1.second > item2.second) return item2;
+        return item1;
     }
-    while (check(i, j)) {
-        ret++;
-        for (int k = 0; k < step; k++) {
-            i += dx[idx1];
-            j += dy[idx1];
-            if (!check(i, j)) return ret;
-            swap(idx1, idx2);
-        }
+    LL mid = (item1.first + item2.first)  >> 1;
+    pll tmp = make_pair(mid, ask(mid, 1));
+    if (item1.second == item2.second) {
+        return tmp;
     }
-    return ret;
+    int diff = mid - item1.first;
+    if (item1.second - diff == tmp.second) {
+        return solve(tmp, item2);
+    }
+    return solve(item1, tmp);
 }
 
-LL solve(int x, int y) {
-    LL tmp1 =  count(x, y, 1, 2, 1, 2);
-    LL tmp2 =  count(x, y, 2, 1, 2, 2);
-    LL tmp3 =  count(x, y, 0, 3, 1, 1);
-    LL tmp4 = count(x, y, 3, 0, 1, 1);
 
-    LL tmp5 =  count(x, y, 1, 2, 2, 2);
-    LL tmp6 = count(x, y, 2, 1, 1, 2);
-    LL tmp7 = count(x, y, 3, 0, 1, 1);
-    LL tmp8 = count(x, y, 0, 3, 1, 1);
-
-    return tmp1 * (tmp4 + 1) + (tmp2 +1) * (tmp3 + 1) + (tmp5 + 1) * (tmp7 + 1) + tmp6 * (tmp8 + 1) - 1;
-}
 
 
 
@@ -91,24 +76,15 @@ int main() {
   freopen("../test.txt", "r", stdin);
     // freopen("../output.txt", "w", stdout);
 #endif
-    int q; cin >> n >> m >> q;
-    LL ret = -n*m;
-    for (int i = 0; i < n; i++) {
-        int len_i = n - i;
-        for (int j = 0; j < m; j++) {
-            int len_j = m - j;
-            ret += min(len_i * 2, len_j * 2 - 1);
-            ret += min(len_i * 2 - 1, len_j * 2);
-        }
-    }
-    while (q--) {
-        int x, y; cin >> x >> y;
-        x--; y--;
-        ban[x][y] = !ban[x][y];
-        if (ban[x][y]) ret -= solve(x, y);
-        else ret += solve(x, y);
-        cout << ret << '\n';
-    }
+    int n = 1e9;
+    pll item1 = make_pair(1, ask(1, 1));
+    pll item2 = make_pair(n, ask(n, 1));
+    pll ret = solve(item1, item2);
+    int a = ret.second;
+    int b = ask(ret.first, n);
+    int c = ask(1, a+1);
+    int d = ask(n, a+1);
+    cout << "! " << c+1 << ' ' << a+1 << ' ' << n-d << ' ' << n-b << endl;
 
 
 

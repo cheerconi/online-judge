@@ -38,49 +38,25 @@ mt19937_64 mt(time(0));
 　 ＿_(__ﾆつ/　    ＿/ .| .|＿＿＿＿
 　 　　　＼/＿＿＿＿/　（u　⊃
 ---------------------------------------------------------------------------------------------------*/
-const int MAXN = 1000 + 10;
-bool ban[MAXN][MAXN];
-int dx[] = {0, 0, -1, 1};
-int dy[] = {1, -1, 0, 0};
-int n, m;
+const int mod = 1e9 + 7;
+const int MAXN = 2e5 + 10;
+LL fact[MAXN], inv[MAXN], pow2[MAXN];
 
-inline bool check(int i, int j) {
-    return i >= 0 && i < n && j >= 0 && j < m && !ban[i][j];
-}
-
-LL count(int i, int j, int idx1, int idx2, int first_step, int step) {
-    int ret = 0;
-    while (first_step--) {
-        i += dx[idx1];
-        j += dy[idx1];
-        if (!check(i, j)) return 0;
-        swap(idx1, idx2);
-    }
-    while (check(i, j)) {
-        ret++;
-        for (int k = 0; k < step; k++) {
-            i += dx[idx1];
-            j += dy[idx1];
-            if (!check(i, j)) return ret;
-            swap(idx1, idx2);
-        }
+LL power(LL base, int p) {
+    base = base % mod;
+    LL ret = 1;
+    while (p) {
+        if (p & 1) ret = ret * base % mod;
+        base = base * base % mod;
+        p >>= 1;
     }
     return ret;
 }
-
-LL solve(int x, int y) {
-    LL tmp1 =  count(x, y, 1, 2, 1, 2);
-    LL tmp2 =  count(x, y, 2, 1, 2, 2);
-    LL tmp3 =  count(x, y, 0, 3, 1, 1);
-    LL tmp4 = count(x, y, 3, 0, 1, 1);
-
-    LL tmp5 =  count(x, y, 1, 2, 2, 2);
-    LL tmp6 = count(x, y, 2, 1, 1, 2);
-    LL tmp7 = count(x, y, 3, 0, 1, 1);
-    LL tmp8 = count(x, y, 0, 3, 1, 1);
-
-    return tmp1 * (tmp4 + 1) + (tmp2 +1) * (tmp3 + 1) + (tmp5 + 1) * (tmp7 + 1) + tmp6 * (tmp8 + 1) - 1;
+LL combine(int n, int k) {
+    LL ret = fact[n] * inv[k] % mod;
+    return ret * inv[n-k] % mod;
 }
+
 
 
 
@@ -91,26 +67,31 @@ int main() {
   freopen("../test.txt", "r", stdin);
     // freopen("../output.txt", "w", stdout);
 #endif
-    int q; cin >> n >> m >> q;
-    LL ret = -n*m;
-    for (int i = 0; i < n; i++) {
-        int len_i = n - i;
-        for (int j = 0; j < m; j++) {
-            int len_j = m - j;
-            ret += min(len_i * 2, len_j * 2 - 1);
-            ret += min(len_i * 2 - 1, len_j * 2);
-        }
+    int n; cin >> n;
+    pow2[0] = 1;
+    fact[0] = 1;
+    int a = 0, b = 0, num;
+    for (int i = 1; i <= n; i++) {
+        pow2[i] = pow2[i-1] * 2 % mod;
+        fact[i] = fact[i-1] * i % mod;
+        cin >> num;
+        if (num % 2 == 1) continue;
+        num /= 2;
+        if (num % 2 == 1) a++;
+        else b++;
     }
-    while (q--) {
-        int x, y; cin >> x >> y;
-        x--; y--;
-        ban[x][y] = !ban[x][y];
-        if (ban[x][y]) ret -= solve(x, y);
-        else ret += solve(x, y);
-        cout << ret << '\n';
+    inv[a] = power(fact[a], mod-2);
+    for (int i = a-1; i >= 0; i--) {
+        inv[i] = inv[i+1] * (i+1) % mod;
     }
-
-
+    LL tmp = 0;
+    for (int i = 1; i <= a; i += 2) {
+        tmp = (tmp + combine(a, i)*pow2[b] % mod) % mod;
+    }
+    LL ret = (pow2[n] - 1 + mod) % mod;
+    ret = (ret - b + mod) % mod;
+    ret = (ret - tmp + mod) % mod;
+    cout << ret << '\n';
 
 
 

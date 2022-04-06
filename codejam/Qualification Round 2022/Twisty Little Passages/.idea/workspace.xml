@@ -2,7 +2,7 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
-      <config projectName="F__Vitaly_and_Advanced_Useless_Algorithms" targetName="F__Vitaly_and_Advanced_Useless_Algorithms" />
+      <config projectName="Twisty_Little_Passages" targetName="Twisty_Little_Passages" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -11,7 +11,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f9f0cfc-3ff8-437e-8d29-b7c4c7060010" name="Changes" comment="" />
+    <list default="true" id="ef77244c-33b4-41c5-b42f-9dcde72a4576" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,7 +29,7 @@
     <option name="majorVersion" value="2021" />
     <option name="minorVersion" value="3.4" />
   </component>
-  <component name="ProjectId" id="26bJwbGb7Pi3mDe3hnqxmK9OnN9" />
+  <component name="ProjectId" id="27Nycyhb6NtScf8oxHmGx8pj5Ve" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -39,6 +39,7 @@
     <property name="cf.first.check.clang-format" value="false" />
     <property name="cidr.known.project.marker" value="true" />
     <property name="cmake.loaded.for.project" value="true" />
+    <property name="structure.view.defaults.are.configured" value="true" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
@@ -46,7 +47,7 @@
         <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
     </configuration>
-    <configuration name="F__Vitaly_and_Advanced_Useless_Algorithms" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="F__Vitaly_and_Advanced_Useless_Algorithms" TARGET_NAME="F__Vitaly_and_Advanced_Useless_Algorithms" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="F__Vitaly_and_Advanced_Useless_Algorithms" RUN_TARGET_NAME="F__Vitaly_and_Advanced_Useless_Algorithms">
+    <configuration name="Twisty_Little_Passages" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Twisty_Little_Passages" TARGET_NAME="Twisty_Little_Passages" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Twisty_Little_Passages" RUN_TARGET_NAME="Twisty_Little_Passages">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -55,23 +56,13 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="0f9f0cfc-3ff8-437e-8d29-b7c4c7060010" name="Changes" comment="" />
-      <created>1647686591982</created>
+      <changelist id="ef77244c-33b4-41c5-b42f-9dcde72a4576" name="Changes" comment="" />
+      <created>1649174921664</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1647686591982</updated>
-      <workItem from="1647686594500" duration="3328000" />
+      <updated>1649174921664</updated>
+      <workItem from="1649174923093" duration="5784000" />
     </task>
     <servers />
-  </component>
-  <component name="XDebuggerManager">
-    <watches-manager>
-      <configuration name="CMakeRunConfiguration">
-        <watch expression="p[op[tmp]]" language="ObjectiveC" />
-        <watch expression="op" language="ObjectiveC" />
-        <watch expression="op[tmp]" language="ObjectiveC" />
-        <watch expression="dp[tmp]" language="ObjectiveC" />
-      </configuration>
-    </watches-manager>
   </component>
 </project>
